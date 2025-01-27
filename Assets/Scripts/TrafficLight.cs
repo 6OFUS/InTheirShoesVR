@@ -8,12 +8,67 @@ public class TrafficLight : MonoBehaviour
     public GameObject amberLight;
     public GameObject redLight;
 
+    TrafficLightController trafficLightController;
 
+    /*
+    public IEnumerator ChangeLight(string currentState)
+    {
+        while (true)
+        {
+            switch(currentState)
+            {
+                case "green":
+                    greenLight.SetActive(true);
+                    amberLight.SetActive(false);
+                    redLight.SetActive(false);
+                    yield return new WaitForSeconds(2);
+                    currentState = "amber";
+                    break;
+                case "amber":
+                    greenLight.SetActive(false);
+                    amberLight.SetActive(true);
+                    redLight.SetActive(false);
+                    yield return new WaitForSeconds(2);
+                    currentState = "red";
+                    break;
+                case "red":
+                    greenLight.SetActive(false);
+                    amberLight.SetActive(false);
+                    redLight.SetActive(true);
+                    yield return new WaitForSeconds(trafficLightController.crossingTime);
+                    currentState = "green";
+                    break;        
+            }
+        }
+    }
+    */
+
+    public void ChangeLight(string currentState)
+    {
+        switch (currentState)
+        {
+            case "green":
+                greenLight.SetActive(true);
+                amberLight.SetActive(false);
+                redLight.SetActive(false);
+                break;
+            case "amber":
+                greenLight.SetActive(false);
+                amberLight.SetActive(true);
+                redLight.SetActive(false);
+                break;
+            case "red":
+                greenLight.SetActive(false);
+                amberLight.SetActive(false);
+                redLight.SetActive(true);
+                break;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        trafficLightController = FindObjectOfType<TrafficLightController>();
     }
 
     // Update is called once per frame

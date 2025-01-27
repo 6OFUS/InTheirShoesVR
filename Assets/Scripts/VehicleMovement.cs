@@ -9,15 +9,7 @@ using UnityEngine;
 
 public class VehicleMovement : MonoBehaviour
 {
-    public PedestrianTrafficLight pedestrianTrafficLight;
 
-    public void Move() //put in Update function
-    {
-        if (!pedestrianTrafficLight.canCross) //canCross = false
-        {
-            //vehicle move
-        }
-    }
     // Start is called before the first frame update
     void Start()
     {

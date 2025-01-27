@@ -9,61 +9,48 @@ using UnityEngine;
 
 public class PedestrianTrafficLight : MonoBehaviour
 {
-    /// <summary>
-    /// Boolean to set to true when player presses traffic light button
-    /// </summary>
-    bool buttonPressed;
+    TrafficLightController trafficLightController;
 
-    /// <summary>
-    /// Boolean to set to true if player can cross the road
-    /// </summary>
-    public bool canCross;
+    public GameObject redMan;
+    public GameObject greenMan;
 
     public void PressButton()
     {
-        if (buttonPressed)
+        if (trafficLightController.buttonPressed)
         {
             Debug.Log("button pressed already");
             return;
         }
         else
         {
-            buttonPressed = true;
-            Debug.Log(buttonPressed);
-            ChangeLight();
+            trafficLightController.buttonPressed = true;
+            Debug.Log("button pressed");
+            trafficLightController.Crossing();
         }
     }
 
-    public void ChangeLight()
+    public void ChangeCrossingLight(string currentState)
     {
-        if (buttonPressed)
+        switch (currentState)
         {
-            //wait a few seconds
-            //traffic light change from green to amber to red
-            canCross = true;
-            if (canCross)
-            {
-                //change to green man and show timer text
-                //when timer = 0
-                canCross = false;
-                //change to red man and traffic light change to green
-            }
-
-        }
-        else
-        {
-            //wait a few seconds
-            //then
-            //traffic light change from red to green
-            //then
-            //change to red man
+            case "red":
+                redMan.SetActive(true);
+                greenMan.SetActive(false);
+                currentState = "green";
+                break;
+            case "green":
+                greenMan.SetActive(true);
+                redMan.SetActive(false);
+                currentState = "red";
+                break;
         }
     }
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        trafficLightController = FindObjectOfType<TrafficLightController>();
     }
 
     // Update is called once per frame
