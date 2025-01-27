@@ -21,8 +21,17 @@ public class PedestrianTrafficLight : MonoBehaviour
 
     public void PressButton()
     {
-        buttonPressed = true;
-        Debug.Log(buttonPressed);
+        if (buttonPressed)
+        {
+            Debug.Log("button pressed already");
+            return;
+        }
+        else
+        {
+            buttonPressed = true;
+            Debug.Log(buttonPressed);
+            ChangeLight();
+        }
     }
 
     public void ChangeLight()
@@ -30,7 +39,6 @@ public class PedestrianTrafficLight : MonoBehaviour
         if (buttonPressed)
         {
             //wait a few seconds
-            //if
             //traffic light change from green to amber to red
             canCross = true;
             if (canCross)
