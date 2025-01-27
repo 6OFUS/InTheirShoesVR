@@ -5,6 +5,7 @@
 */
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PedestrianTrafficLight : MonoBehaviour
@@ -13,6 +14,8 @@ public class PedestrianTrafficLight : MonoBehaviour
 
     public GameObject redMan;
     public GameObject greenMan;
+
+    public TextMeshProUGUI crossingTimerText;
 
     public void PressButton()
     {
