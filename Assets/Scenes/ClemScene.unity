@@ -5061,6 +5061,7 @@ MonoBehaviour:
   beforeLightChangeTime: 10
   lightChangeTime: 2
   crossingTime: 10
+  greenManBlinkSpeed: 0
 --- !u!4 &674606268
 Transform:
   m_ObjectHideFlags: 0
