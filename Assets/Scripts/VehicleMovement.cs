@@ -9,20 +9,13 @@ using UnityEngine;
 
 public class VehicleMovement : MonoBehaviour
 {
-    TrafficLightController trafficLightController;
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!trafficLightController.greenManBlinking && other.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("hit car");
-        }
-    }
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        trafficLightController = FindObjectOfType<TrafficLightController>();
+
     }
 
     // Update is called once per frame

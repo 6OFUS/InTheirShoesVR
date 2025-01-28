@@ -16,10 +16,12 @@ public class TrafficLightController : MonoBehaviour
     public int lightChangeTime;
 
     public int crossingTime;
+    public bool canCross;
 
     bool lightChanging;
-    public bool greenManBlinking;
+    bool greenManBlinking;
     public float greenManBlinkSpeed;
+    public int timeToStartBlinking;
 
     private void UpdateAllLights()
     {
@@ -59,6 +61,7 @@ public class TrafficLightController : MonoBehaviour
                     trafficLightsCurrentState = "red";
                     pedestrianLightsCurrentState = "green";
                     UpdateAllLights();
+                    canCross = true;
                     yield return StartCoroutine(CrossingTimer());
                     nextState = "Green light";
                     break;
@@ -66,15 +69,17 @@ public class TrafficLightController : MonoBehaviour
         }
     }
 
-    IEnumerator BeforeLightChange()
+    IEnumerator BeforeLightChange() //waiting time after pressing button
     {
         yield return new WaitForSeconds(beforeLightChangeTime);
 
         StartCoroutine(ChangeLightStates("Green light"));
     }
 
+
     IEnumerator GreenManBlinking()
     {
+
         while(greenManBlinking)
         {
             foreach (var pedestrianLight in pedestrianTrafficLights)
@@ -85,22 +90,28 @@ public class TrafficLightController : MonoBehaviour
         }
     }
 
-    IEnumerator CrossingTimer()
+
+    IEnumerator CrossingTimer() //time for when player can cross the road, green man 
     {
         int timer = crossingTime;
-        greenManBlinking = true;
-        StartCoroutine(GreenManBlinking());
+
         while(timer > 0)
         {
-            //put text here
-            Debug.Log(timer);
             UpdateTimerUI(timer);
             yield return new WaitForSeconds(1);
             timer--;
+            ///less than this amt of time then start blinking
+            if (timer == timeToStartBlinking)
+            {
+                greenManBlinking = true;
+                StartCoroutine(GreenManBlinking());
+            }
         }
+        UpdateTimerUI(0);
         buttonPressed = false;
         lightChanging = false;
         greenManBlinking = false;
+        canCross = false;
 
         trafficLightsCurrentState = "green";
         pedestrianLightsCurrentState = "red";
@@ -111,7 +122,14 @@ public class TrafficLightController : MonoBehaviour
     {
         foreach(var pedestrianLight in pedestrianTrafficLights)
         {
-            pedestrianLight.crossingTimerText.text = timer.ToString();
+            if(timer > 0)
+            {
+                pedestrianLight.crossingTimerText.text = timer.ToString();
+            }
+            else
+            {
+                pedestrianLight.crossingTimerText.text = null;
+            }
         }
     }
 
