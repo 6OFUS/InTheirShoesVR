@@ -16,10 +16,9 @@ public class TrafficLightController : MonoBehaviour
     public int lightChangeTime;
 
     public int crossingTime;
-    bool isCrossing;
 
     bool lightChanging;
-    bool greenManBlinking;
+    public bool greenManBlinking;
     public float greenManBlinkSpeed;
 
     private void UpdateAllLights()
