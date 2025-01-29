@@ -8,8 +8,8 @@ public class TrafficLightController : MonoBehaviour
     public List<TrafficLight> trafficLights;
     public List<PedestrianTrafficLight> pedestrianTrafficLights;
 
-    private string trafficLightsCurrentState = "green";
-    private string pedestrianLightsCurrentState = "red";
+    public string trafficLightsCurrentState = "green";
+    public string pedestrianLightsCurrentState = "red";
 
     public bool buttonPressed;
     public int beforeLightChangeTime;
@@ -43,27 +43,27 @@ public class TrafficLightController : MonoBehaviour
         {
             switch (nextState)
             {
-                case "Green light":
+                case "greenLight":
                     trafficLightsCurrentState = "green";
                     pedestrianLightsCurrentState = "red";
                     UpdateAllLights();
                     yield return new WaitForSeconds(lightChangeTime);
-                    nextState = "Amber light";
+                    nextState = "amberLight";
                     break;
-                case "Amber light":
+                case "amberLight":
                     trafficLightsCurrentState = "amber";
                     pedestrianLightsCurrentState = "red";
                     UpdateAllLights();
                     yield return new WaitForSeconds(lightChangeTime);
-                    nextState = "Red light";
+                    nextState = "redLight";
                     break;
-                case "Red light":
+                case "redLight":
                     trafficLightsCurrentState = "red";
                     pedestrianLightsCurrentState = "green";
                     UpdateAllLights();
                     canCross = true;
                     yield return StartCoroutine(CrossingTimer());
-                    nextState = "Green light";
+                    nextState = "greenLight";
                     break;
             }
         }
@@ -73,7 +73,7 @@ public class TrafficLightController : MonoBehaviour
     {
         yield return new WaitForSeconds(beforeLightChangeTime);
 
-        StartCoroutine(ChangeLightStates("Green light"));
+        StartCoroutine(ChangeLightStates("greenLight"));
     }
 
 
