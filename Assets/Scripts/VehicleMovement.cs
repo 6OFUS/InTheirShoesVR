@@ -18,7 +18,7 @@ public class VehicleMovement : MonoBehaviour
     public float currentSpeed = 0f;
     public float originalSpeed;
     public float slowDownDistance;
-    public float fullyStopDistance;
+    public float distanceThreshold;
 
     public float accelerationTime;
     float accelerationTimer;
@@ -50,7 +50,7 @@ public class VehicleMovement : MonoBehaviour
                     currentSpeed = Mathf.Lerp(originalSpeed, 0, t);
                 }
 
-                if (distanceToStoppingPoint <= fullyStopDistance)
+                if (distanceToStoppingPoint <= distanceThreshold)
                 {
                     currentSpeed = 0;
                 }
@@ -60,11 +60,21 @@ public class VehicleMovement : MonoBehaviour
 
         //reset car to start
         float distanceToEndPoint = Vector3.Distance(transform.position, endMarker.transform.position);
-        if (distanceToEndPoint <= fullyStopDistance)
+        if (distanceToEndPoint <= distanceThreshold)
         {
             transform.position = startMarker.transform.position;
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.CompareTag("Player") && !trafficLightController.canCross)
+        {
+            //restart ui appear
+            Debug.Log("player hit");
+        }
+    }
+
 
 
     // Start is called before the first frame update
