@@ -14,6 +14,7 @@ public class PedestrianTrafficLight : MonoBehaviour
 
     public GameObject redMan;
     public GameObject greenMan;
+    public GameObject buttonLight;
 
     public TextMeshProUGUI crossingTimerText;
 
@@ -27,6 +28,7 @@ public class PedestrianTrafficLight : MonoBehaviour
         else
         {
             trafficLightController.buttonPressed = true;
+            buttonLight.SetActive(true);
             Debug.Log("button pressed");
             trafficLightController.Crossing();
         }
@@ -42,6 +44,7 @@ public class PedestrianTrafficLight : MonoBehaviour
                 currentState = "green";
                 break;
             case "green":
+                buttonLight.SetActive(false);
                 greenMan.SetActive(true);
                 redMan.SetActive(false);
                 currentState = "red";
@@ -54,6 +57,7 @@ public class PedestrianTrafficLight : MonoBehaviour
     void Start()
     {
         trafficLightController = FindObjectOfType<TrafficLightController>();
+        buttonLight.SetActive(false);
     }
 
     // Update is called once per frame

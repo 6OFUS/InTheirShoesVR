@@ -33988,7 +33988,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 96
+  m_VersionIndex: 141
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -34169,6 +34169,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.y
       value: 0.707106
       objectReference: {fileID: 0}
+    - target: {fileID: 2465857101781053185, guid: 99ffb33a400baae44acdec8a6cfebff2, type: 3}
+      propertyPath: buttonLight
+      value: 
+      objectReference: {fileID: 856488607343431313}
     - target: {fileID: 3117214689032363109, guid: 99ffb33a400baae44acdec8a6cfebff2, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.6866918
@@ -34201,6 +34205,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.y
       value: 0.707106
       objectReference: {fileID: 0}
+    - target: {fileID: 3443163866263893365, guid: 99ffb33a400baae44acdec8a6cfebff2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.45
+      objectReference: {fileID: 0}
     - target: {fileID: 3731008973218169402, guid: 99ffb33a400baae44acdec8a6cfebff2, type: 3}
       propertyPath: m_Name
       value: TrafficLightButton
@@ -34211,7 +34219,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3902404117802300964, guid: 99ffb33a400baae44acdec8a6cfebff2, type: 3}
       propertyPath: m_VersionIndex
-      value: 135
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 4477903356836012395, guid: 99ffb33a400baae44acdec8a6cfebff2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -34221,13 +34229,29 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.05
       objectReference: {fileID: 0}
+    - target: {fileID: 4477903356836012395, guid: 99ffb33a400baae44acdec8a6cfebff2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.785
+      objectReference: {fileID: 0}
     - target: {fileID: 7830934679667030671, guid: 99ffb33a400baae44acdec8a6cfebff2, type: 3}
       propertyPath: m_VersionIndex
       value: 135
       objectReference: {fileID: 0}
     - target: {fileID: 8706191095579564227, guid: 99ffb33a400baae44acdec8a6cfebff2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9108366895832105354, guid: 99ffb33a400baae44acdec8a6cfebff2, type: 3}
+      propertyPath: m_Center.x
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 9108366895832105354, guid: 99ffb33a400baae44acdec8a6cfebff2, type: 3}
+      propertyPath: m_Center.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 9108366895832105354, guid: 99ffb33a400baae44acdec8a6cfebff2, type: 3}
+      propertyPath: m_Center.z
+      value: 0.28
       objectReference: {fileID: 0}
     - target: {fileID: 9197836431010894095, guid: 99ffb33a400baae44acdec8a6cfebff2, type: 3}
       propertyPath: m_LocalPosition.x

@@ -137,6 +137,10 @@ public class TrafficLightController : MonoBehaviour
     {
         if (buttonPressed)
         {
+            foreach (var pedestrianLight in pedestrianTrafficLights)
+            {
+                pedestrianLight.buttonLight.SetActive(true);
+            }
             StartCoroutine(BeforeLightChange());
         }
     }
