@@ -1,3 +1,8 @@
+/*
+    Author: Kevin Heng
+    Date: 27/1/2025
+    Description: The TrafficLightController class is used to handle the traffic light system of all traffic lights (vehicle and pedestrian lights)
+*/
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;

@@ -1,3 +1,8 @@
+/*
+    Author: Kevin Heng
+    Date: 27/1/2025
+    Description: The TrafficLight class is used to handle the vehicle traffic lights for player to cross the road
+*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

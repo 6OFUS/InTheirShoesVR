@@ -8131,15 +8131,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1178791450436251564, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_RequestedTrackingOriginMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503725, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_Name
       value: XR Origin (XR Rig)
       objectReference: {fileID: 0}
+    - target: {fileID: 1717954561962503725, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -88.1
+      value: -53.07
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8175,6 +8179,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778211696441940833, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_SmoothTurnEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663893676086941514, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_SmoothTurnEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663893676086941514, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_SmoothMotionEnabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5826056641483426609, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
@@ -18648,7 +18664,7 @@ PrefabInstance:
       objectReference: {fileID: 975273109}
     - target: {fileID: 189387573920657642, guid: aac7b0eeb1d854d47adab1a99f222e02, type: 3}
       propertyPath: m_VersionIndex
-      value: 345
+      value: 348
       objectReference: {fileID: 0}
     - target: {fileID: 613238879462032565, guid: aac7b0eeb1d854d47adab1a99f222e02, type: 3}
       propertyPath: m_Mesh
@@ -18676,7 +18692,7 @@ PrefabInstance:
       objectReference: {fileID: 937948479}
     - target: {fileID: 3462214104984681044, guid: aac7b0eeb1d854d47adab1a99f222e02, type: 3}
       propertyPath: m_VersionIndex
-      value: 450
+      value: 453
       objectReference: {fileID: 0}
     - target: {fileID: 3641733786691938771, guid: aac7b0eeb1d854d47adab1a99f222e02, type: 3}
       propertyPath: m_Mesh
@@ -18684,7 +18700,7 @@ PrefabInstance:
       objectReference: {fileID: 1206947573}
     - target: {fileID: 3641733786691938771, guid: aac7b0eeb1d854d47adab1a99f222e02, type: 3}
       propertyPath: m_VersionIndex
-      value: 450
+      value: 453
       objectReference: {fileID: 0}
     - target: {fileID: 3760037515388007351, guid: aac7b0eeb1d854d47adab1a99f222e02, type: 3}
       propertyPath: m_Mesh
@@ -18857,7 +18873,7 @@ PrefabInstance:
       objectReference: {fileID: 1665913289}
     - target: {fileID: 3384569958873140395, guid: 34fbae19d43365446a1765a675f112fa, type: 3}
       propertyPath: m_VersionIndex
-      value: 180
+      value: 183
       objectReference: {fileID: 0}
     - target: {fileID: 3719048747764847373, guid: 34fbae19d43365446a1765a675f112fa, type: 3}
       propertyPath: m_PokeConfiguration.m_ConstantValue.m_PokeDirection
@@ -18925,7 +18941,7 @@ PrefabInstance:
       objectReference: {fileID: 962403163}
     - target: {fileID: 9076583421573685985, guid: 34fbae19d43365446a1765a675f112fa, type: 3}
       propertyPath: m_VersionIndex
-      value: 141
+      value: 144
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

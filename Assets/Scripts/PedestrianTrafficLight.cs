@@ -1,7 +1,7 @@
 /*
     Author: Kevin Heng
     Date: 27/1/2025
-    Description: The Pedestrian class is used to handle the traffic light system for player to cross the road
+    Description: The PedestrianTrafficLight class is used to handle the pedestrian traffic lights for player to cross the road
 */
 using System.Collections;
 using System.Collections.Generic;
@@ -28,7 +28,6 @@ public class PedestrianTrafficLight : MonoBehaviour
         else
         {
             trafficLightController.buttonPressed = true;
-            buttonLight.SetActive(true);
             Debug.Log("button pressed");
             trafficLightController.Crossing();
         }
