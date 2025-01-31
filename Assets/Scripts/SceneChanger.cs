@@ -12,9 +12,22 @@ public class SceneChanger : MonoBehaviour
 {
     public int sceneIndex;
 
+    public Animator transition;
+    public float transitionTime = 1f;
+
+    IEnumerator LoadLevel(int levelIndex)
+    {
+        transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(transitionTime);
+
+        SceneManager.LoadScene(levelIndex);
+    }
+
     public void LoadScene()
     {
-        SceneManager.LoadScene(sceneIndex);
+        transition.gameObject.SetActive(true);
+        StartCoroutine(LoadLevel(sceneIndex));
     }
 
     public void RestartScene()

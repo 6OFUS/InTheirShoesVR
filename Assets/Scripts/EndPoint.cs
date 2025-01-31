@@ -13,7 +13,8 @@ public class EndPoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
+        endUI.SetActive(true);
+        Debug.Log("Level completed");
     }
 
 
