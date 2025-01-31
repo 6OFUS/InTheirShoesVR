@@ -103,7 +103,6 @@ public class TrafficLightController : MonoBehaviour
         //stop button beep
         foreach (var pedestrianLight in pedestrianTrafficLights)
         {
-            pedestrianLight.beepingAudioSource.Stop();
             pedestrianLight.clipIndex++;
             pedestrianLight.beepingAudioSource.clip = pedestrianLight.beepingAudioClips[pedestrianLight.clipIndex];
             pedestrianLight.beepingAudioSource.Play();
