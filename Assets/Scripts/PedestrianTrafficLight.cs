@@ -18,8 +18,14 @@ public class PedestrianTrafficLight : MonoBehaviour
 
     public TextMeshProUGUI crossingTimerText;
 
+    public AudioSource beepingAudioSource;
+    public AudioClip[] beepingAudioClips;
+    public int clipIndex;
+    public AudioSource pressButton;
+
     public void PressButton()
     {
+        pressButton.Play();
         if (trafficLightController.buttonPressed)
         {
             Debug.Log("button pressed already");
@@ -29,8 +35,16 @@ public class PedestrianTrafficLight : MonoBehaviour
         {
             trafficLightController.buttonPressed = true;
             Debug.Log("button pressed");
-            trafficLightController.Crossing();
+            StartCoroutine(BeforeBeeping());
         }
+    }
+
+    IEnumerator BeforeBeeping()
+    {
+        beepingAudioSource.clip = beepingAudioClips[clipIndex];
+        yield return new WaitForSeconds(1);
+        beepingAudioSource.Play();
+        trafficLightController.Crossing();
     }
 
     public void ChangeCrossingLight(string currentState)

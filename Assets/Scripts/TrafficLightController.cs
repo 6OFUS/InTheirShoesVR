@@ -99,8 +99,16 @@ public class TrafficLightController : MonoBehaviour
     IEnumerator CrossingTimer() //time for when player can cross the road, green man 
     {
         int timer = crossingTime;
-
-        while(timer > 0)
+        //start crossing beeping
+        //stop button beep
+        foreach (var pedestrianLight in pedestrianTrafficLights)
+        {
+            pedestrianLight.beepingAudioSource.Stop();
+            pedestrianLight.clipIndex++;
+            pedestrianLight.beepingAudioSource.clip = pedestrianLight.beepingAudioClips[pedestrianLight.clipIndex];
+            pedestrianLight.beepingAudioSource.Play();
+        }
+        while (timer > 0)
         {
             UpdateTimerUI(timer);
             yield return new WaitForSeconds(1);
@@ -111,6 +119,12 @@ public class TrafficLightController : MonoBehaviour
                 greenManBlinking = true;
                 StartCoroutine(GreenManBlinking());
             }
+        }
+        //stop beeping
+        foreach (var pedestrianLight in pedestrianTrafficLights)
+        {
+            pedestrianLight.beepingAudioSource.Stop();
+            pedestrianLight.clipIndex = 0;
         }
         UpdateTimerUI(0);
         buttonPressed = false;
