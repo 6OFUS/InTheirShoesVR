@@ -1,7 +1,7 @@
 /*
     Author: Kevin Heng
     Date: 30/1/2025
-    Description: 
+    Description: The EndPoint class is used to handle the functions when player reaches end point of level
 */
 using System.Collections;
 using System.Collections.Generic;

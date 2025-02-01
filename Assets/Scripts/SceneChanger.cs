@@ -1,7 +1,7 @@
 /*
     Author: Kevin Heng
     Date: 30/1/2025
-    Description: 
+    Description: The SceneChanger class is used to handle the functions for scene changes
 */
 using System.Collections;
 using System.Collections.Generic;

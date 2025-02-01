@@ -9,21 +9,54 @@ using UnityEngine;
 
 public class VehicleMovement : MonoBehaviour
 {
-    TrafficLightController trafficLightController;
+    /// <summary>
+    /// Reference the TrafficLightController script
+    /// </summary>
+    private TrafficLightController trafficLightController;
 
+    [Header("Driving markers")]
+    /// <summary>
+    /// Point where vehicle starts driving
+    /// </summary>
     public GameObject startMarker;
+    /// <summary>
+    /// Point where vehicle stops before pedestrian crossing when light turns red
+    /// </summary>
     public GameObject stopMarker;
+    /// <summary>
+    /// Point where vehicle stops and returns to start point
+    /// </summary>
     public GameObject endMarker;
-
+    [Header("Vehicle properties")]
+    /// <summary>
+    /// Current speed of vehicle
+    /// </summary>
     public float currentSpeed = 0f;
+    /// <summary>
+    /// Max speed of vehicle
+    /// </summary>
     public float originalSpeed;
+    /// <summary>
+    /// Distance from stopMarker before vehicle slows down and stops
+    /// </summary>
     public float slowDownDistance;
+    /// <summary>
+    /// Minimum distance from stopMarker for vehicle to either stop or continue moving
+    /// </summary>
     public float distanceThreshold;
-
+    /// <summary>
+    /// Time to accelerate to max speed
+    /// </summary>
     public float accelerationTime;
-    float accelerationTimer;
+    /// <summary>
+    /// Time taken for the acceleration
+    /// </summary>
+    private float accelerationTimer;
 
-    void Drive()
+    /// <summary>
+    /// Handles the vehicle driving mechanic
+    /// </summary>
+    private void Drive()
     {
         Vector3 stoppingPoint = stopMarker.transform.position;
         float distanceToStoppingPoint = Vector3.Distance(transform.position, stoppingPoint);
@@ -66,6 +99,10 @@ public class VehicleMovement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// When vehicle hits player
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.CompareTag("Player") && !trafficLightController.canCross)

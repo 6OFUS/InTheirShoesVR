@@ -11,9 +11,17 @@ using UnityEngine.InputSystem;
 
 public class HandAnimatorController : MonoBehaviour
 {
+    /// <summary>
+    /// Trigger action of controller
+    /// </summary>
     [SerializeField] private InputActionProperty triggerAction;
+    /// <summary>
+    /// Grip action of controller
+    /// </summary>
     [SerializeField] private InputActionProperty gripAction;
-
+    /// <summary>
+    /// Animator on hand model
+    /// </summary>
     private Animator animator;
 
     // Start is called before the first frame update

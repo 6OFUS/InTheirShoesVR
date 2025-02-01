@@ -70,4 +70,18 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
-.vsconfig
+
+# Firebase-related files and folders
+/[Aa]ssets/Plugins/Firebase/
+# Firebase configuration files (add specific file extensions if needed)
+/[Ff]irebaseConfig*.json
+/[Aa]ssets/Firebase/
+
+# Other possible Firebase-related directories or files that may appear in your project
+[Ff]irebase/
+
+# Ignore all other generated files that might be sensitive or irrelevant to version control
+*.log
+*.bak
+*.tmp
+*.swp
