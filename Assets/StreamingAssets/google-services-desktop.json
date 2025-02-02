@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "217693075201",
+    "firebase_url": "https://intheirshoesvr-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "intheirshoesvr",
+    "storage_bucket": "intheirshoesvr.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217693075201:android:80da3b04bbd4e816e04d00",
+        "android_client_info": {
+          "package_name": "com.FiveOFUS.InTheirShoes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "217693075201-kotj2fku5uo17krgk047a7k18pvuvvbb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGyAnot9FsrFGiNOfsFazzmrZrZqvBGUU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "217693075201-kotj2fku5uo17krgk047a7k18pvuvvbb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
