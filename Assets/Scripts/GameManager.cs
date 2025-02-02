@@ -6,11 +6,16 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public Database database;
 
     public string playerID;
     public string playerEmail;
     public string playerName;
     public string playerDateJoined;
+    public int playerPlayTime;
+    public bool isTracking;
+
+    public Dictionary<string, bool> playerLevelProgress = new Dictionary<string, bool>();
 
 
     private void Awake()
@@ -26,18 +31,40 @@ public class GameManager : MonoBehaviour
         }
 
     }
-    public void StorePlayerDetails(string uID, string name, string email, string dateJoined)
+    public void StorePlayerDetails(string uID, string name, string email, string dateJoined, int totalPlayTime)
     {
         playerID = uID;
         playerName = name;
         playerEmail = email;
         playerDateJoined = dateJoined;
+        playerPlayTime = totalPlayTime;
     }
+
+    public IEnumerator TrackPlayTime()
+    {
+        while (isTracking)
+        {
+            playerPlayTime++;
+            if (playerPlayTime % 10 == 0)
+            {
+                database.StorePlayTime(playerID, playerPlayTime);
+            }
+            yield return new WaitForSeconds(1);
+        }
+    }
+
+    private void OnApplicationQuit()
+    {
+        database.StorePlayTime(playerID, playerPlayTime);
+    }
+
+
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame

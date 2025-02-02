@@ -1335,8 +1335,8 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
@@ -2423,9 +2423,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76f4af9ca9a6baa4eba2c2b617ea76d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  database: {fileID: 1032245213}
   playerID: 
   playerEmail: 
   playerName: 
+  playerDateJoined: 
+  playerPlayTime: 0
+  isTracking: 0
 --- !u!4 &590602218
 Transform:
   m_ObjectHideFlags: 0
@@ -3633,6 +3637,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f0ae81f7a8b14f42a41c4ace75f5128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelNames:
+  - tutorial
+  - visual
+  - hearing
+  - dyslexia
+  - wheelchair
 --- !u!4 &1032245214
 Transform:
   m_ObjectHideFlags: 0

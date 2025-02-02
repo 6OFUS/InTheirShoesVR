@@ -39,16 +39,18 @@ public class Authentication : MonoBehaviour
             }
             else if(task.IsCompleted)
             {
-                AuthResult newPlayer = task.Result;
-                FirebaseUser newUser   =  task.Result.User;
+                FirebaseUser newPlayer  =  task.Result.User;
 
-                DateTime creationDate = DateTimeOffset.FromUnixTimeMilliseconds((long)newUser.Metadata.CreationTimestamp).UtcDateTime;
-                string accountCreationDate = creationDate.ToString();
-                Debug.Log(accountCreationDate);
+                DateTime creationDateTime = DateTimeOffset.FromUnixTimeMilliseconds((long)newPlayer.Metadata.CreationTimestamp).UtcDateTime.ToLocalTime();
+                string dateJoined = creationDateTime.ToString("yyyy-MM-dd");
 
-                database.CreateNewPlayer(newPlayer.User.UserId, nameInput.text, emailInput.text, accountCreationDate, 0, 0f);
-                GameManager.Instance.StorePlayerDetails(newPlayer.User.UserId, nameInput.text, emailInput.text, accountCreationDate);
-
+                database.CreateNewPlayer(newPlayer.UserId, nameInput.text, emailInput.text, dateJoined, 0);
+                //store data in game manager
+                database.ReadPlayerData(newPlayer.UserId);
+                database.ReadPlayerLvlProgress(newPlayer.UserId);
+                ResetInputs();
+                GameManager.Instance.isTracking = true;
+                StartCoroutine(GameManager.Instance.TrackPlayTime());
             }
         });
     }
@@ -57,7 +59,10 @@ public class Authentication : MonoBehaviour
     {
         if(auth.CurrentUser != null)
         {
+            GameManager.Instance.isTracking = false;
+            database.StorePlayTime(GameManager.Instance.playerID, GameManager.Instance.playerPlayTime);
             auth.SignOut();
+            GameManager.Instance.StorePlayerDetails("", "", "", "", 0);
         }
     }
 
@@ -73,11 +78,20 @@ public class Authentication : MonoBehaviour
             {
                 AuthResult player = task.Result;
                 //store data in game manager
-
+                database.ReadPlayerData(player.User.UserId);
+                ResetInputs();
+                GameManager.Instance.isTracking = true;
+                StartCoroutine(GameManager.Instance.TrackPlayTime());
             }
         });
     }
 
+    private void ResetInputs()
+    {
+        emailInput.text = "";
+        nameInput.text = "";
+        passwordInput.text = "";
+    }
     public void ResetPassword()
     {
         auth.SendPasswordResetEmailAsync(emailInput.text).ContinueWithOnMainThread(task =>
