@@ -87,3 +87,37 @@ crashlytics-build.properties
 *.swp
 
 .idea/
+Assets/Plugins/Android/FirebaseApp.androidlib/res/values/google-services.xml.meta
+Assets/Plugins/Android/FirebaseApp.androidlib/res/values.meta
+Assets/Plugins/Android/FirebaseApp.androidlib/res.meta
+Assets/Plugins/Android/FirebaseApp.androidlib/project.properties.meta
+Assets/Plugins/Android/FirebaseApp.androidlib/AndroidManifest.xml.meta
+Assets/google-services 1.json.meta
+Assets/google-services 1.json
+Assets/ExternalDependencyManager/Editor/README.md.meta
+Assets/ExternalDependencyManager/Editor/README.md
+Assets/ExternalDependencyManager/Editor/LICENSE.meta
+Assets/ExternalDependencyManager/Editor/LICENSE
+Assets/ExternalDependencyManager/Editor/Google.VersionHandler.dll.meta
+Assets/ExternalDependencyManager/Editor/external-dependency-manager_version-1.2.183_manifest.txt.meta
+Assets/ExternalDependencyManager/Editor/external-dependency-manager_version-1.2.183_manifest.txt
+Assets/ExternalDependencyManager/Editor/CHANGELOG.md.meta
+Assets/ExternalDependencyManager/Editor/CHANGELOG.md
+Assets/ExternalDependencyManager/Editor/1.2.183/Google.VersionHandlerImpl.dll.meta
+Assets/ExternalDependencyManager/Editor/1.2.183/Google.PackageManagerResolver.dll.meta
+Assets/ExternalDependencyManager/Editor/1.2.183/Google.JarResolver.dll.meta
+Assets/ExternalDependencyManager/Editor/1.2.183/Google.IOSResolver.dll.meta
+Assets/ExternalDependencyManager/Editor/README.md.meta
+Assets/ExternalDependencyManager/Editor/README.md
+Assets/ExternalDependencyManager/Editor/LICENSE.meta
+Assets/ExternalDependencyManager/Editor/LICENSE
+Assets/ExternalDependencyManager/Editor/Google.VersionHandler.dll.meta
+Assets/ExternalDependencyManager/Editor/external-dependency-manager_version-1.2.183_manifest.txt.meta
+Assets/ExternalDependencyManager/Editor/external-dependency-manager_version-1.2.183_manifest.txt
+Assets/ExternalDependencyManager/Editor/CHANGELOG.md.meta
+Assets/ExternalDependencyManager/Editor/CHANGELOG.md
+Assets/ExternalDependencyManager/Editor/1.2.183/Google.VersionHandlerImpl.dll.meta
+Assets/ExternalDependencyManager/Editor/1.2.183/Google.PackageManagerResolver.dll.meta
+Assets/ExternalDependencyManager/Editor/1.2.183/Google.JarResolver.dll.meta
+Assets/ExternalDependencyManager/Editor/1.2.183/Google.IOSResolver.dll.meta
+*.md
