@@ -81,15 +81,14 @@ public class Database : MonoBehaviour
                         if(playerID.Key == GameManager.Instance.playerID)
                         {
                             GameManager.Instance.playerLevelProgress.Add(level, (bool)playerID.Value);
+                            if ((bool)playerID.Value)
+                            {
+                                GameManager.Instance.currentLevelIndex++;
+                                Debug.Log(GameManager.Instance.currentLevelIndex);
+                            }
                             break;
                         }
                     }
-                    /*
-                    foreach (KeyValuePair<string, bool> entry in GameManager.Instance.playerLevelProgress)
-                    {
-                        Debug.Log("Level: " + entry.Key + ", Completed: " + entry.Value);
-                    }
-                    */
                 }
             });
         }

@@ -16,10 +16,17 @@ public class Authentication : MonoBehaviour
     Firebase.Auth.FirebaseAuth auth;
 
     public Database database;
+    [Header("Sign up ui")]
+    public TextMeshProUGUI signUpEmailInput;
+    public TextMeshProUGUI signUpPasswordInput;
+    public TextMeshProUGUI signUpNameInput;
 
-    public TextMeshProUGUI emailInput;
-    public TextMeshProUGUI passwordInput;
-    public TextMeshProUGUI nameInput;
+    [Header("Login ui")]
+    public TextMeshProUGUI loginEmailInput;
+    public TextMeshProUGUI loginPasswordInput;
+
+    [Header("Reset password ui")]
+    public TextMeshProUGUI resetPasswordEmailInput;
 
     /// <summary>
     /// Initializes Firebase authentication when the app starts
@@ -31,7 +38,7 @@ public class Authentication : MonoBehaviour
 
     public void SignUp()
     {
-        auth.CreateUserWithEmailAndPasswordAsync(emailInput.text, passwordInput.text).ContinueWithOnMainThread(task =>
+        auth.CreateUserWithEmailAndPasswordAsync(signUpEmailInput.text, signUpPasswordInput.text).ContinueWithOnMainThread(task =>
         {
             if (task.IsFaulted || task.IsCanceled)
             {
@@ -44,11 +51,10 @@ public class Authentication : MonoBehaviour
                 DateTime creationDateTime = DateTimeOffset.FromUnixTimeMilliseconds((long)newPlayer.Metadata.CreationTimestamp).UtcDateTime.ToLocalTime();
                 string dateJoined = creationDateTime.ToString("yyyy-MM-dd");
 
-                database.CreateNewPlayer(newPlayer.UserId, nameInput.text, emailInput.text, dateJoined, 0);
+                database.CreateNewPlayer(newPlayer.UserId, signUpNameInput.text, signUpEmailInput.text, dateJoined, 0);
                 //store data in game manager
                 database.ReadPlayerData(newPlayer.UserId);
                 database.ReadPlayerLvlProgress(newPlayer.UserId);
-                ResetInputs();
                 GameManager.Instance.isTracking = true;
                 StartCoroutine(GameManager.Instance.TrackPlayTime());
             }
@@ -68,7 +74,7 @@ public class Authentication : MonoBehaviour
 
     public void Login()
     {
-        auth.SignInWithEmailAndPasswordAsync(emailInput.text, passwordInput.text).ContinueWithOnMainThread(task =>
+        auth.SignInWithEmailAndPasswordAsync(loginEmailInput.text, loginPasswordInput.text).ContinueWithOnMainThread(task =>
         {
             if (task.IsFaulted || task.IsCanceled)
             {
@@ -79,24 +85,37 @@ public class Authentication : MonoBehaviour
                 AuthResult player = task.Result;
                 //store data in game manager
                 database.ReadPlayerData(player.User.UserId);
-                ResetInputs();
+                database.ReadPlayerLvlProgress(player.User.UserId);
                 GameManager.Instance.isTracking = true;
                 StartCoroutine(GameManager.Instance.TrackPlayTime());
             }
         });
     }
 
-    private void ResetInputs()
+    private void ResetSignUpInputs()
     {
-        emailInput.text = "";
-        nameInput.text = "";
-        passwordInput.text = "";
+        signUpEmailInput.text = "";
+        signUpNameInput.text = "";
+        signUpPasswordInput.text = "";
+    }
+
+    private void ResetLoginInputs()
+    {
+        loginPasswordInput.text = "";
+        loginEmailInput.text = "";
     }
     public void ResetPassword()
     {
-        auth.SendPasswordResetEmailAsync(emailInput.text).ContinueWithOnMainThread(task =>
+        auth.SendPasswordResetEmailAsync(resetPasswordEmailInput.text).ContinueWithOnMainThread(task =>
         {
-
+            if(task.IsFaulted || task.IsCanceled)
+            {
+                //error handling
+            }
+            else if (task.IsCompleted)
+            {
+                //confirmation text
+            }
         });
     }
 

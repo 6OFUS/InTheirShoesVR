@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public Database database;
+    public Authentication authentication;
 
     public string playerID;
     public string playerEmail;
@@ -15,7 +16,9 @@ public class GameManager : MonoBehaviour
     public int playerPlayTime;
     public bool isTracking;
 
+
     public Dictionary<string, bool> playerLevelProgress = new Dictionary<string, bool>();
+    public int currentLevelIndex;
 
 
     private void Awake()
@@ -56,6 +59,7 @@ public class GameManager : MonoBehaviour
     private void OnApplicationQuit()
     {
         database.StorePlayTime(playerID, playerPlayTime);
+        authentication.Signout();
     }
 
 
@@ -70,6 +74,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
