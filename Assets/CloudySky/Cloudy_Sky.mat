@@ -52,12 +52,12 @@ Material:
     m_Floats:
     - _Cloud_contrast: 2
     - _Cloud_density: 2
-    - _Cloud_size: 169.5
+    - _Cloud_size: 535.2
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
     - _Alpha: {r: 1, g: 1, b: 1, a: 0}
-    - _Cloud_speed: {r: 0, g: 0, b: 0, a: 0}
+    - _Cloud_speed: {r: 0.002, g: 0.002, b: 0, a: 0}
     - _Color1: {r: 1, g: 1, b: 1, a: 0}
     - _Color2: {r: 0, g: 0.22791788, b: 0.6132076, a: 0}
   m_BuildTextureStacks: []
