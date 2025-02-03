@@ -2392,12 +2392,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   database: {fileID: 1032245213}
-  signUpEmailInput: {fileID: 1655036147}
-  signUpPasswordInput: {fileID: 137541052}
-  signUpNameInput: {fileID: 1457017865}
-  loginEmailInput: {fileID: 1655036147}
-  loginPasswordInput: {fileID: 137541052}
-  resetPasswordEmailInput: {fileID: 0}
+  signUpEmailInput: {fileID: 2057630669}
+  signUpPasswordInput: {fileID: 2133278157}
+  signUpNameInput: {fileID: 667590362}
+  loginEmailInput: {fileID: 2057630669}
+  loginPasswordInput: {fileID: 2133278157}
 --- !u!4 &1417205518
 Transform:
   m_ObjectHideFlags: 0

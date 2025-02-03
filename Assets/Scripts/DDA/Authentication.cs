@@ -1,95 +1,118 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Firebase;
-using Firebase.Extensions;
-using Firebase.Auth;
+using Supabase;
 using System.Threading.Tasks;
 using System;
+using Supabase.Gotrue;
 using TMPro;
 
 public class Authentication : MonoBehaviour
 {
-    /// <summary>
-    /// Firebase Authentication instance for managing user authentication
-    /// </summary>
-    Firebase.Auth.FirebaseAuth auth;
-
-    public Database database;
-    [Header("Sign up ui")]
-    public TextMeshProUGUI signUpEmailInput;
-    public TextMeshProUGUI signUpPasswordInput;
-    public TextMeshProUGUI signUpNameInput;
-
-    [Header("Login ui")]
-    public TextMeshProUGUI loginEmailInput;
-    public TextMeshProUGUI loginPasswordInput;
-
-    [Header("Reset password ui")]
-    public TextMeshProUGUI resetPasswordEmailInput;
-
-    /// <summary>
-    /// Initializes Firebase authentication when the app starts
-    /// </summary>
-    private void Awake()
-    {
-        auth = FirebaseAuth.DefaultInstance;
-    }
-
-    public void SignUp()
-    {
-        auth.CreateUserWithEmailAndPasswordAsync(signUpEmailInput.text, signUpPasswordInput.text).ContinueWithOnMainThread(task =>
+    private Supabase.Client supabase;
+        public Database database;
+    
+        [Header("Sign up UI")]
+        public TMP_InputField signUpEmailInput;    
+        public TMP_InputField signUpPasswordInput; 
+        public TMP_InputField signUpNameInput;     
+        
+        [Header("Log In UI")]
+        public TMP_InputField loginEmailInput;    
+        public TMP_InputField loginPasswordInput; 
+    
+        async void Start()
         {
-            if (task.IsFaulted || task.IsCanceled)
+            supabase = await InitializeSupabase();
+        }
+    
+        private async Task<Supabase.Client> InitializeSupabase()
+        {
+            string supabaseUrl = "https://imfbtilewhhhbqtcwjuh.supabase.co";
+            string supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImltZmJ0aWxld2hoaGJxdGN3anVoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc0Njg0NDcsImV4cCI6MjA1MzA0NDQ0N30.Dt_JC_tDi4gtF5yq2pLSk_gk2B8RbIV1hGNcyk0eGFg";
+            var clientOptions = new Supabase.SupabaseOptions
             {
-                Debug.Log(task.Exception);
-            }
-            else if(task.IsCompleted)
+                AutoRefreshToken = true,
+                AutoConnectRealtime = true
+            };
+            
+            var client = new Supabase.Client(supabaseUrl, supabaseAnonKey, clientOptions);
+            await client.InitializeAsync();
+            Debug.Log("Supabase initialized");
+            return client;
+        }
+    
+        public async void SignUp()
+        {
+            string email = signUpEmailInput.text.Trim();
+            string password = signUpPasswordInput.text.Trim();
+            string name = signUpNameInput.text.Trim();
+    
+            if (string.IsNullOrEmpty(email) || !email.Contains("@"))
             {
-                FirebaseUser newPlayer  =  task.Result.User;
-
-                DateTime creationDateTime = DateTimeOffset.FromUnixTimeMilliseconds((long)newPlayer.Metadata.CreationTimestamp).UtcDateTime.ToLocalTime();
-                string dateJoined = creationDateTime.ToString("yyyy-MM-dd");
-
-                database.CreateNewPlayer(newPlayer.UserId, signUpNameInput.text, signUpEmailInput.text, dateJoined, 0);
-                //store data in game manager
-                database.ReadPlayerData(newPlayer.UserId);
-                database.ReadPlayerLvlProgress(newPlayer.UserId);
-                GameManager.Instance.isTracking = true;
-                StartCoroutine(GameManager.Instance.TrackPlayTime());
+                Debug.LogError("Invalid email format. Please enter a valid email address.");
+                return;
             }
-        });
-    }
-
-    public void Signout()
+            
+            Debug.Log($"Attempting to sign up with name: {name} and email: {email}");
+            try
+            {
+                var response = await supabase.Auth.SignUp(email, password);
+                if (response.User != null)
+                {
+                    Debug.Log($"Sign up successful for user: {response.User.Id}");
+                    DateTime creationDateTime = DateTime.UtcNow;
+                    string dateJoined = creationDateTime.ToString("yyyy-MM-dd");
+    
+                    database.CreateNewPlayer(response.User.Id, name, email, dateJoined, 0);
+                    database.ReadPlayerData(response.User.Id);
+                    database.ReadPlayerLvlProgress(response.User.Id);
+                    GameManager.Instance.isTracking = true;
+                    StartCoroutine(GameManager.Instance.TrackPlayTime());
+                }
+                else
+                {
+                    Debug.LogWarning("Sign up response received, but user is null.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Sign-up error: {ex.Message}");
+                if (ex.InnerException != null)
+                {
+                    Debug.LogError($"Inner exception: {ex.InnerException.Message}");
+                }
+            }
+        }
+       
+    public async void Signout()
     {
-        if(auth.CurrentUser != null)
+        if (supabase.Auth.CurrentUser != null)
         {
             GameManager.Instance.isTracking = false;
             database.StorePlayTime(GameManager.Instance.playerID, GameManager.Instance.playerPlayTime);
-            auth.SignOut();
+            await supabase.Auth.SignOut();
             GameManager.Instance.StorePlayerDetails("", "", "", "", 0);
         }
     }
 
-    public void Login()
+    public async void Login()
     {
-        auth.SignInWithEmailAndPasswordAsync(loginEmailInput.text, loginPasswordInput.text).ContinueWithOnMainThread(task =>
+        try
         {
-            if (task.IsFaulted || task.IsCanceled)
+            var session = await supabase.Auth.SignIn(loginEmailInput.text, loginPasswordInput.text);
+            if (session.User != null)
             {
-                Debug.Log(task.Exception);
-            }
-            else if (task.IsCompleted)
-            {
-                AuthResult player = task.Result;
-                //store data in game manager
-                database.ReadPlayerData(player.User.UserId);
-                database.ReadPlayerLvlProgress(player.User.UserId);
+                database.ReadPlayerData(session.User.Id);
+                database.ReadPlayerLvlProgress(session.User.Id);
                 GameManager.Instance.isTracking = true;
                 StartCoroutine(GameManager.Instance.TrackPlayTime());
             }
-        });
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Login error: {ex.Message}");
+        }
     }
 
     private void ResetSignUpInputs()
@@ -103,31 +126,5 @@ public class Authentication : MonoBehaviour
     {
         loginPasswordInput.text = "";
         loginEmailInput.text = "";
-    }
-    public void ResetPassword()
-    {
-        auth.SendPasswordResetEmailAsync(resetPasswordEmailInput.text).ContinueWithOnMainThread(task =>
-        {
-            if(task.IsFaulted || task.IsCanceled)
-            {
-                //error handling
-            }
-            else if (task.IsCompleted)
-            {
-                //confirmation text
-            }
-        });
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
