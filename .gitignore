@@ -121,3 +121,17 @@ Assets/ExternalDependencyManager/Editor/1.2.183/Google.PackageManagerResolver.dl
 Assets/ExternalDependencyManager/Editor/1.2.183/Google.JarResolver.dll.meta
 Assets/ExternalDependencyManager/Editor/1.2.183/Google.IOSResolver.dll.meta
 *.md
+Assets/ExternalDependencyManager/Editor/1.2.183/Google.IOSResolver.dll.meta
+Assets/ExternalDependencyManager/Editor/1.2.183/Google.JarResolver.dll.meta
+Assets/ExternalDependencyManager/Editor/1.2.183/Google.PackageManagerResolver.dll.meta
+Assets/ExternalDependencyManager/Editor/1.2.183/Google.VersionHandlerImpl.dll.meta
+Assets/ExternalDependencyManager/Editor/CHANGELOG.md
+Assets/ExternalDependencyManager/Editor/CHANGELOG.md.meta
+Assets/ExternalDependencyManager/Editor/external-dependency-manager_version-1.2.183_manifest.txt
+Assets/ExternalDependencyManager/Editor/external-dependency-manager_version-1.2.183_manifest.txt.meta
+Assets/ExternalDependencyManager/Editor/Google.VersionHandler.dll.meta
+Assets/ExternalDependencyManager/Editor/LICENSE
+Assets/ExternalDependencyManager/Editor/LICENSE.meta
+Assets/ExternalDependencyManager/Editor/README.md
+Assets/ExternalDependencyManager/Editor/README.md.meta
+ProjectSettings/Packages/com.unity.probuilder/Settings.json
