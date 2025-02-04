@@ -3,6 +3,7 @@
     Date: 27/1/2025
     Description: The PedestrianTrafficLight class is used to handle the pedestrian traffic lights for player to cross the road
 */
+using Oculus.Haptics;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -53,12 +54,16 @@ public class PedestrianTrafficLight : MonoBehaviour
     /// </summary>
     public AudioSource pressButton;
 
+    public HapticClip pressButtonHaptic;
+    private HapticClipPlayer hapticClipPlayer;
+
     /// <summary>
     /// When player presses pedestrian crossing button
     /// </summary>
     public void PressButton()
     {
-        pressButton.Play();
+        //pressButton.Play();
+        hapticClipPlayer.Play(Controller.Both);
         if (trafficLightController.buttonPressed)
         {
             Debug.Log("button pressed already");
@@ -70,6 +75,11 @@ public class PedestrianTrafficLight : MonoBehaviour
             Debug.Log("button pressed");
             StartCoroutine(Beeping());
         }
+    }
+
+    void Awake()
+    {
+        hapticClipPlayer = new HapticClipPlayer(pressButtonHaptic);
     }
 
     /// <summary>
