@@ -34,13 +34,12 @@ public class GameManager : MonoBehaviour
         }
 
     }
-    public void StorePlayerDetails(string uID, string name, string email, string dateJoined, int totalPlayTime)
+    public void StorePlayerDetails(string uID, string name, string email, string dateJoined)
     {
         playerID = uID;
         playerName = name;
         playerEmail = email;
         playerDateJoined = dateJoined;
-        playerPlayTime = totalPlayTime;
     }
 
     public IEnumerator TrackPlayTime()
@@ -60,20 +59,5 @@ public class GameManager : MonoBehaviour
     {
         database.StorePlayTime(playerID, playerPlayTime);
         authentication.Signout();
-    }
-
-
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

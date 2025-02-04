@@ -1,47 +1,67 @@
 using System;
 using System.Collections.Generic;
 
+[Serializable]
 public class Player
 {
-    public string Name { get; set; }
-    public string Email { get; set; }
-    public DateTime DateJoined { get; set; }
-    public int TotalPlayTime { get; set; }
-    public string PreferredTheme { get; set; }
-    public string ProfilePictureUrl { get; set; }
-    public string PhotoGalleryPath { get; set; }
-    public List<Achievement> Achievements { get; set; }
-    public LevelProgress Progress { get; set; }
+    public string Name;
+    public string Email;
+    public string DateJoined;
+    public string PreferredTheme;
+    public string ProfilePictureUrl;
+    public string PhotoGalleryPath;
 
-    public Player(string name, string email, DateTime dateJoined, int totalPlayTime, string preferredTheme, string profilePictureUrl, string photoGalleryPath)
+    public List<Achievement> Achievements = new List<Achievement>(); 
+    public LevelProgress Progress = new LevelProgress(); 
+
+    public Player(string name, string email, string dateJoined, string preferredTheme, string profilePictureUrl, string photoGalleryPath)
     {
-        Name = name;
-        Email = email;
-        DateJoined = dateJoined;
-        TotalPlayTime = totalPlayTime;
-        PreferredTheme = preferredTheme;
-        ProfilePictureUrl = profilePictureUrl;
-        PhotoGalleryPath = photoGalleryPath;
-        Achievements = new List<Achievement>();
+        this.Name = name;
+        this.Email = email;
+        this.DateJoined = dateJoined;
+        this.PreferredTheme = preferredTheme;
+        this.ProfilePictureUrl = profilePictureUrl;
+        this.PhotoGalleryPath = photoGalleryPath;
+
+        Achievements = new List<Achievement>
+        {
+            new Achievement
+            {
+                AchievementID = "A1",
+                Title = "Cloud Sync",
+                Description = "Created an Account",
+                PointsAwarded = 10,
+                DifficultyLevel = "Easy",
+                Category = "learning"
+            }
+        };
+
         Progress = new LevelProgress();
     }
 }
 
+
+[Serializable]
 public class Achievement
 {
-    public string AchievementID { get; set; }
-    public string Title { get; set; }
-    public string Description { get; set; }
-    public int PointsAwarded { get; set; }
-    public string DifficultyLevel { get; set; } // easy, medium, hard
-    public string Category { get; set; } // learning, sensory, physical
+    public string AchievementID = "";
+    public string Title = "";
+    public string Description = "";
+    public int PointsAwarded = 0;
+    public string DifficultyLevel = ""; // easy, medium, hard
+    public string Category = ""; // learning, sensory, physical
+
+    public Achievement() {}
 }
 
+[Serializable]
 public class LevelProgress
 {
-    public bool TutorialCompleted { get; set; }
-    public bool VisualCompleted { get; set; }
-    public bool HearingCompleted { get; set; }
-    public bool DyslexiaCompleted { get; set; }
-    public bool WheelchairCompleted { get; set; }
+    public bool TutorialCompleted = false;
+    public bool VisualCompleted = false;
+    public bool HearingCompleted = false;
+    public bool DyslexiaCompleted = false;
+    public bool WheelchairCompleted = false;
+
+    public LevelProgress() {}
 }
