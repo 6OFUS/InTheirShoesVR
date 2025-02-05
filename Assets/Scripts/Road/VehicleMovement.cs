@@ -172,7 +172,6 @@ public class VehicleMovement : SceneChanger
         if (other.transform.CompareTag("Player") && !trafficLightController.canCross)
         {
             LoadScene();
-            Debug.Log("player hit");
         }
     }
 
