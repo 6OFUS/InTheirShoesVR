@@ -11,26 +11,61 @@ public class Database : MonoBehaviour
 {
     public DatabaseReference dbRef;
     public List<string> levelNames;
-
-    public void CreateNewPlayer(string uID, string name, string email, string dateJoined, int totalPlayTime)
+        
+    
+    void Start()
     {
-        Player player = new Player(
-            name, 
-            email, 
-            DateTime.Parse(dateJoined), 
-            totalPlayTime, 
-            "default",
-            "",
-            ""
-        );
-        
-        string playerJson = JsonUtility.ToJson(player);
-        Debug.Log("Serialized Player JSON: " + playerJson);
-        
-        dbRef.Child("players").Child(uID).SetRawJsonValueAsync(playerJson);
+        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
+        {
+            Firebase.DependencyStatus status = task.Result;
+            if (status == Firebase.DependencyStatus.Available)
+            {
+                // Initialize Firebase services
+                dbRef = FirebaseDatabase.DefaultInstance.RootReference;
+                if (dbRef == null)
+                {
+                    Debug.LogError("Database reference is still null after initialization.");
+                }
+                else
+                {
+                    Debug.Log("Firebase initialized successfully, dbRef is ready.");
+                }
+            }
+            else
+            {
+                Debug.LogError("Could not resolve all Firebase dependencies: " + status);
+            }
+        });
     }
 
+    public void CreateNewPlayer(string uID, string name, string email, string dateJoined)
+    {
+        Player player = new Player(name, email, dateJoined, "default", "", "");
 
+        string playerJson = JsonUtility.ToJson(player, true);
+        Debug.Log("Serialized Player JSON: " + playerJson);
+
+        if (dbRef == null)
+        {
+            Debug.LogError("Firebase dbRef is null!");
+            return;
+        }
+
+        dbRef.Child("players").Child(uID).SetRawJsonValueAsync(playerJson)
+            .ContinueWith(task =>
+            {
+                if (task.IsCompleted)
+                {
+                    Debug.Log("Player data successfully pushed to Firebase.");
+                }
+                else if (task.IsFaulted)
+                {
+                    Debug.LogError("Error pushing data to Firebase: " + task.Exception);
+                }
+            });
+    }
+
+    
     public void UpdateLevelCompletion(string uID, string levelName, bool completedLevel)
     {
         DatabaseReference levelProgressRef = dbRef.Child("levelProgress").Child(levelName).Child(uID);
@@ -54,8 +89,7 @@ public class Database : MonoBehaviour
                     uID,
                     data.Name,
                     data.Email,
-                    data.DateJoined.ToString("yyyy-MM-dd"),
-                    data.TotalPlayTime
+                    data.DateJoined
                 );
                 /* GameManager.Instance.SetPlayerCustomization(data.PreferredTheme, data.ProfilePictureUrl, data.PhotoGalleryPath);
                 GameManager.Instance.LoadAchievements(data.Achievements);
@@ -102,10 +136,5 @@ public class Database : MonoBehaviour
         {
             dbRef.Child("players").Child(uID).Child("totalPlayTime").SetValueAsync(playTime);
         }
-    }
-
-    void Start()
-    {
-        dbRef = FirebaseDatabase.DefaultInstance.RootReference;
     }
 }

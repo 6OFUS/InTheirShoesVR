@@ -50,14 +50,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Cloud_contrast: 2
-    - _Cloud_density: 2
-    - _Cloud_size: 535.2
+    - _Cloud_contrast: 2.5
+    - _Cloud_density: 1.72
+    - _Cloud_size: 531.29
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Alpha: {r: 1, g: 1, b: 1, a: 0}
-    - _Cloud_speed: {r: 0.002, g: 0.002, b: 0, a: 0}
-    - _Color1: {r: 1, g: 1, b: 1, a: 0}
-    - _Color2: {r: 0, g: 0.22791788, b: 0.6132076, a: 0}
+    - _Alpha: {r: 0.764151, g: 0.764151, b: 0.764151, a: 1}
+    - _Cloud_speed: {r: 0.001, g: 0.001, b: 0, a: 0}
+    - _Color1: {r: 0.7830189, g: 0.14835884, b: 0, a: 1}
+    - _Color2: {r: 0.022173883, g: 0.013702081, b: 0.029556843, a: 0}
   m_BuildTextureStacks: []
