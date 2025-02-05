@@ -4,13 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - LeftController
-  - RightController
+  - Anchor
+  - Car
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Car
   - Water
   - UI
   - 

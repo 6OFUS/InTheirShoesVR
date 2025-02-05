@@ -1,13 +1,13 @@
 /*
     Author: Kevin Heng
-    Date: 27/1/2025
+    Date: 28/1/2025
     Description: The VehicleMovement class is used to handle the vehicle movement with the traffic light system
 */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VehicleMovement : MonoBehaviour
+public class VehicleMovement : SceneChanger
 {
     /// <summary>
     /// Reference the TrafficLightController script
@@ -20,9 +20,9 @@ public class VehicleMovement : MonoBehaviour
     /// </summary>
     public GameObject startMarker;
     /// <summary>
-    /// Point where vehicle stops before pedestrian crossing when light turns red
+    /// Position of crossing line
     /// </summary>
-    public GameObject stopMarker;
+    public GameObject crossingLine;
     /// <summary>
     /// Point where vehicle stops and returns to start point
     /// </summary>
@@ -35,7 +35,7 @@ public class VehicleMovement : MonoBehaviour
     /// <summary>
     /// Max speed of vehicle
     /// </summary>
-    public float originalSpeed;
+    public float maxSpeed;
     /// <summary>
     /// Distance from stopMarker before vehicle slows down and stops
     /// </summary>
@@ -53,51 +53,115 @@ public class VehicleMovement : MonoBehaviour
     /// </summary>
     private float accelerationTimer;
 
+    [Header("Car detection")]
+    /// <summary>
+    /// Layer for detecting other vehicles
+    /// </summary>
+    public LayerMask vehicleLayer;
+    /// <summary>
+    /// Distance to check for a car ahead
+    /// </summary>
+    public float carDetectionRange = 5f;
+
+
+    /// <summary>
+    /// Checks if there is a car in front
+    /// </summary>
+    /// <returns>True if a car is detected in front, otherwise false</returns>
+    private bool IsCarInFront()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, carDetectionRange, vehicleLayer))
+        {
+            return true;
+        }
+        return false;
+
+    }
     /// <summary>
     /// Handles the vehicle driving mechanic
     /// </summary>
     private void Drive()
     {
-        Vector3 stoppingPoint = stopMarker.transform.position;
-        float distanceToStoppingPoint = Vector3.Distance(transform.position, stoppingPoint);
+        float distanceToStoppingPoint = Vector3.Distance(transform.position, crossingLine.transform.position);
+        bool carAhead = IsCarInFront();  // Check if there is a car in front
+
+        // Check if the car is at a red or amber light
         switch (trafficLightController.trafficLightsCurrentState)
         {
             case "green":
-                if (currentSpeed == 0)  // Reset only when stopped
+                if (!carAhead)
                 {
-                    accelerationTimer = 0f;
-                }
+                    // Handle acceleration if there is no car ahead
+                    if (currentSpeed == 0)  // Reset only when stopped
+                    {
+                        accelerationTimer = 0f;
+                    }
 
-                if (accelerationTimer < accelerationTime)
+                    if (accelerationTimer < accelerationTime)
+                    {
+                        accelerationTimer += Time.deltaTime;
+                        float t = Mathf.InverseLerp(0, accelerationTime, accelerationTimer);
+                        currentSpeed = Mathf.Lerp(0, maxSpeed, t);
+                    }
+                    else
+                    {
+                        currentSpeed = maxSpeed;
+                    }
+                }
+                else
                 {
-                    accelerationTimer += Time.deltaTime;
-                    float t = Mathf.InverseLerp(0, accelerationTime, accelerationTimer);
-                    currentSpeed = Mathf.Lerp(0, originalSpeed, t);
+                    // Reduce speed when a car is ahead
+                    currentSpeed = Mathf.Lerp(currentSpeed, maxSpeed * 0.5f, Time.deltaTime * 2f);
                 }
                 break;
+
             case "amber":
             case "red":
-                if (distanceToStoppingPoint < slowDownDistance && distanceToStoppingPoint > 0)
+                // Apply deceleration logic for both amber and red lights
+                if (carAhead)
                 {
-                    float t = Mathf.InverseLerp(slowDownDistance, 0, distanceToStoppingPoint);
-                    currentSpeed = Mathf.Lerp(originalSpeed, 0, t);
-                }
+                    // Car ahead is detected, so we apply deceleration based on distance to the car in front
+                    RaycastHit hit;
+                    if (Physics.Raycast(transform.position, transform.forward, out hit, carDetectionRange, vehicleLayer))
+                    {
+                        float distanceToCarAhead = hit.distance;
 
-                if (distanceToStoppingPoint <= distanceThreshold)
+                        // If the car is too close, slow down more aggressively
+                        if ((distanceToCarAhead < slowDownDistance && distanceToCarAhead > 0) || distanceToCarAhead < distanceThreshold)
+                        {
+                            float t = Mathf.InverseLerp(slowDownDistance, 0.5f, distanceToCarAhead);
+                            currentSpeed = Mathf.Lerp(maxSpeed, 0, t);
+                        }
+                    }
+                }
+                else
                 {
-                    currentSpeed = 0;
+                    // Normal deceleration if no car ahead
+                    if (distanceToStoppingPoint < slowDownDistance && distanceToStoppingPoint > 0)
+                    {
+                        float t = Mathf.InverseLerp(slowDownDistance, 0, distanceToStoppingPoint);
+                        currentSpeed = Mathf.Lerp(maxSpeed, 0, t);
+                    }
+                    else if (distanceToStoppingPoint <= distanceThreshold)
+                    {
+                        currentSpeed = 0;
+                    }
                 }
                 break;
         }
+
+        // Move the car
         transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
 
-        //reset car to start
+        // Reset car to start if it reaches the end marker
         float distanceToEndPoint = Vector3.Distance(transform.position, endMarker.transform.position);
         if (distanceToEndPoint <= distanceThreshold)
         {
             transform.position = startMarker.transform.position;
         }
     }
+
 
     /// <summary>
     /// When vehicle hits player
@@ -107,7 +171,7 @@ public class VehicleMovement : MonoBehaviour
     {
         if (other.transform.CompareTag("Player") && !trafficLightController.canCross)
         {
-            //restart ui appear
+            LoadScene();
             Debug.Log("player hit");
         }
     }

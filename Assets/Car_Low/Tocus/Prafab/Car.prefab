@@ -1413,6 +1413,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca939b82751a2d343a88b1815908aa4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneIndex: 0
+  transition: {fileID: 0}
+  transitionTime: 1
   startMarker: {fileID: 0}
   stopMarker: {fileID: 0}
   endMarker: {fileID: 0}
