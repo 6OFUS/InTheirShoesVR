@@ -65,6 +65,8 @@ public class TrafficLightController : MonoBehaviour
     /// </summary>
     public int timeToStartBlinking;
 
+    bool greenManBlinking;
+
     /// <summary>
     /// Update all vehicle traffic lights and pedestrian crossing lights current state
     /// </summary>
@@ -137,10 +139,13 @@ public class TrafficLightController : MonoBehaviour
     /// <returns>Blinking interval</returns>
     IEnumerator GreenManBlinking()
     {
-        foreach (var pedestrianLight in pedestrianTrafficLights)
+        while (greenManBlinking)
         {
-            pedestrianLight.greenMan.SetActive(!pedestrianLight.greenMan.activeSelf);
-            yield return new WaitForSeconds(greenManBlinkSpeed);
+            foreach (var pedestrianLight in pedestrianTrafficLights)
+            {
+                pedestrianLight.greenMan.SetActive(!pedestrianLight.greenMan.activeSelf);
+                yield return new WaitForSeconds(greenManBlinkSpeed);
+            }
         }
     }
 
@@ -148,42 +153,67 @@ public class TrafficLightController : MonoBehaviour
     /// Controls the time for when player can cross the road
     /// </summary>
     /// <returns>Timer countdown</returns>
-    IEnumerator CrossingTimer()  
+    IEnumerator CrossingTimer()
     {
         int timer = crossingTime;
-        //start beeping audio 
+
         foreach (var pedestrianLight in pedestrianTrafficLights)
         {
-            pedestrianLight.clipIndex++;
+            pedestrianLight.crossingTimerText.gameObject.SetActive(false);
+            pedestrianLight.clipIndex++; 
+            pedestrianLight.beepingAudioSource.loop = false;  // Ensure no looping
             pedestrianLight.beepingAudioSource.clip = pedestrianLight.beepingAudioClips[pedestrianLight.clipIndex];
             pedestrianLight.beepingAudioSource.Play();
         }
+
+        // Wait for clip index 1 to finish before showing UI
+        yield return new WaitForSeconds(pedestrianTrafficLights[0].beepingAudioClips[1].length);
+
+        // Show the timer UI and start countdown
+        foreach (var pedestrianLight in pedestrianTrafficLights)
+        {
+            pedestrianLight.crossingTimerText.gameObject.SetActive(true);
+            pedestrianLight.clipIndex++;
+            pedestrianLight.beepingAudioSource.loop = true;  
+            pedestrianLight.beepingAudioSource.clip = pedestrianLight.beepingAudioClips[pedestrianLight.clipIndex];
+            pedestrianLight.beepingAudioSource.Play();
+        }
+
         while (timer > 0)
         {
             UpdateTimerUI(timer);
             yield return new WaitForSeconds(1);
             timer--;
-            ///less than this amt of time then start blinking
+
             if (timer == timeToStartBlinking)
             {
+                greenManBlinking = true;
                 StartCoroutine(GreenManBlinking());
             }
         }
-        //stop beeping audio
+
+        // Ensure beeping audio stops properly
         foreach (var pedestrianLight in pedestrianTrafficLights)
         {
-            pedestrianLight.beepingAudioSource.Stop();
+            if (pedestrianLight.beepingAudioSource.isPlaying)
+            {
+                Debug.Log("Stopping beeping audio...");
+                pedestrianLight.beepingAudioSource.Stop();
+            }
             pedestrianLight.clipIndex = 0;
         }
+
         UpdateTimerUI(0);
         buttonPressed = false;
         lightChanging = false;
         canCross = false;
+        greenManBlinking = false;
 
         trafficLightsCurrentState = "green";
         pedestrianLightsCurrentState = "red";
         UpdateAllLights();
     }
+
 
     /// <summary>
     /// Update all pedestrian crossing lights crossing timer
@@ -193,7 +223,8 @@ public class TrafficLightController : MonoBehaviour
     {
         foreach(var pedestrianLight in pedestrianTrafficLights)
         {
-            if(timer > 0)
+
+            if (timer > 0)
             {
                 pedestrianLight.crossingTimerText.text = timer.ToString();
             }
