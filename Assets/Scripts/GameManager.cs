@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
 
 
     public Dictionary<string, bool> playerLevelProgress = new Dictionary<string, bool>();
-    public int currentLevelIndex;
 
 
     private void Awake()
@@ -47,9 +46,10 @@ public class GameManager : MonoBehaviour
         while (isTracking)
         {
             playerPlayTime++;
-            if (playerPlayTime % 10 == 0)
+            if (playerPlayTime % 60 == 0) // Store playtime every 60 seconds
             {
-                database.StorePlayTime(playerID, playerPlayTime);
+                int playTimeInMinutes = playerPlayTime / 60;
+                database.StorePlayTime(playerID, playTimeInMinutes);
             }
             yield return new WaitForSeconds(1);
         }
@@ -57,7 +57,8 @@ public class GameManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        database.StorePlayTime(playerID, playerPlayTime);
+        int fullMinutes = playerPlayTime / 60;
+        database.StorePlayTime(playerID, fullMinutes);
         authentication.Signout();
     }
 }

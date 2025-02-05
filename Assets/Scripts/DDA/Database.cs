@@ -102,7 +102,7 @@ public class Database : MonoBehaviour
     {
         foreach (var level in levelNames)
         {
-            FirebaseDatabase.DefaultInstance.GetReference("levelProgress").Child(level).GetValueAsync().ContinueWithOnMainThread(task =>
+            FirebaseDatabase.DefaultInstance.GetReference("players").Child(uID).Child("Progress").Child(level).GetValueAsync().ContinueWithOnMainThread(task =>
             {
                 if (task.IsFaulted)
                 {
@@ -111,20 +111,8 @@ public class Database : MonoBehaviour
                 else if (task.IsCompleted)
                 {
                     DataSnapshot snapshot = task.Result;
-                    foreach (var playerID in snapshot.Children)
-                    {
-                        if (playerID.Key == GameManager.Instance.playerID)
-                        {
-                            bool completed = (bool)playerID.Value;
-                            GameManager.Instance.playerLevelProgress[level] = completed;
-                            if (completed)
-                            {
-                                GameManager.Instance.currentLevelIndex++;
-                                Debug.Log(GameManager.Instance.currentLevelIndex);
-                            }
-                            break;
-                        }
-                    }
+                    bool completed = (bool)snapshot.Value;
+                    GameManager.Instance.playerLevelProgress[snapshot.Key] = completed;
                 }
             });
         }
@@ -137,4 +125,5 @@ public class Database : MonoBehaviour
             dbRef.Child("players").Child(uID).Child("totalPlayTime").SetValueAsync(playTime);
         }
     }
+
 }
