@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: AtlasRoadmap1
-    second: {fileID: 2100000, guid: f25cc2fe73aa33b4793d2978ae9b1a28, type: 2}
+    second: {fileID: 2975269839345343805, guid: 1f4082734ed86af48b92f45fa8f87637, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

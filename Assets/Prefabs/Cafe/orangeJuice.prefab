@@ -26,8 +26,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7071658498219186245}
   - {fileID: 1499565074498469666}
@@ -153,76 +153,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: orangeSliceNew
       objectReference: {fileID: 0}
-    - target: {fileID: 3750852053959850684, guid: 50b2cdb83833e1d449710e67e44b3e03, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7079131370358707328, guid: 50b2cdb83833e1d449710e67e44b3e03, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7214562337711977004, guid: 50b2cdb83833e1d449710e67e44b3e03, type: 3}
-    - {fileID: 5945089068870043462, guid: 50b2cdb83833e1d449710e67e44b3e03, type: 3}
-    - {fileID: 7479947358140712715, guid: 50b2cdb83833e1d449710e67e44b3e03, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3390445679418383209, guid: 50b2cdb83833e1d449710e67e44b3e03, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2401109831481640638}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50b2cdb83833e1d449710e67e44b3e03, type: 3}
---- !u!1 &1680756039483507745 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3390445679418383209, guid: 50b2cdb83833e1d449710e67e44b3e03, type: 3}
-  m_PrefabInstance: {fileID: 4061814582685753160}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2401109831481640638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1680756039483507745}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60523e0647cc6ab43acc73cb266a32a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 0}
-  m_InteractionLayers:
-    m_Bits: 4294967295
-  m_Handedness: 0
-  m_AttachTransform: {fileID: 0}
-  m_KeepSelectedTargetValid: 1
-  m_DisableVisualsWhenBlockedInGroup: 1
-  m_StartingSelectedInteractable: {fileID: 0}
-  m_StartingTargetFilter: {fileID: 0}
-  m_HoverEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_HoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_SelectEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_SelectExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_StartingHoverFilters: []
-  m_StartingSelectFilters: []
-  m_ShowInteractableHoverMeshes: 1
-  m_InteractableHoverMeshMaterial: {fileID: 2100000, guid: 7b26add94f09dc44fb811013f007a3aa, type: 2}
-  m_InteractableCantHoverMeshMaterial: {fileID: 0}
-  m_SocketActive: 1
-  m_InteractableHoverScale: 1
-  m_RecycleDelayTime: 1
-  m_HoverSocketSnapping: 0
-  m_SocketSnappingRadius: 0.1
-  m_SocketScaleMode: 0
-  m_FixedScale: {x: 1, y: 1, z: 1}
-  m_TargetBoundsSize: {x: 1, y: 1, z: 1}
 --- !u!4 &2024629831784832667 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2613944641402028499, guid: 50b2cdb83833e1d449710e67e44b3e03, type: 3}

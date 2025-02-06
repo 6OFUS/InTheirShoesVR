@@ -10,11 +10,12 @@ public class Player
     public string PreferredTheme;
     public string ProfilePictureUrl;
     public string PhotoGalleryPath;
+    public int Points;
 
-    public List<Achievement> Achievements = new List<Achievement>(); 
-    public LevelProgress Progress = new LevelProgress(); 
+    public List<Achievement> Achievements = new List<Achievement>();
+    public LevelProgress Progress = new LevelProgress();
 
-    public Player(string name, string email, string dateJoined, string preferredTheme, string profilePictureUrl, string photoGalleryPath)
+    public Player(string name, string email, string dateJoined, string preferredTheme, string profilePictureUrl, string photoGalleryPath, int points)
     {
         this.Name = name;
         this.Email = email;
@@ -22,6 +23,7 @@ public class Player
         this.PreferredTheme = preferredTheme;
         this.ProfilePictureUrl = profilePictureUrl;
         this.PhotoGalleryPath = photoGalleryPath;
+        this.Points = points;
 
         Achievements = new List<Achievement>
         {
@@ -37,9 +39,9 @@ public class Player
         };
 
         Progress = new LevelProgress();
+        Points = points;
     }
 }
-
 
 [Serializable]
 public class Achievement
@@ -51,17 +53,25 @@ public class Achievement
     public string DifficultyLevel = ""; // easy, medium, hard
     public string Category = ""; // learning, sensory, physical
 
-    public Achievement() {}
+    public Achievement() { }
 }
 
 [Serializable]
 public class LevelProgress
 {
-    public bool TutorialCompleted = false;
-    public bool VisualCompleted = false;
-    public bool HearingCompleted = false;
-    public bool DyslexiaCompleted = false;
-    public bool WheelchairCompleted = false;
+    public LevelState Visual = new LevelState();
+    public LevelState Hearing = new LevelState();
+    public LevelState Dyslexia = new LevelState();
+    public LevelState Wheelchair = new LevelState();
 
-    public LevelProgress() {}
+    public LevelProgress() { }
+}
+
+[Serializable]
+public class LevelState
+{
+    public bool Completed = false;
+    public bool DoorUnlocked = false;
+
+    public LevelState() { }
 }

@@ -1,5 +1,5 @@
 /*
-    Author: Kevin Heng
+    Author: Hui Hui
     Date: 27/1/2025
     Description: The PedestrianTrafficLight class is used to handle the pedestrian traffic lights for player to cross the road
 */
@@ -8,6 +8,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class PedestrianTrafficLight : MonoBehaviour
 {
@@ -62,8 +64,7 @@ public class PedestrianTrafficLight : MonoBehaviour
     /// </summary>
     public void PressButton()
     {
-        //pressButton.Play();
-        hapticClipPlayer.Play(Controller.Both);
+        pressButton.Play();
         if (trafficLightController.buttonPressed)
         {
             Debug.Log("button pressed already");
@@ -74,6 +75,22 @@ public class PedestrianTrafficLight : MonoBehaviour
             trafficLightController.buttonPressed = true;
             Debug.Log("button pressed");
             StartCoroutine(Beeping());
+        }
+    }
+
+    public void ButtonHaptic(SelectEnterEventArgs args)
+    {
+        if(args.interactorObject is XRBaseInteractor)
+        {
+            XRBaseInteractor interactor = args.interactorObject as XRBaseInteractor;
+            if(interactor.handedness == InteractorHandedness.Left)
+            {
+                hapticClipPlayer.Play(Controller.Left);
+            }
+            else if(interactor.handedness == InteractorHandedness.Right)
+            {
+                hapticClipPlayer.Play(Controller.Right);
+            }
         }
     }
 
@@ -89,7 +106,7 @@ public class PedestrianTrafficLight : MonoBehaviour
     IEnumerator Beeping()
     {
         beepingAudioSource.clip = beepingAudioClips[clipIndex];
-        yield return new WaitForSeconds(1);
+        yield return null;
         beepingAudioSource.Play();
         trafficLightController.Crossing();
     }

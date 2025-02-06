@@ -34458,10 +34458,19 @@ MonoBehaviour:
       m_Calls: []
   m_FirstSelectEntered:
     m_PersistentCalls:
-      m_Calls: []
-  m_LastSelectExited:
-    m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 8594339588872288355}
+        m_TargetAssemblyTypeName: PedestrianTrafficLight, Assembly-CSharp
+        m_MethodName: ButtonHaptic
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 8594339588872288355}
         m_TargetAssemblyTypeName: PedestrianTrafficLight, Assembly-CSharp
         m_MethodName: PressButton
@@ -34474,6 +34483,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  m_LastSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -34538,9 +34550,11 @@ MonoBehaviour:
   beepingAudioSource: {fileID: 6947063833367346496}
   beepingAudioClips:
   - {fileID: 8300000, guid: 10eb8a5366339b7408f49df1c22f2117, type: 3}
-  - {fileID: 8300000, guid: 7bee79704e4dbeb4d96c1b0a5c02dffc, type: 3}
+  - {fileID: 8300000, guid: f9e18482803d8b94f8cc6faffbd0cf24, type: 3}
+  - {fileID: 8300000, guid: 2db307e1c97f3e8468465bfe9256a75e, type: 3}
   clipIndex: 0
   pressButton: {fileID: 980617871542449970}
+  pressButtonHaptic: {fileID: 2460798210113038985, guid: d59eeb938f31aec419680314e4a3a61c, type: 3}
 --- !u!82 &6947063833367346496
 AudioSource:
   m_ObjectHideFlags: 0
@@ -34555,7 +34569,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 0.85
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

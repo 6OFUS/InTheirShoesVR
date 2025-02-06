@@ -15,10 +15,11 @@ public class Customer : MonoBehaviour
     {
         customer.SetDestination(frontOfCounter.position);
     }
+
     // Start is called before the first frame update
     void Start()
     {
-        WalkToCounter();
+
     }
 
     // Update is called once per frame

@@ -94,8 +94,10 @@ public class Authentication : MonoBehaviour
             string dateJoined = creationDateTime.ToString("yyyy-MM-dd");
 
             database.CreateNewPlayer(response.User.Id, name, email, dateJoined);
+            database.StorePlayTime(response.User.Id, 0);
             database.ReadPlayerData(response.User.Id);
             database.ReadPlayerLvlProgress(response.User.Id);
+            ResetSignUpInputs();
 
             if (GameManager.Instance != null)
             {
@@ -122,7 +124,7 @@ public class Authentication : MonoBehaviour
             GameManager.Instance.isTracking = false;
             database.StorePlayTime(GameManager.Instance.playerID, GameManager.Instance.playerPlayTime);
             await supabase.Auth.SignOut();
-            GameManager.Instance.StorePlayerDetails("", "", "", "");
+            GameManager.Instance.StorePlayerDetails("", "", "", "", 0, 0);
         }
     }
 
@@ -137,6 +139,7 @@ public class Authentication : MonoBehaviour
                 database.ReadPlayerLvlProgress(session.User.Id);
                 GameManager.Instance.isTracking = true;
                 StartCoroutine(GameManager.Instance.TrackPlayTime());
+                ResetLoginInputs();
             }
         }
         catch (Exception ex)

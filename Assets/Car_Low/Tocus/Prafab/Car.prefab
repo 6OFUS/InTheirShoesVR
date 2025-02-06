@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4664702294743630}
   - component: {fileID: 33118743589839648}
   - component: {fileID: 23845000227386808}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Bamper_Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4088688097477332}
   - component: {fileID: 33760330067753306}
   - component: {fileID: 23452417203385438}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Win_Light_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 4429808383623004}
   - component: {fileID: 33866764659798428}
   - component: {fileID: 23103879502934558}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Wheel_Left_Font
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 4531317262872438}
   - component: {fileID: 33657021139523618}
   - component: {fileID: 23174946414275868}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Salon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 4252074655309166}
   - component: {fileID: 33668086287051720}
   - component: {fileID: 23829484318507034}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Wheel_Left_Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: 4523265878284672}
   - component: {fileID: 33409746458475878}
   - component: {fileID: 23922139621949456}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Hood_Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -515,7 +515,7 @@ GameObject:
   - component: {fileID: 4909020775683576}
   - component: {fileID: 33332214317672534}
   - component: {fileID: 23977666320045376}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Hood_Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -599,7 +599,7 @@ GameObject:
   - component: {fileID: 4792433048501428}
   - component: {fileID: 33829389859042050}
   - component: {fileID: 23280832237618070}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Win_Door_Right_Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -682,7 +682,7 @@ GameObject:
   - component: {fileID: 4406050926489792}
   - component: {fileID: 33293390541490322}
   - component: {fileID: 23649897481559458}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Door_Left_Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -766,7 +766,7 @@ GameObject:
   - component: {fileID: 4944351361650126}
   - component: {fileID: 33242140894852312}
   - component: {fileID: 23331945413122906}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Wheel_Right_Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -849,7 +849,7 @@ GameObject:
   - component: {fileID: 4407277357795106}
   - component: {fileID: 33767386718123618}
   - component: {fileID: 23560961667776754}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -934,7 +934,7 @@ GameObject:
   - component: {fileID: 4655253419329138}
   - component: {fileID: 33788637061864076}
   - component: {fileID: 23223014351269908}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Light_Back_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1017,7 +1017,7 @@ GameObject:
   - component: {fileID: 4047591537239738}
   - component: {fileID: 33910504338442624}
   - component: {fileID: 23548834626379876}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Light_Front_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1100,7 +1100,7 @@ GameObject:
   - component: {fileID: 4920059376952544}
   - component: {fileID: 33207183144735400}
   - component: {fileID: 23214643975451718}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Win_Door_Right_Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1183,7 +1183,7 @@ GameObject:
   - component: {fileID: 4635475520957122}
   - component: {fileID: 33055421404436848}
   - component: {fileID: 23237799942668944}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Win_Door_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1266,7 +1266,7 @@ GameObject:
   - component: {fileID: 4060572673003984}
   - component: {fileID: 33209419577039548}
   - component: {fileID: 23121152872384656}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Win_Door_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1350,9 +1350,9 @@ GameObject:
   - component: {fileID: 2012763250187025758}
   - component: {fileID: 7382611565400563043}
   - component: {fileID: 2159021198300147871}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Car
-  m_TagString: Untagged
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1413,14 +1413,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca939b82751a2d343a88b1815908aa4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneIndex: 0
+  transition: {fileID: 0}
+  transitionTime: 1
   startMarker: {fileID: 0}
-  stopMarker: {fileID: 0}
+  crossingLine: {fileID: 0}
   endMarker: {fileID: 0}
   currentSpeed: 0
-  originalSpeed: 4
+  maxSpeed: 4
   slowDownDistance: 4
   distanceThreshold: 0.1
   accelerationTime: 1
+  vehicleLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  carDetectionRange: 5
 --- !u!65 &7382611565400563043
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1436,7 +1443,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1549,7 +1556,7 @@ GameObject:
   - component: {fileID: 4339263096548206}
   - component: {fileID: 33918034037778276}
   - component: {fileID: 23278226341725190}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1634,7 +1641,7 @@ GameObject:
   - component: {fileID: 4063883230567650}
   - component: {fileID: 33275065195056144}
   - component: {fileID: 23594284195929328}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Door_Right_Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1719,7 +1726,7 @@ GameObject:
   - component: {fileID: 4894980796116560}
   - component: {fileID: 33729548887663968}
   - component: {fileID: 23853734578290526}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Win_Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1802,7 +1809,7 @@ GameObject:
   - component: {fileID: 4453284595249394}
   - component: {fileID: 33949451151532852}
   - component: {fileID: 23265926316481478}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Win_Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1885,7 +1892,7 @@ GameObject:
   - component: {fileID: 4897695456357684}
   - component: {fileID: 33798171493830860}
   - component: {fileID: 23587986592714444}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Light_Back_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1968,7 +1975,7 @@ GameObject:
   - component: {fileID: 4531605640052570}
   - component: {fileID: 33311358213842056}
   - component: {fileID: 23821313072414472}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Door_Left_Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2053,7 +2060,7 @@ GameObject:
   - component: {fileID: 4602379260546536}
   - component: {fileID: 33011569952018618}
   - component: {fileID: 23329005831281128}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Light_Front_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2136,7 +2143,7 @@ GameObject:
   - component: {fileID: 4041643519313900}
   - component: {fileID: 33810521172233380}
   - component: {fileID: 23824536881222446}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Win_Door_Left_Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2219,7 +2226,7 @@ GameObject:
   - component: {fileID: 4699927745688170}
   - component: {fileID: 33252284965720618}
   - component: {fileID: 23557911772411290}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Door_Right_Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2303,7 +2310,7 @@ GameObject:
   - component: {fileID: 4645530841161104}
   - component: {fileID: 33689739268485750}
   - component: {fileID: 23847960356329438}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Bamper_Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2390,7 +2397,7 @@ GameObject:
   - component: {fileID: 4250955765438502}
   - component: {fileID: 33364740228489078}
   - component: {fileID: 23538076454584052}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Win_Door_Left_Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2473,7 +2480,7 @@ GameObject:
   - component: {fileID: 4021141386769322}
   - component: {fileID: 33762281080535930}
   - component: {fileID: 23551795750601604}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Win_Light_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2556,7 +2563,7 @@ GameObject:
   - component: {fileID: 4068913174666622}
   - component: {fileID: 33587380245872250}
   - component: {fileID: 23498280118952960}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tocus_Wheel_Right_Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
