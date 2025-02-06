@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8029235266217632805}
   - component: {fileID: 5812429669720049248}
   - component: {fileID: 3630974795079863283}
+  - component: {fileID: 2977963709032440440}
   m_Layer: 0
   m_Name: roofTiles (1)
   m_TagString: Untagged
@@ -83,6 +84,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2977963709032440440
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2191949928375907171}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7559702453169456401, guid: 02e466a7ca9e7af4086e3fdfc4c7304c, type: 3}
 --- !u!1 &2210204830136095486
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,6 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3783813015033147662}
+  - component: {fileID: 2582952169722835750}
   m_Layer: 0
   m_Name: roof
   m_TagString: Untagged
@@ -121,6 +145,28 @@ Transform:
   - {fileID: 2017064550831196174}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &2582952169722835750
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2210204830136095486}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &2317209136062665157
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,6 +178,7 @@ GameObject:
   - component: {fileID: 5667952365489209340}
   - component: {fileID: 1698282681223116823}
   - component: {fileID: 5496531017677201917}
+  - component: {fileID: 3618505642373688576}
   m_Layer: 0
   m_Name: roofTiles (3)
   m_TagString: Untagged
@@ -204,6 +251,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3618505642373688576
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2317209136062665157}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7559702453169456401, guid: 02e466a7ca9e7af4086e3fdfc4c7304c, type: 3}
 --- !u!1 &3351299475330543642
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,6 +284,7 @@ GameObject:
   - component: {fileID: 2017064550831196174}
   - component: {fileID: 1605087845764538198}
   - component: {fileID: 3165503820948622975}
+  - component: {fileID: 7950361051037378372}
   m_Layer: 0
   m_Name: roofTiles (6)
   m_TagString: Untagged
@@ -287,6 +357,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7950361051037378372
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3351299475330543642}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7559702453169456401, guid: 02e466a7ca9e7af4086e3fdfc4c7304c, type: 3}
 --- !u!1 &3824817238046177186
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,6 +390,7 @@ GameObject:
   - component: {fileID: 1415696606467083496}
   - component: {fileID: 894211704277869446}
   - component: {fileID: 1469448263952878593}
+  - component: {fileID: 2273680767916424439}
   m_Layer: 0
   m_Name: roofTiles (2)
   m_TagString: Untagged
@@ -370,6 +463,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2273680767916424439
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3824817238046177186}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7559702453169456401, guid: 02e466a7ca9e7af4086e3fdfc4c7304c, type: 3}
 --- !u!1 &4472945500370646949
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,6 +496,7 @@ GameObject:
   - component: {fileID: 4830413773064609365}
   - component: {fileID: 4890786168468438234}
   - component: {fileID: 1759554866583915962}
+  - component: {fileID: 8765907877312404666}
   m_Layer: 0
   m_Name: roofTiles
   m_TagString: Untagged
@@ -453,6 +569,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8765907877312404666
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4472945500370646949}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7559702453169456401, guid: 02e466a7ca9e7af4086e3fdfc4c7304c, type: 3}
 --- !u!1 &4483425959176191046
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,6 +602,7 @@ GameObject:
   - component: {fileID: 8483557247256532297}
   - component: {fileID: 2742528688610600900}
   - component: {fileID: 7372991905054597196}
+  - component: {fileID: 7574347085432510942}
   m_Layer: 0
   m_Name: roofTiles (4)
   m_TagString: Untagged
@@ -536,6 +675,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7574347085432510942
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4483425959176191046}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7559702453169456401, guid: 02e466a7ca9e7af4086e3fdfc4c7304c, type: 3}
 --- !u!1 &6276946718546517566
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,6 +708,7 @@ GameObject:
   - component: {fileID: 1867687319727785280}
   - component: {fileID: 9026550133025569597}
   - component: {fileID: 3552170612040946037}
+  - component: {fileID: 3040057642948800096}
   m_Layer: 0
   m_Name: roofTiles (5)
   m_TagString: Untagged
@@ -619,3 +781,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3040057642948800096
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6276946718546517566}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7559702453169456401, guid: 02e466a7ca9e7af4086e3fdfc4c7304c, type: 3}
