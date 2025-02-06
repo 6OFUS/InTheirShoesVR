@@ -13,7 +13,6 @@ public class Database : MonoBehaviour
     public DatabaseReference dbRef;
     public List<string> levelNames;
         
-    
     void Start()
     {
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
