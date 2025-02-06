@@ -30,9 +30,9 @@ public class LevelDoor : MonoBehaviour
                     Debug.Log("Door locked, scan card");
                 }
             }
-            else
+            else //previous level not completed
             {
-                if (scanner.keycardScanned) // Check if keycard was scanned
+                if (currentLevelData.doorUnlocked) // Check if keycard was scanned
                 {
                     limits.max = 90;
                     Debug.Log(limits.min);
@@ -45,7 +45,7 @@ public class LevelDoor : MonoBehaviour
                     Debug.Log($"Door cannot be unlocked, complete the {prevLvlName} level or scan keycard.");
                 }
             }
-            doorHinge.limits = limits;
+            doorHinge.limits = limits;  
         }
         else
         {

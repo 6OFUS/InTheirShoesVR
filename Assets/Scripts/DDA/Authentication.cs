@@ -11,6 +11,7 @@ public class Authentication : MonoBehaviour
 {
     private Supabase.Client supabase;
     public Database database;
+    public KioskManager kioskManager;
 
     [Header("Sign up UI")]
     public TMP_InputField signUpEmailInput;    
@@ -98,6 +99,8 @@ public class Authentication : MonoBehaviour
             database.ReadPlayerData(response.User.Id);
             database.ReadPlayerLvlProgress(response.User.Id);
             ResetSignUpInputs();
+            //dyslexia unlocked
+            kioskManager.DyslexiaButtonUnlock();
 
             if (GameManager.Instance != null)
             {
@@ -125,6 +128,7 @@ public class Authentication : MonoBehaviour
             database.StorePlayTime(GameManager.Instance.playerID, GameManager.Instance.playerPlayTime);
             await supabase.Auth.SignOut();
             GameManager.Instance.StorePlayerDetails("", "", "", "", 0, 0);
+            //all buttons locked
         }
     }
 
@@ -140,6 +144,7 @@ public class Authentication : MonoBehaviour
                 GameManager.Instance.isTracking = true;
                 StartCoroutine(GameManager.Instance.TrackPlayTime());
                 ResetLoginInputs();
+                //buttons for completed and current level unlocked
             }
         }
         catch (Exception ex)

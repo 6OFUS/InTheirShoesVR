@@ -929,12 +929,12 @@ GameObject:
   - component: {fileID: 373993636}
   - component: {fileID: 373993635}
   m_Layer: 0
-  m_Name: card (1)
+  m_Name: visual card
   m_TagString: Visual
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &373993635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1125,7 +1125,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 612cb4d8ca9e96747bac9e11169cbfe3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1164,7 +1164,7 @@ Transform:
   m_GameObject: {fileID: 373993634}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.907, y: 1.514, z: -2.436}
+  m_LocalPosition: {x: 2.71, y: 1.514, z: 0.078}
   m_LocalScale: {x: 0.28370714, y: 0.013584238, z: 0.1827691}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2310,6 +2310,7 @@ GameObject:
   - component: {fileID: 685371753}
   - component: {fileID: 685371752}
   - component: {fileID: 685371751}
+  - component: {fileID: 685371754}
   m_Layer: 5
   m_Name: Mobility unlocked
   m_TagString: Untagged
@@ -2380,7 +2381,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 685371752}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 685371754}
+        m_TargetAssemblyTypeName: Kiosk, Assembly-CSharp
+        m_MethodName: KeycardDispense
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &685371752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2419,6 +2432,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685371749}
   m_CullTransparentMesh: 1
+--- !u!114 &685371754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685371749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1233410172f480b4ea531ad60d908c60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keycard: {fileID: 0}
 --- !u!1 &763079025
 GameObject:
   m_ObjectHideFlags: 0
@@ -3344,6 +3370,7 @@ GameObject:
   - component: {fileID: 1010067440}
   - component: {fileID: 1010067439}
   - component: {fileID: 1010067438}
+  - component: {fileID: 1010067441}
   m_Layer: 5
   m_Name: 'Visual unlocked '
   m_TagString: Untagged
@@ -3414,7 +3441,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1010067439}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1010067441}
+        m_TargetAssemblyTypeName: Kiosk, Assembly-CSharp
+        m_MethodName: KeycardDispense
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1010067439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3453,6 +3492,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1010067436}
   m_CullTransparentMesh: 1
+--- !u!114 &1010067441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010067436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1233410172f480b4ea531ad60d908c60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keycard: {fileID: 373993634}
 --- !u!1 &1017856248
 GameObject:
   m_ObjectHideFlags: 0
@@ -3520,12 +3572,12 @@ GameObject:
   - component: {fileID: 1019877731}
   - component: {fileID: 1019877730}
   m_Layer: 0
-  m_Name: card
+  m_Name: dyslexia card
   m_TagString: Dyslexia
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1019877730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3716,7 +3768,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 37c5e7e7352dea3419de7814c0de13d5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3755,7 +3807,7 @@ Transform:
   m_GameObject: {fileID: 1019877728}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.907, y: 1.514, z: 0.3195}
+  m_LocalPosition: {x: 2.059, y: 1.514, z: 0.067}
   m_LocalScale: {x: 0.28370714, y: 0.013584238, z: 0.1827691}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5381,6 +5433,7 @@ GameObject:
   - component: {fileID: 1697217617}
   - component: {fileID: 1697217616}
   - component: {fileID: 1697217615}
+  - component: {fileID: 1697217618}
   m_Layer: 5
   m_Name: Dyslexia unlocked
   m_TagString: Untagged
@@ -5451,7 +5504,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1697217616}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1697217618}
+        m_TargetAssemblyTypeName: Kiosk, Assembly-CSharp
+        m_MethodName: KeycardDispense
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1697217616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5490,6 +5555,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1697217613}
   m_CullTransparentMesh: 1
+--- !u!114 &1697217618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697217613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1233410172f480b4ea531ad60d908c60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keycard: {fileID: 1019877728}
 --- !u!1001 &1720585909
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7121,6 +7199,7 @@ GameObject:
   - component: {fileID: 2014527012}
   - component: {fileID: 2014527011}
   - component: {fileID: 2014527010}
+  - component: {fileID: 2014527013}
   m_Layer: 5
   m_Name: Hearing unlocked
   m_TagString: Untagged
@@ -7191,7 +7270,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2014527011}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2014527013}
+        m_TargetAssemblyTypeName: Kiosk, Assembly-CSharp
+        m_MethodName: KeycardDispense
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2014527011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7230,6 +7321,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2014527008}
   m_CullTransparentMesh: 1
+--- !u!114 &2014527013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014527008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1233410172f480b4ea531ad60d908c60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keycard: {fileID: 0}
 --- !u!1 &2057630666
 GameObject:
   m_ObjectHideFlags: 0
