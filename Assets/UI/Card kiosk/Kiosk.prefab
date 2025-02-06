@@ -1603,8 +1603,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1b64a6344cd1434c973ee7e8f883d6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  database: {fileID: 0}
   dyslexiaLocked: {fileID: 2703394667355023547}
   dyslexiaUnlocked: {fileID: 1531740634801062548}
+  lockedButtons:
+  - {fileID: 2703394667355023547}
+  - {fileID: 5616411438623209319}
+  - {fileID: 5961559729117318278}
+  - {fileID: 3488118355532539987}
+  unlockedButtons:
+  - {fileID: 1531740634801062548}
+  - {fileID: 2323193169595648775}
+  - {fileID: 3516809708172969623}
+  - {fileID: 784880018550272943}
 --- !u!1 &4566169970830490056
 GameObject:
   m_ObjectHideFlags: 0

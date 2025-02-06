@@ -129,6 +129,7 @@ public class Authentication : MonoBehaviour
             await supabase.Auth.SignOut();
             GameManager.Instance.StorePlayerDetails("", "", "", "", 0, 0);
             //all buttons locked
+            kioskManager.ResetButtons();
         }
     }
 
@@ -145,6 +146,7 @@ public class Authentication : MonoBehaviour
                 StartCoroutine(GameManager.Instance.TrackPlayTime());
                 ResetLoginInputs();
                 //buttons for completed and current level unlocked
+                StartCoroutine(kioskManager.UnlockButtons());
             }
         }
         catch (Exception ex)
