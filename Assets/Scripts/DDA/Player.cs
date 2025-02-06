@@ -10,11 +10,12 @@ public class Player
     public string PreferredTheme;
     public string ProfilePictureUrl;
     public string PhotoGalleryPath;
+    public int Points;
 
     public List<Achievement> Achievements = new List<Achievement>();
     public LevelProgress Progress = new LevelProgress();
 
-    public Player(string name, string email, string dateJoined, string preferredTheme, string profilePictureUrl, string photoGalleryPath)
+    public Player(string name, string email, string dateJoined, string preferredTheme, string profilePictureUrl, string photoGalleryPath, int points)
     {
         this.Name = name;
         this.Email = email;
@@ -22,6 +23,7 @@ public class Player
         this.PreferredTheme = preferredTheme;
         this.ProfilePictureUrl = profilePictureUrl;
         this.PhotoGalleryPath = photoGalleryPath;
+        this.Points = points;
 
         Achievements = new List<Achievement>
         {
@@ -37,6 +39,7 @@ public class Player
         };
 
         Progress = new LevelProgress();
+        Points = points;
     }
 }
 
@@ -56,7 +59,6 @@ public class Achievement
 [Serializable]
 public class LevelProgress
 {
-    public LevelState Tutorial = new LevelState();
     public LevelState Visual = new LevelState();
     public LevelState Hearing = new LevelState();
     public LevelState Dyslexia = new LevelState();

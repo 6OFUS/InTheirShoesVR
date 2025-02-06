@@ -15,10 +15,9 @@ public class GameManager : MonoBehaviour
     public string playerDateJoined;
     public int playerPlayTime;
     public bool isTracking;
+    public int playerPoints;
 
-
-    public Dictionary<string, bool> playerLevelProgress = new Dictionary<string, bool>();
-
+    public Dictionary<string, (bool completed, bool doorUnlocked)> playerLevelProgress = new Dictionary<string, (bool, bool)>();
 
     private void Awake()
     {
@@ -33,32 +32,29 @@ public class GameManager : MonoBehaviour
         }
 
     }
-    public void StorePlayerDetails(string uID, string name, string email, string dateJoined)
+    public void StorePlayerDetails(string uID, string name, string email, string dateJoined, int playTime, int points)
     {
         playerID = uID;
         playerName = name;
         playerEmail = email;
         playerDateJoined = dateJoined;
+        playerPlayTime = playTime;
+        playerPoints = points;
     }
 
     public IEnumerator TrackPlayTime()
     {
         while (isTracking)
         {
+            yield return new WaitForSeconds(60);
             playerPlayTime++;
-            if (playerPlayTime % 60 == 0) // Store playtime every 60 seconds
-            {
-                int playTimeInMinutes = playerPlayTime / 60;
-                database.StorePlayTime(playerID, playTimeInMinutes);
-            }
-            yield return new WaitForSeconds(1);
+            database.StorePlayTime(playerID, playerPlayTime);
         }
     }
 
     private void OnApplicationQuit()
     {
-        int fullMinutes = playerPlayTime / 60;
-        database.StorePlayTime(playerID, fullMinutes);
+        database.StorePlayTime(playerID, playerPlayTime);
         authentication.Signout();
     }
 }

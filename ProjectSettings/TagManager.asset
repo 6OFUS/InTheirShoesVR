@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Anchor
   - Car
+  - Dyslexia
+  - Visual
   layers:
   - Default
   - TransparentFX
