@@ -7,16 +7,22 @@ public class KeycardScanner : MonoBehaviour
     public string keycardTag;
     public bool keycardScanned;
     Database database;
+    public AudioSource scanAudioSource;
+    public AudioClip[] scanAudioClips;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(keycardTag))
         {
             keycardScanned = true;
             Debug.Log("Scanned");
+            scanAudioSource.clip = scanAudioClips[0];
+            scanAudioSource.Play();
             database.UpdateDoorLockStatus(GameManager.Instance.playerID, keycardTag, keycardScanned);
         }
         else
         {
+            scanAudioSource.clip = scanAudioClips[1];
+            scanAudioSource.Play();
             Debug.Log("This is not the right keycard");
         }
     }

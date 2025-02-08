@@ -9,7 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Main menu.unity
     guid: 02a9f665fc4af934098d1334016d9840
   - enabled: 1
-    path: Assets/Scenes/BlindOld.unity
+    path: Assets/Scenes/DyslexiaTest.unity
+    guid: 539a8e2e06c3b624890f1671bcd67459
+  - enabled: 1
+    path: Assets/Scenes/Blind.unity
     guid: 129e93caeb4434849b95348fe81634f8
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class KioskManager : MonoBehaviour
 {
-    public Database database;
+    Database database;
 
     public GameObject dyslexiaLocked;
     public GameObject dyslexiaUnlocked;
@@ -41,7 +41,7 @@ public class KioskManager : MonoBehaviour
         for (int i = 0; i < lockedButtons.Count; i++)
         {
             string levelName = database.levelNames[i];
-
+            //ERROR HERE
             var levelData = playerProgress[levelName];
 
             if (levelData.completed) // Unlock buttons for completed levels
@@ -67,7 +67,11 @@ public class KioskManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        database = FindObjectOfType<Database>();
+        if(GameManager.Instance.playerID != null)
+        {
+            StartCoroutine(UnlockButtons());
+        }   
     }
 
     // Update is called once per frame

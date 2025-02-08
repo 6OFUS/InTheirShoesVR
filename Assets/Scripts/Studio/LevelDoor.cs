@@ -35,7 +35,6 @@ public class LevelDoor : MonoBehaviour
                 if (currentLevelData.doorUnlocked) // Check if keycard was scanned
                 {
                     limits.max = 90;
-                    Debug.Log(limits.min);
                     Debug.Log("First door unlocked with keycard.");
                 }
                 else
