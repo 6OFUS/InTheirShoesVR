@@ -10,11 +10,17 @@ using UnityEngine;
 public class EndPoint : MonoBehaviour
 {
     public GameObject endUI;
+    Database database;
+    public string currentLevelName;
 
     private void OnTriggerEnter(Collider other)
     {
-        endUI.SetActive(true);
-        Debug.Log("Level completed");
+        if (other.CompareTag("Player"))
+        {
+            endUI.SetActive(true);
+            database.UpdateLevelComplete(GameManager.Instance.playerID, currentLevelName, true);
+            Debug.Log("Level completed");
+        }
     }
 
 
@@ -22,7 +28,7 @@ public class EndPoint : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        database = FindObjectOfType<Database>();
     }
 
     // Update is called once per frame

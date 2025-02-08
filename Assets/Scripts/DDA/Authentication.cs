@@ -13,6 +13,10 @@ public class Authentication : MonoBehaviour
     public Database database;
     public KioskManager kioskManager;
 
+    public GameObject confirmationPage;
+    public GameObject signupPage;
+    public GameObject loginPage;
+
     [Header("Sign up UI")]
     public TMP_InputField signUpEmailInput;    
     public TMP_InputField signUpPasswordInput; 
@@ -102,6 +106,9 @@ public class Authentication : MonoBehaviour
             //dyslexia unlocked
             kioskManager.DyslexiaButtonUnlock();
 
+            confirmationPage.SetActive(true);
+            signupPage.SetActive(false);
+
             if (GameManager.Instance != null)
             {
                 GameManager.Instance.isTracking = true;
@@ -130,6 +137,8 @@ public class Authentication : MonoBehaviour
             GameManager.Instance.StorePlayerDetails("", "", "", "", 0, 0);
             //all buttons locked
             kioskManager.ResetButtons();
+            confirmationPage.SetActive(false);
+            loginPage.SetActive(true);
         }
     }
 
@@ -147,6 +156,8 @@ public class Authentication : MonoBehaviour
                 ResetLoginInputs();
                 //buttons for completed and current level unlocked
                 StartCoroutine(kioskManager.UnlockButtons());
+                confirmationPage.SetActive(true);
+                loginPage.SetActive(false);
             }
         }
         catch (Exception ex)

@@ -110,6 +110,7 @@ public class Database : MonoBehaviour
                     bool completed = (bool)snapshot.Child("Completed").Value;
                     bool doorUnlocked = (bool)snapshot.Child("DoorUnlocked").Value;
                     GameManager.Instance.playerLevelProgress[level] = (completed, doorUnlocked);
+                    Debug.Log(GameManager.Instance.playerLevelProgress[level]);
                 }
             });
         }
@@ -156,5 +157,39 @@ public class Database : MonoBehaviour
             }
         });
     }
+    public void UpdateLevelComplete(string uID, string levelName, bool levelCompleted)
+    {
+        FirebaseDatabase.DefaultInstance.GetReference("players").Child(uID).Child("Progress").Child(levelName).GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted)
+            {
+                Debug.Log(task.Exception);
+            }
+            else if (task.IsCompleted)
+            {
+                Debug.Log("Sending update");
+                DataSnapshot snapshot = task.Result;
+                bool doorUnlocked = (bool)snapshot.Child("DoorUnlocked").Value;
+                GameManager.Instance.playerLevelProgress[levelName] = (levelCompleted, doorUnlocked);
+                FirebaseDatabase.DefaultInstance.GetReference("players")
+                .Child(uID)
+                .Child("Progress")
+                .Child(levelName)
+                .Child("Completed")  // Ensure this matches your Firebase structure
+                .SetValueAsync(doorUnlocked).ContinueWithOnMainThread(updateTask =>
+                {
+                    if (updateTask.IsFaulted)
+                    {
+                        Debug.Log("Error updating DoorUnlocked in Firebase: " + updateTask.Exception);
+                    }
+                    else
+                    {
+                        Debug.Log("DoorUnlocked updated successfully in Firebase!");
+                    }
+                });
+            }
+        });
+    }
+
 
 }
