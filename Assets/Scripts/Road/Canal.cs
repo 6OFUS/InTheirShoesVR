@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class Canal : SceneChanger
+public class Canal : MonoBehaviour
 {
+    public SceneTransitionManager transitionManager;
 
     private void OnTriggerEnter(Collider other)
     {
-        LoadScene();
+        transitionManager.ChangeSceneAsyc(SceneManager.GetActiveScene().buildIndex);
     }
 
     // Start is called before the first frame update

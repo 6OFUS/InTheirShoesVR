@@ -6,9 +6,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class VehicleMovement : SceneChanger
+public class VehicleMovement : MonoBehaviour
 {
+    public SceneTransitionManager transitionManager;
+
+
+
     /// <summary>
     /// Reference the TrafficLightController script
     /// </summary>
@@ -171,7 +176,7 @@ public class VehicleMovement : SceneChanger
     {
         if (other.transform.CompareTag("Player") && !trafficLightController.canCross)
         {
-            LoadScene();
+            transitionManager.ChangeSceneAsyc(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
