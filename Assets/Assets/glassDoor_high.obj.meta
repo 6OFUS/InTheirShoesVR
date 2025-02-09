@@ -3,7 +3,142 @@ guid: 27f279957c8fe9a4f865df9d69c2c0ee
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glassDoorhigh_Pull1Mat
+    second: {fileID: 2100000, guid: 5ff4224e8d2e68e42b3b8400c51b0279, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glassDoorhigh_PullMat
+    second: {fileID: 2100000, guid: 0c7b832dd97544c4fb8fe0e9993f1017, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glassDoorhigh_doorHinge10Mat
+    second: {fileID: 2100000, guid: 6f718a98d29693245b7a65050cf60307, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glassDoorhigh_doorHinge11Mat
+    second: {fileID: 2100000, guid: e1a5de92e31b3d046a0c24903958b774, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glassDoorhigh_doorHinge12Mat
+    second: {fileID: 2100000, guid: f953e1ec5a7a154408a1284ab48ca884, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glassDoorhigh_doorHinge13Mat
+    second: {fileID: 2100000, guid: ce32365c9f1effc438a2c538bc775fd6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glassDoorhigh_doorHinge14Mat
+    second: {fileID: 2100000, guid: 460a7170312eb414fb69bc3637e50319, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glassDoorhigh_doorHinge15Mat
+    second: {fileID: 2100000, guid: d5ebc606296a28e42b29766f01ecd2d4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glassDoorhigh_doorHinge16Mat
+    second: {fileID: 2100000, guid: f0b5ed4454b74294ca9b333f3cd10206, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glassDoorhigh_doorHinge1Mat
+    second: {fileID: 2100000, guid: 05a9fe3d9744cda489f8f5d54d5f56f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glassDoorhigh_doorHinge2Mat
+    second: {fileID: 2100000, guid: e68470d5e13247140bdeac2173725445, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glassDoorhigh_doorHinge3Mat
+    second: {fileID: 2100000, guid: af4180b01d9792446be9fb377efd436b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glassDoorhigh_doorHinge4Mat
+    second: {fileID: 2100000, guid: 03cbe816eea93aa46aae59438d328997, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glassDoorhigh_doorHinge5Mat
+    second: {fileID: 2100000, guid: 4a4f4a27dc85cc24c849da43745cf5df, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glassDoorhigh_doorHinge6Mat
+    second: {fileID: 2100000, guid: 36eef973abc1d8143b5a2c5721c8f9cc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glassDoorhigh_doorHinge7Mat
+    second: {fileID: 2100000, guid: 2eb5b9d25d9cd7b4eaec4f4a358b6b4d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glassDoorhigh_doorHinge8Mat
+    second: {fileID: 2100000, guid: f9500cefc3b23ce4b8a0fe6e44448ad5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glassDoorhigh_doorHinge9Mat
+    second: {fileID: 2100000, guid: dd5c58593bb9e8e4488312e3176ac2ce, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glassDoorhigh_glassDoorBottom1Mat
+    second: {fileID: 2100000, guid: c539b988e7cabab4199e7bd2bebe5428, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glassDoorhigh_glassDoorBottom2Mat
+    second: {fileID: 2100000, guid: 1d940d00fd61d844d807b340af0b56bd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glassDoorhigh_glassDoorBottom3Mat
+    second: {fileID: 2100000, guid: f1eb9cf3d7edc1d459952bafbbd24d47, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glassDoorhigh_glassDoorBottomMat
+    second: {fileID: 2100000, guid: fd3a4f2e44e0a1d46ac0a287bef630ad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glassDoorhigh_glassDoorMiddleMat
+    second: {fileID: 2100000, guid: 6a61adc54b9c27944926496fd9d9001f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glassDoorhigh_glassOntopMat
+    second: {fileID: 2100000, guid: cc515cef47c783249b6f7ef1dc684816, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glassDoorhigh_handle2Mat
+    second: {fileID: 2100000, guid: e49ee8587092a514bb973e53cb03a12c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glassDoorhigh_handleMat
+    second: {fileID: 2100000, guid: e1675d826fb9fc24d9015ad172e9796a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glass_glassDoorhighMat
+    second: {fileID: 2100000, guid: 288443562a622b84082db09d2c70cd2a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

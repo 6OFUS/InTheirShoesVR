@@ -110,7 +110,6 @@ public class Database : MonoBehaviour
                     bool completed = (bool)snapshot.Child("Completed").Value;
                     bool doorUnlocked = (bool)snapshot.Child("DoorUnlocked").Value;
                     GameManager.Instance.playerLevelProgress[level] = (completed, doorUnlocked);
-                    Debug.Log(GameManager.Instance.playerLevelProgress[level]);
                 }
             });
         }

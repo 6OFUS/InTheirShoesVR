@@ -92,6 +92,7 @@ public class PedestrianTrafficLight : MonoBehaviour
                 hapticClipPlayer.Play(Controller.Right);
             }
         }
+        PressButton();
     }
 
     void Awake()

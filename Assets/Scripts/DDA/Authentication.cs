@@ -132,7 +132,7 @@ public class Authentication : MonoBehaviour
         if (supabase.Auth.CurrentUser != null)
         {
             GameManager.Instance.isTracking = false;
-            database.StorePlayTime(GameManager.Instance.playerID, GameManager.Instance.playerPlayTime);
+            database.StorePlayTime(GameManager.Instance.playerID, GameManager.Instance.playerPlayTimeSeconds);
             await supabase.Auth.SignOut();
             GameManager.Instance.StorePlayerDetails("", "", "", "", 0, 0);
             //all buttons locked

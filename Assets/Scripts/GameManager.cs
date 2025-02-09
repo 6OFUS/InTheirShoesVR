@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public string playerEmail;
     public string playerName;
     public string playerDateJoined;
-    public int playerPlayTime;
+    public int playerPlayTimeSeconds;
     public bool isTracking;
     public int playerPoints;
 
@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
         playerName = name;
         playerEmail = email;
         playerDateJoined = dateJoined;
-        playerPlayTime = playTime;
+        playerPlayTimeSeconds = playTime;
         playerPoints = points;
     }
 
@@ -46,15 +46,18 @@ public class GameManager : MonoBehaviour
     {
         while (isTracking)
         {
-            yield return new WaitForSeconds(60);
-            playerPlayTime++;
-            database.StorePlayTime(playerID, playerPlayTime);
+            yield return new WaitForSeconds(1);
+            playerPlayTimeSeconds++;
+            if(playerPlayTimeSeconds % 30 == 0)
+            {
+                database.StorePlayTime(playerID, playerPlayTimeSeconds);
+            }
         }
     }
 
     private void OnApplicationQuit()
     {
-        database.StorePlayTime(playerID, playerPlayTime);
+        database.StorePlayTime(playerID, playerPlayTimeSeconds);
         authentication.Signout();
     }
 }
