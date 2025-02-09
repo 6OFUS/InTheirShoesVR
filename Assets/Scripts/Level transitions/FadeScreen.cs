@@ -30,12 +30,13 @@ public class FadeScreen : MonoBehaviour
     }
     public void Fade(float alphaIn, float alphaOut)
     {
+        this.gameObject.SetActive(true);
         StartCoroutine(FadeRoutine(alphaIn, alphaOut));
     }
     public IEnumerator FadeRoutine(float alphaIn, float alphaOut)
     {
         float timer = 0;
-        while(timer <= fadeDuration)
+        while (timer <= fadeDuration)
         {
             Color newColor = fadeColor;
             newColor.a = Mathf.Lerp(alphaIn, alphaOut, timer/ fadeDuration);
@@ -47,6 +48,7 @@ public class FadeScreen : MonoBehaviour
 
         fadeColor.a = alphaOut;
         rend.material.SetColor("_Color", fadeColor);
+        this.gameObject.SetActive(false);
     }
 
     // Start is called before the first frame update

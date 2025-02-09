@@ -35,7 +35,7 @@ public class KioskManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         playerProgress = GameManager.Instance.playerLevelProgress;
-        Debug.Log(playerProgress.Count);
+        Debug.Log(GameManager.Instance.playerLevelProgress.Count);
         bool nextLevelUnlocked = false;
 
         for (int i = 0; i < lockedButtons.Count; i++)
@@ -68,8 +68,9 @@ public class KioskManager : MonoBehaviour
     void Start()
     {
         database = FindObjectOfType<Database>();
-        if(GameManager.Instance.playerID != null)
+        if(GameManager.Instance.playerID != "")
         {
+            Debug.Log("unlocking buttons");
             StartCoroutine(UnlockButtons());
         }   
     }

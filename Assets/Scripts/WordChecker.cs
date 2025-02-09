@@ -16,6 +16,7 @@ public class WordChecker : MonoBehaviour
         foreach (var socket in sockets)
         {
             formedWord += socket.GetLetter();
+            Debug.Log(formedWord);
         }
 
         if (formedWord == correctWord)

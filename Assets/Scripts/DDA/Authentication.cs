@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using System;
 using Supabase.Gotrue;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Authentication : MonoBehaviour
 {
     private Supabase.Client supabase;
-    public Database database;
-    public KioskManager kioskManager;
+    Database database;
+    KioskManager kioskManager;
 
     public GameObject confirmationPage;
     public GameObject signupPage;
@@ -41,6 +42,8 @@ public class Authentication : MonoBehaviour
         {
             Debug.LogError("Failed to initialize Supabase!");
         }
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private async Task<Supabase.Client> InitializeSupabase()
@@ -125,8 +128,6 @@ public class Authentication : MonoBehaviour
         }
     }
 
-
-       
     public async void Signout()
     {
         if (supabase.Auth.CurrentUser != null)
@@ -177,5 +178,13 @@ public class Authentication : MonoBehaviour
     {
         loginPasswordInput.text = "";
         loginEmailInput.text = "";
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.buildIndex == 0) 
+        {
+            kioskManager = FindObjectOfType<KioskManager>();
+        }
     }
 }
