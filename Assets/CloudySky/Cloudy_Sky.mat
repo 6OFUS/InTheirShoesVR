@@ -56,8 +56,8 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Alpha: {r: 0.764151, g: 0.764151, b: 0.764151, a: 1}
+    - _Alpha: {r: 1, g: 1, b: 1, a: 1}
     - _Cloud_speed: {r: 0.001, g: 0.001, b: 0, a: 0}
-    - _Color1: {r: 0.7830189, g: 0.14835884, b: 0, a: 1}
-    - _Color2: {r: 0.022173883, g: 0.013702081, b: 0.029556843, a: 0}
+    - _Color1: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
+    - _Color2: {r: 0, g: 0.010411001, b: 0.3207547, a: 0}
   m_BuildTextureStacks: []
