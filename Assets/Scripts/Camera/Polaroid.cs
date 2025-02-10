@@ -14,6 +14,7 @@ public class Polaroid : MonoBehaviour
     public Transform spawnLocation = null;
 
     private Camera renderCamera = null;
+    public LayerMask subjectLayer;
 
     private const string SUPABASE_URL = "https://imfbtilewhhhbqtcwjuh.supabase.co";
     private const string SUPABASE_BUCKET = "playerGalleries";
@@ -65,6 +66,32 @@ public class Polaroid : MonoBehaviour
         Texture2D newTexture = RenderCameraToTexture(renderCamera);
         newPhoto.SetImage(newTexture);
         StartCoroutine(UploadPhotoToSupabase(newTexture));
+        
+        // Perform a raycast the size of the photo
+        CheckForCameraSubjects();
+    }
+    
+    private void CheckForCameraSubjects()
+    {
+        int screenWidth = Screen.width;
+        int screenHeight = Screen.height;
+        
+        for (int x = 0; x < screenWidth; x += screenWidth / 10) // Reduce number of checks
+        {
+            for (int y = 0; y < screenHeight; y += screenHeight / 10)
+            {
+                Ray ray = renderCamera.ScreenPointToRay(new Vector3(x, y, 0));
+                if (Physics.Raycast(ray, out RaycastHit hit, renderCamera.farClipPlane, subjectLayer))
+                {
+                    Debug.Log(hit.collider.gameObject.name);
+                    CameraSubject subject = hit.collider.GetComponent<CameraSubject>();
+                    if (subject != null)
+                    {
+                        subject.Snapped(); // Call Snapped on the detected CameraSubject
+                    }
+                }
+            }
+        }
     }
 
     private Photo CreatePhoto()
