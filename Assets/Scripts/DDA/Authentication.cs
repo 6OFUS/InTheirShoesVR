@@ -7,6 +7,7 @@ using System;
 using Supabase.Gotrue;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Text.RegularExpressions;
 
 public class Authentication : MonoBehaviour
 {
@@ -22,10 +23,16 @@ public class Authentication : MonoBehaviour
     public TMP_InputField signUpEmailInput;    
     public TMP_InputField signUpPasswordInput; 
     public TMP_InputField signUpNameInput;     
+    public TextMeshProUGUI signUpError;
     
     [Header("Log In UI")]
     public TMP_InputField loginEmailInput;    
     public TMP_InputField loginPasswordInput; 
+    public TextMeshProUGUI loginError;
+    
+    [Header("Reset Password UI")]
+    public TMP_InputField resetPasswordEmailInput;
+    public TextMeshProUGUI resetPasswordError;
 
     async void Start()
     {
@@ -62,11 +69,17 @@ public class Authentication : MonoBehaviour
         return client;
     }
 
+    private bool IsValidEmail(string email)
+    {
+        string emailRegex = @"^[^\s@]+@[^\s@]+\.[^\s@]+$";
+        return Regex.IsMatch(email, emailRegex);
+    }
+
     public async void SignUp()
     {
         if (supabase == null)
         {
-            Debug.LogError("Supabase is not initialized. Cannot sign up.");
+            signUpError.text = "Supabase is not initialized.";
             return;
         }
 
@@ -74,72 +87,39 @@ public class Authentication : MonoBehaviour
         string password = signUpPasswordInput.text.Trim();
         string name = signUpNameInput.text.Trim();
 
-        if (string.IsNullOrEmpty(email) || !email.Contains("@"))
+        if (!IsValidEmail(email))
         {
-            Debug.LogError("Invalid email format. Please enter a valid email address.");
+            signUpError.text = "Invalid email format.";
+            return;
+        }
+        if (password.Length < 6)
+        {
+            signUpError.text = "Password must be at least 6 characters long.";
+            return;
+        }
+        if (string.IsNullOrEmpty(name))
+        {
+            signUpError.text = "Name cannot be empty.";
             return;
         }
 
-        if (database == null)
-        {
-            Debug.LogError("Database is not initialized!");
-            return;
-        }
-
-        Debug.Log($"Attempting to sign up with name: {name} and email: {email}");
         try
         {
             var response = await supabase.Auth.SignUp(email, password);
-        
-            if (response == null || response.User == null)
+            if (response.User == null)
             {
-                Debug.LogError("Sign-up failed: No user returned.");
+                signUpError.text = "Sign-up failed.";
                 return;
             }
 
-            Debug.Log($"Sign up successful for user: {response.User.Id}");
-            DateTime creationDateTime = DateTime.UtcNow;
-            string dateJoined = creationDateTime.ToString("yyyy-MM-dd");
-
-            database.CreateNewPlayer(response.User.Id, name, email, dateJoined);
-            database.StorePlayTime(response.User.Id, 0);
-            database.ReadPlayerData(response.User.Id);
-            database.ReadPlayerLvlProgress(response.User.Id);
+            database.CreateNewPlayer(response.User.Id, name, email, DateTime.UtcNow.ToString("yyyy-MM-dd"));
             ResetSignUpInputs();
-            //dyslexia unlocked
-            kioskManager.DyslexiaButtonUnlock();
-
             confirmationPage.SetActive(true);
             signupPage.SetActive(false);
-
-            if (GameManager.Instance != null)
-            {
-                GameManager.Instance.isTracking = true;
-                StartCoroutine(GameManager.Instance.TrackPlayTime());
-            }
         }
         catch (Exception ex)
         {
-            Debug.LogError($"Sign-up error: {ex.Message}");
-            if (ex.InnerException != null)
-            {
-                Debug.LogError($"Inner exception: {ex.InnerException.Message}");
-            }
-        }
-    }
-
-    public async void Signout()
-    {
-        if (supabase.Auth.CurrentUser != null)
-        {
-            GameManager.Instance.isTracking = false;
-            database.StorePlayTime(GameManager.Instance.playerID, GameManager.Instance.playerPlayTimeSeconds);
-            await supabase.Auth.SignOut();
-            GameManager.Instance.StorePlayerDetails("", "", "", "", 0, 0);
-            //all buttons locked
-            kioskManager.ResetButtons();
-            confirmationPage.SetActive(false);
-            loginPage.SetActive(true);
+            signUpError.text = ex.Message;
         }
     }
 
@@ -151,19 +131,48 @@ public class Authentication : MonoBehaviour
             if (session.User != null)
             {
                 database.ReadPlayerData(session.User.Id);
-                database.ReadPlayerLvlProgress(session.User.Id);
-                GameManager.Instance.isTracking = true;
-                StartCoroutine(GameManager.Instance.TrackPlayTime());
                 ResetLoginInputs();
-                //buttons for completed and current level unlocked
-                StartCoroutine(kioskManager.UnlockButtons());
                 confirmationPage.SetActive(true);
                 loginPage.SetActive(false);
+            }
+            else
+            {
+                loginError.text = "Invalid email or password.";
             }
         }
         catch (Exception ex)
         {
-            Debug.LogError($"Login error: {ex.Message}");
+            loginError.text = ex.Message;
+        }
+    }
+
+    public async void ResetPassword()
+    {
+        string email = resetPasswordEmailInput.text.Trim();
+        if (!IsValidEmail(email))
+        {
+            resetPasswordError.text = "Please enter a valid email address.";
+            return;
+        }
+
+        try
+        {
+            await supabase.Auth.ResetPasswordForEmail(email);
+            resetPasswordError.text = "Password reset email sent!";
+        }
+        catch (Exception ex)
+        {
+            resetPasswordError.text = ex.Message;
+        }
+    }
+
+    public async void Signout()
+    {
+        if (supabase.Auth.CurrentUser != null)
+        {
+            await supabase.Auth.SignOut();
+            confirmationPage.SetActive(false);
+            loginPage.SetActive(true);
         }
     }
 
@@ -172,12 +181,14 @@ public class Authentication : MonoBehaviour
         signUpEmailInput.text = "";
         signUpNameInput.text = "";
         signUpPasswordInput.text = "";
+        signUpError.text = "";
     }
 
     private void ResetLoginInputs()
     {
-        loginPasswordInput.text = "";
         loginEmailInput.text = "";
+        loginPasswordInput.text = "";
+        loginError.text = "";
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
