@@ -10,28 +10,42 @@ public class WordChecker : MonoBehaviour
     Database database;
     public string currentLevelName;
     public GameObject levelCompleteUI;
+    public int correctWordCounter;
 
     public void CheckWord()
     {
-        /*
-        string formedWord = "";
+        correctWordCounter = 0;
 
-        foreach (var socket in sockets)
+        for (int i = 0; i < correctWords.Length; i++)
         {
-            formedWord += socket.GetLetter();
+            string formedWord = "";
+            LetterSocketGroup group = letterSocketGroups[i];
+            foreach(var socket in group.letterSockets)
+            {
+                formedWord += socket.GetLetter();
+            }
+            if (formedWord == correctWords[i])
+            {
+                correctWordCounter++;
+                Debug.Log($"{formedWord} is the Correct word!");
+                Debug.Log(correctWordCounter);
+            }
+            else
+            {
+                Debug.Log($"{formedWord} is the incorrect word!");
+            }
         }
-
-        if (formedWord == correctWord)
+        if(correctWordCounter == correctWords.Length)
         {
-            Debug.Log($"{formedWord} is the Correct word!");
+            Debug.Log("All correct! Level completed");
             levelCompleteUI.SetActive(true);
-            database.UpdateLevelComplete(GameManager.Instance.playerID, currentLevelName, true);
+            //database.UpdateLevelComplete(GameManager.Instance.playerID, currentLevelName, true);
         }
         else
         {
-            Debug.Log("Keep trying...");
+            Debug.Log(correctWordCounter);
+            Debug.Log("Check your answers again");
         }
-        */
     }
     // Start is called before the first frame update
     void Start()

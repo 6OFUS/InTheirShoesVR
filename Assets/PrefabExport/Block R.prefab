@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1123610272851285041}
   m_Layer: 0
   m_Name: R
-  m_TagString: Untagged
+  m_TagString: Letter Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -283,7 +283,7 @@ GameObject:
   - component: {fileID: 1196704173762241686}
   m_Layer: 0
   m_Name: Block R
-  m_TagString: Untagged
+  m_TagString: Letter Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -298,8 +298,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 38.0952, y: 10.0321, z: 14.2933}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.540846, y: 0.540846, z: 0.540846}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1106258358341245620}
   m_Father: {fileID: 0}

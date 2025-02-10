@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 4864288606883968930}
   - component: {fileID: 3546989228332809995}
   - component: {fileID: 3629963273373429433}
-  - component: {fileID: 1689463868033130007}
+  - component: {fileID: 1883062573662846845}
   m_Layer: 0
   m_Name: S
-  m_TagString: Untagged
+  m_TagString: Letter Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 3838725627951604485}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000013560032, y: -0.0000017285346, z: -0.7071059, w: 0.7071078}
-  m_LocalPosition: {x: -15.175, y: -13.663002, z: -1.2189991}
+  m_LocalPosition: {x: -15.175, y: -13.663, z: -1.2279}
   m_LocalScale: {x: 0.0003186942, y: 0.0003032726, z: 0.0003186942}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
   m_FarAttachMode: 0
---- !u!54 &1689463868033130007
+--- !u!54 &1883062573662846845
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -283,7 +283,7 @@ GameObject:
   - component: {fileID: 7173882675743264150}
   m_Layer: 0
   m_Name: BLock S
-  m_TagString: Untagged
+  m_TagString: Letter Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -298,8 +298,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.540846, y: 0.540846, z: 0.540846}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5847773803989577157}
   m_Father: {fileID: 0}

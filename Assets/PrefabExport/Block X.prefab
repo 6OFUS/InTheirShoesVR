@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5024879063412363112}
   m_Layer: 0
   m_Name: Block X
-  m_TagString: Untagged
+  m_TagString: Letter Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,8 +26,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 38.194, y: 10.025, z: 14.033}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.540846, y: 0.540846, z: 0.540846}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 238400813867459016}
   m_Father: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 669637106225110394}
   m_Layer: 0
   m_Name: X (11)
-  m_TagString: Untagged
+  m_TagString: Letter Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

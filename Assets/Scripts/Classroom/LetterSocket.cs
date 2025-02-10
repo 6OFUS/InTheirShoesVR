@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class LetterSocket : MonoBehaviour
 {
-    private char storedLetter;
+    public char storedLetter;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,28 +16,12 @@ public class LetterSocket : MonoBehaviour
             Debug.Log(storedLetter);
         }
     }
-
-    public void SetLetter(char letter)
-    {
-        storedLetter = letter;
-    }
-
     public char GetLetter()
     {
         return storedLetter;
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
+
 [Serializable]
 public class LetterSocketGroup
 {

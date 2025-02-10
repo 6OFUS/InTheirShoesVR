@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4222939877440679153}
   m_Layer: 0
   m_Name: Block Y
-  m_TagString: Untagged
+  m_TagString: Letter Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,9 +25,9 @@ Transform:
   m_GameObject: {fileID: 290762301068423936}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 38.0038, y: 10.0833, z: 14.1214}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.540846, y: 0.540846, z: 0.540846}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4163934263348078752}
   m_Father: {fileID: 0}
@@ -99,6 +99,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: eff3c5e7f72c2ea4abc60304fce6b6ad, type: 3}
       propertyPath: m_Name
       value: Block Y
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: eff3c5e7f72c2ea4abc60304fce6b6ad, type: 3}
+      propertyPath: m_TagString
+      value: Letter Block
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
