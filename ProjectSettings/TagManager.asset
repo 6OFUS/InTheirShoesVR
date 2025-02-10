@@ -9,6 +9,8 @@ TagManager:
   - Dyslexia
   - Visual
   - Letter Block
+  - Hearing
+  - Mobility
   layers:
   - Default
   - TransparentFX
