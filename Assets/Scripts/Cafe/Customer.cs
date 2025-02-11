@@ -10,16 +10,18 @@ public class Customer : MonoBehaviour
     public Transform frontOfCounter;
 
     public GameObject trayHand;
+    public GameObject trayCounter;
 
     public Animator customerAnimator;
+    public bool receiptPickedUp;
 
     public void WalkToCounter()
     {
         customer.SetDestination(frontOfCounter.position);
-        StartCoroutine(CheckIfArrived());
+        StartCoroutine(CheckIfArrived(customerAnimator.GetCurrentAnimatorStateInfo(0).length));
     }
 
-    private IEnumerator CheckIfArrived()
+    private IEnumerator CheckIfArrived(float delay)
     {
         float threshold = 1f;
         yield return new WaitForSeconds(0.1f); // Small delay to let path calculate
@@ -30,8 +32,21 @@ public class Customer : MonoBehaviour
 
         }
         customerAnimator.SetTrigger("At counter");
-        yield return new WaitForSeconds(customerAnimator.);
+        yield return new WaitForSeconds(delay);
         trayHand.SetActive(false);
+        trayCounter.SetActive(true);
+        StartCoroutine(PointIdleCycle());
+    }
+
+    private IEnumerator PointIdleCycle()
+    {
+        while (!receiptPickedUp)
+        {
+            customerAnimator.SetTrigger("Point");
+            yield return new WaitForSeconds(customerAnimator.GetCurrentAnimatorStateInfo(0).length);
+            customerAnimator.SetTrigger("Idle");
+            yield return new WaitForSeconds(customerAnimator.GetCurrentAnimatorStateInfo(0).length);
+        }
     }
 
     // Start is called before the first frame update
