@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 666967d340eaf4647a11a7771909e232
+guid: 38c42fbc63772b74eb0ce15c622e3cea
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert2
+    second: {fileID: 2100000, guid: cce699fc784ed3d47be718a8d64e8ad8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -33,18 +38,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: npc_putDownTray
+      name: npc_idle
       takeName: Take 001
       internalID: 1827226128182048838
       firstFrame: 0
-      lastFrame: 60
+      lastFrame: 298
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
