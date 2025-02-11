@@ -15,18 +15,18 @@ public class LevelDoor : MonoBehaviour
             //get previous level data to check if level completed
             var previousLevelData = GameManager.Instance.playerLevelProgress[prevLvlName];
             var currentLevelData = GameManager.Instance.playerLevelProgress[scanner.keycardTag];
-            Debug.Log(currentLevelData);
+
             JointLimits limits = doorHinge.limits;
             if (previousLevelData.completed) //previous level completed
             {
                 if (currentLevelData.doorUnlocked) //door unlocked is for current door, not previous one
                 {
-                    limits.max = 90;
+                    limits.min = 90;
                     Debug.Log("Door unlocked");
                 }
                 else //door locked
                 {
-                    limits.max = 0;
+                    limits.min = 0;
                     Debug.Log("Door locked, scan card");
                 }
             }
@@ -34,7 +34,7 @@ public class LevelDoor : MonoBehaviour
             {
                 if (currentLevelData.doorUnlocked) // Check if keycard was scanned
                 {
-                    limits.max = 90;
+                    limits.min = 90;
                     Debug.Log("First door unlocked with keycard.");
                 }
                 else
@@ -53,7 +53,7 @@ public class LevelDoor : MonoBehaviour
     }
     
 
-
+    
     // Start is called before the first frame update
     void Start()
     {

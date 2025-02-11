@@ -33,7 +33,7 @@ public class KioskManager : MonoBehaviour
 
     public IEnumerator UnlockButtons()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         playerProgress = GameManager.Instance.playerLevelProgress;
         Debug.Log(GameManager.Instance.playerLevelProgress.Count);
         bool nextLevelUnlocked = false;
@@ -41,7 +41,6 @@ public class KioskManager : MonoBehaviour
         for (int i = 0; i < lockedButtons.Count; i++)
         {
             string levelName = database.levelNames[i];
-            //ERROR HERE
             var levelData = playerProgress[levelName];
 
             if (levelData.completed) // Unlock buttons for completed levels

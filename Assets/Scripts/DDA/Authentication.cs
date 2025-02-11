@@ -13,7 +13,7 @@ public class Authentication : MonoBehaviour
 {
     private Supabase.Client supabase;
     Database database;
-    KioskManager kioskManager;
+    public KioskManager kioskManager;
 
     public GameObject confirmationPage;
     public GameObject signupPage;
@@ -49,7 +49,10 @@ public class Authentication : MonoBehaviour
         {
             Debug.LogError("Failed to initialize Supabase!");
         }
+    }
 
+    private void Awake()
+    {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -113,9 +116,12 @@ public class Authentication : MonoBehaviour
             }
 
             database.CreateNewPlayer(response.User.Id, name, email, DateTime.UtcNow.ToString("yyyy-MM-dd"));
+            database.ReadPlayerData(response.User.Id);
+            database.ReadPlayerLvlProgress(response.User.Id);
             ResetSignUpInputs();
             confirmationPage.SetActive(true);
             signupPage.SetActive(false);
+            kioskManager.DyslexiaButtonUnlock();
         }
         catch (Exception ex)
         {
@@ -131,9 +137,11 @@ public class Authentication : MonoBehaviour
             if (session.User != null)
             {
                 database.ReadPlayerData(session.User.Id);
+                database.ReadPlayerLvlProgress(session.User.Id);
                 ResetLoginInputs();
                 confirmationPage.SetActive(true);
                 loginPage.SetActive(false);
+                StartCoroutine(kioskManager.UnlockButtons());
             }
             else
             {
@@ -173,6 +181,7 @@ public class Authentication : MonoBehaviour
             await supabase.Auth.SignOut();
             confirmationPage.SetActive(false);
             loginPage.SetActive(true);
+            kioskManager.ResetButtons();
         }
     }
 

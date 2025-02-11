@@ -7,6 +7,8 @@ public class NumPad : MonoBehaviour
 {
     public TextMeshProUGUI queueNumInput;
     public string currentNum;
+    public FruitSocket[] fruitSockets;
+    public GameObject levelCompleteUI;
 
     public void InputNum(string num)
     {
@@ -21,5 +23,17 @@ public class NumPad : MonoBehaviour
     {
         currentNum = currentNum.Substring(0, currentNum.Length - 1);
         queueNumInput.text = currentNum;
+    }
+
+    public void Enter()
+    {
+        foreach(var fruit in fruitSockets)
+        {
+            if(fruit.orderNum == currentNum && fruit.correct)
+            {
+                queueNumInput.text = "";
+                levelCompleteUI.SetActive(true);
+            }
+        }
     }
 }

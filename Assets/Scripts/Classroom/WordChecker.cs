@@ -39,7 +39,7 @@ public class WordChecker : MonoBehaviour
         {
             Debug.Log("All correct! Level completed");
             levelCompleteUI.SetActive(true);
-            //database.UpdateLevelComplete(GameManager.Instance.playerID, currentLevelName, true);
+            database.UpdateLevelComplete(GameManager.Instance.playerID, currentLevelName, true);
         }
         else
         {

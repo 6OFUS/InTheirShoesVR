@@ -6,14 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Main menu.unity
-    guid: 02a9f665fc4af934098d1334016d9840
+    path: Assets/Scenes/Office.unity
+    guid: 7170858d03aef144796b41eb2b971368
   - enabled: 1
-    path: Assets/Scenes/DyslexiaTest.unity
-    guid: 539a8e2e06c3b624890f1671bcd67459
+    path: Assets/Scenes/Dyslexia.unity
+    guid: 32841bb122dc78b43b8d00f4f4586f37
   - enabled: 1
-    path: Assets/Scenes/Blind.unity
-    guid: 129e93caeb4434849b95348fe81634f8
+    path: Assets/Scenes/BlindV5.unity
+    guid: 96c37be81b4c99f44a2270f079385c2c
+  - enabled: 1
+    path: Assets/Scenes/Disabled.unity
+    guid: b130e06e6454e37448f0378e0a2b3561
+  - enabled: 1
+    path: Assets/Scenes/Deaf.unity
+    guid: 260ea3fc65823fe4d98fe6d7ab8ed90f
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: dc5a169419fa04987b057f65238cf3ba, type: 2}
