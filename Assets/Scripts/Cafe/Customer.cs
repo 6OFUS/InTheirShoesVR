@@ -49,11 +49,6 @@ public class Customer : MonoBehaviour
         }
     }
 
-    public void PickupReceipt()
-    {
-        receiptPickedUp = true;
-    }
-
     // Start is called before the first frame update
     void Start()
     {
