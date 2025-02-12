@@ -26,7 +26,7 @@ public class LevelDoor : MonoBehaviour
                 }
                 else //door locked
                 {
-                    limits.min = 0;
+                    limits.max = 0;
                     Debug.Log("Door locked, scan card");
                 }
             }
