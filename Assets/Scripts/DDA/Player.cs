@@ -62,7 +62,7 @@ public class LevelProgress
     public LevelState Visual = new LevelState();
     public LevelState Hearing = new LevelState();
     public LevelState Dyslexia = new LevelState();
-    public LevelState Wheelchair = new LevelState();
+    public LevelState Mobility = new LevelState();
 
     public LevelProgress() { }
 }

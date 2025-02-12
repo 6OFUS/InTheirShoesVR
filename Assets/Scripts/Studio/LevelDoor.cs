@@ -21,7 +21,7 @@ public class LevelDoor : MonoBehaviour
             {
                 if (currentLevelData.doorUnlocked) //door unlocked is for current door, not previous one
                 {
-                    limits.min = 90;
+                    limits.max = 90;
                     Debug.Log("Door unlocked");
                 }
                 else //door locked
@@ -34,12 +34,11 @@ public class LevelDoor : MonoBehaviour
             {
                 if (currentLevelData.doorUnlocked) // Check if keycard was scanned
                 {
-                    limits.min = 90;
+                    limits.max = 90;
                     Debug.Log("First door unlocked with keycard.");
                 }
                 else
                 {
-                    limits.min = 0;
                     limits.max = 0;
                     Debug.Log($"Door cannot be unlocked, complete the {prevLvlName} level or scan keycard.");
                 }
