@@ -9,10 +9,15 @@ public class KeycardScanner : MonoBehaviour
     Database database;
     public AudioSource scanAudioSource;
     public AudioClip[] scanAudioClips;
+    public GameObject doorLockedIcon;
+    public GameObject doorUnlockedIcon;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(keycardTag))
         {
+            doorLockedIcon.SetActive(false);
+            doorUnlockedIcon.SetActive(true);
             keycardScanned = true;
             Debug.Log("Scanned");
             scanAudioSource.clip = scanAudioClips[0];

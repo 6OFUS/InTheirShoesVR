@@ -44,6 +44,7 @@ public class LevelDoor : MonoBehaviour
                 }
             }
             doorHinge.limits = limits;  
+            Debug.Log(doorHinge.limits.max);
         }
         else
         {

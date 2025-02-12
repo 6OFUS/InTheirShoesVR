@@ -10,6 +10,8 @@ public class KioskManager : MonoBehaviour
     public GameObject dyslexiaUnlocked;
     public List<GameObject> lockedButtons;
     public List<GameObject> unlockedButtons;
+    public List<GameObject> doorLockedIcon;
+    public List<GameObject> doorUnockedIcon;
 
     private Dictionary<string, (bool completed, bool doorUnlocked)> playerProgress;
 
@@ -35,7 +37,6 @@ public class KioskManager : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         playerProgress = GameManager.Instance.playerLevelProgress;
-        Debug.Log(GameManager.Instance.playerLevelProgress.Count);
         bool nextLevelUnlocked = false;
 
         for (int i = 0; i < lockedButtons.Count; i++)
@@ -47,13 +48,13 @@ public class KioskManager : MonoBehaviour
             {
                 lockedButtons[i].SetActive(false);
                 unlockedButtons[i].SetActive(true);
-                Debug.Log($"Button for {levelName} unlocked (completed level).");
+                doorLockedIcon[i].SetActive(false);
+                doorUnockedIcon[i].SetActive(true);
             }
             else if (!nextLevelUnlocked) // Unlock the next level's button (first non-completed level)
             {
                 lockedButtons[i].SetActive(false);
                 unlockedButtons[i].SetActive(true);
-                Debug.Log($"Button for {levelName} unlocked (next level to complete).");
                 nextLevelUnlocked = true;
             }
             else // Keep all future levels locked

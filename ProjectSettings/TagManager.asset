@@ -6,11 +6,11 @@ TagManager:
   tags:
   - Anchor
   - Car
-  - Dyslexia
   - Visual
   - Letter Block
   - Hearing
   - Mobility
+  - Dyslexic
   layers:
   - Default
   - TransparentFX
