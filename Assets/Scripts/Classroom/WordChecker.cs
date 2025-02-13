@@ -11,6 +11,8 @@ public class WordChecker : MonoBehaviour
     public string currentLevelName;
     public GameObject levelCompleteUI;
     public int correctWordCounter;
+    public AudioSource incorrectAns;
+    public AudioSource correctAns;
 
     public void CheckWord()
     {
@@ -39,12 +41,14 @@ public class WordChecker : MonoBehaviour
         {
             Debug.Log("All correct! Level completed");
             levelCompleteUI.SetActive(true);
+            correctAns.Play();
             database.UpdateLevelComplete(GameManager.Instance.playerID, currentLevelName, true);
         }
         else
         {
             Debug.Log(correctWordCounter);
             Debug.Log("Check your answers again");
+            incorrectAns.Play();
         }
     }
     // Start is called before the first frame update

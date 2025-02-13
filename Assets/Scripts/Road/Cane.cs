@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Cane : MonoBehaviour
 {
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("object hit");
+    }
 
 
 
