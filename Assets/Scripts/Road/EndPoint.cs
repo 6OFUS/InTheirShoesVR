@@ -21,7 +21,7 @@ public class EndPoint : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             FadeOutVolume();
-            database.UpdateLevelComplete(GameManager.Instance.playerID, currentLevelName, true);
+            //database.UpdateLevelComplete(GameManager.Instance.playerID, currentLevelName, true);
             Debug.Log("Level completed");
         }
     }
