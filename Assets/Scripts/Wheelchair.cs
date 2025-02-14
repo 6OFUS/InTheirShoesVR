@@ -31,12 +31,15 @@ public class Wheelchair : MonoBehaviour
         rightRB.isKinematic = true;
 
         // Add event listeners
-        leftWheel.selectEntered.AddListener(_ => leftGrabbed = true);
-        leftWheel.selectExited.AddListener(_ => leftGrabbed = false);
-        rightWheel.selectEntered.AddListener(_ => rightGrabbed = true);
-        rightWheel.selectExited.AddListener(_ => rightGrabbed = false);
+        leftWheel.firstSelectEntered.AddListener(_ => leftGrabbed = true);
+        leftWheel.lastSelectExited.AddListener(_ => leftGrabbed = false);
+        rightWheel.firstSelectEntered.AddListener(_ => rightGrabbed = true);
+        rightWheel.lastSelectExited.AddListener(_ => rightGrabbed = false);
     }
+    public void MoveWheelchair()
+    {
 
+    }
     private void FixedUpdate()
     {
         // Ensure grab points stay at their correct positions relative to the wheelchair
