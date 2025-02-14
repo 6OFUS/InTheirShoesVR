@@ -8,6 +8,7 @@ public class WeatherController : MonoBehaviour
     public string city = "Singapore";
     private string apiUrl;
     public bool isRain = false;
+    public GameObject rainVFX;
 
     void Start()
     {
@@ -52,6 +53,7 @@ public class WeatherController : MonoBehaviour
             isRain = weatherCondition.Contains("rain") || weatherCondition.Contains("drizzle");
 
             Debug.Log("Weather Condition: " + weatherCondition + " | isRain: " + isRain);
+            rainVFX.SetActive(isRain);
         }
         else
         {
