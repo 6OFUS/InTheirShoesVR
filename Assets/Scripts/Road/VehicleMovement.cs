@@ -174,7 +174,7 @@ public class VehicleMovement : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.CompareTag("Player") && !trafficLightController.canCross)
+        if (other.transform.CompareTag("Player"))
         {
             transitionManager.ChangeSceneAsyc(SceneManager.GetActiveScene().buildIndex);
         }

@@ -11,6 +11,11 @@ TagManager:
   - Hearing
   - Mobility
   - Dyslexic
+  - Plastic
+  - Cat
+  - Metal pole
+  - Metal railing
+  - Ground
   layers:
   - Default
   - TransparentFX
