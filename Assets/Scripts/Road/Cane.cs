@@ -13,6 +13,8 @@ public class Cane : MonoBehaviour
     public HapticClip plasticHaptic;
     public HapticClip hitGroundHaptic;
 
+    public AudioSource pickUpCane;
+
     private HapticClipPlayer metalPoleHapticClipPlayer;
     private HapticClipPlayer metalRailingHapticClipPlayer;
     private HapticClipPlayer plasticHapticClipPlayer;
@@ -59,6 +61,7 @@ public class Cane : MonoBehaviour
     private void OnGrab(SelectEnterEventArgs args)
     {
         currentInteractor = args.interactorObject as XRBaseInteractor;
+        pickUpCane.Play();
     }
 
     private void OnRelease(SelectExitEventArgs args)

@@ -10,7 +10,6 @@ using UnityEngine.Rendering;
 
 public class EndPoint : MonoBehaviour
 {
-    public GameObject endUI;
     Database database;
     public string currentLevelName;
 
@@ -22,7 +21,6 @@ public class EndPoint : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             FadeOutVolume();
-            endUI.SetActive(true);
             database.UpdateLevelComplete(GameManager.Instance.playerID, currentLevelName, true);
             Debug.Log("Level completed");
         }

@@ -16,6 +16,7 @@ TagManager:
   - Metal pole
   - Metal railing
   - Ground
+  - Human
   layers:
   - Default
   - TransparentFX
