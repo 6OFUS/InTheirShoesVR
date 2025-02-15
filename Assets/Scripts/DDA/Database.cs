@@ -40,7 +40,7 @@ public class Database : MonoBehaviour
 
     public void CreateNewPlayer(string uID, string name, string email, string dateJoined)
     {
-        Player player = new Player(name, email, dateJoined, "default", "", "", 0);
+        Player player = new Player(name, email, dateJoined, "default", "", "", 0, 0);
 
         string playerJson = JsonUtility.ToJson(player, true);
         Debug.Log("Serialized Player JSON: " + playerJson);
@@ -117,10 +117,28 @@ public class Database : MonoBehaviour
 
     public void StorePlayTime(string uID, int playTime)
     {
-        if (!string.IsNullOrEmpty(uID))
+        FirebaseDatabase.DefaultInstance.GetReference("players").Child(uID).GetValueAsync().ContinueWithOnMainThread(task =>
         {
-            dbRef.Child("players").Child(uID).Child("totalPlayTime").SetValueAsync(playTime);
-        }
+            if (task.IsFaulted)
+            {
+                Debug.Log(task?.Exception);
+            }
+            else if (task.IsCompleted)
+            {
+                dbRef.Child("players").Child(uID).Child("TotalPlayTime").SetValueAsync(playTime)
+                .ContinueWithOnMainThread(task =>
+                {
+                    if (task.IsFaulted)
+                    {
+                        Debug.LogError("Error storing play time: " + task.Exception);
+                    }
+                    else if (task.IsCompleted)
+                    {
+                        Debug.Log("Play time successfully updated to: " + playTime);
+                    }
+                });
+            }
+        });
     }
 
     public void UpdateDoorLockStatus(string uID, string levelName, bool doorUnlocked)
@@ -156,7 +174,7 @@ public class Database : MonoBehaviour
             }
         });
     }
-    public void UpdateLevelComplete(string uID, string levelName, bool levelCompleted)
+    public void UpdateLevelComplete(string uID, string levelName, bool levelCompleted, string achievementID, string dateObtained, bool achievementObtained)
     {
         FirebaseDatabase.DefaultInstance.GetReference("players").Child(uID).Child("Progress").Child(levelName).GetValueAsync().ContinueWithOnMainThread(task =>
         {
@@ -166,16 +184,15 @@ public class Database : MonoBehaviour
             }
             else if (task.IsCompleted)
             {
-                //StoreAchievement(uID, achievementID, DateTime.UtcNow.ToString("yyyy-MM-dd"), achievementObtained);
                 DataSnapshot snapshot = task.Result;
                 bool doorUnlocked = (bool)snapshot.Child("DoorUnlocked").Value;
-                GameManager.Instance.playerLevelProgress[levelName] = (levelCompleted, doorUnlocked);
+                Dictionary<string, object> updateLvl = new Dictionary<string, object>();
+                updateLvl[$"Progress/{levelName}/Completed"] = levelCompleted;
+
+                UpdateAchievement(uID, achievementID, dateObtained, achievementObtained);
                 FirebaseDatabase.DefaultInstance.GetReference("players")
-                .Child(uID)
-                .Child("Progress")
-                .Child(levelName)
-                .Child("Completed")  // Ensure this matches your Firebase structure
-                .SetValueAsync(doorUnlocked).ContinueWithOnMainThread(updateTask =>
+                .Child(uID) 
+                .UpdateChildrenAsync(updateLvl).ContinueWithOnMainThread(updateTask =>
                 {
                     if (updateTask.IsFaulted)
                     {
@@ -190,10 +207,10 @@ public class Database : MonoBehaviour
         });
     }
 
-    /*
-    public void StoreAchievement(string uID, string achievementID, string dateObtained, bool achievementObtained)
+    
+    public void UpdateAchievement(string uID, string achievementID, string dateObtained, bool achievementObtained)
     {
-        FirebaseDatabase.DefaultInstance.GetReference("players").Child(uID).Child("Achivements").GetValueAsync().ContinueWithOnMainThread(task =>
+        FirebaseDatabase.DefaultInstance.GetReference("players").Child(uID).Child("Achievements").GetValueAsync().ContinueWithOnMainThread(task =>
         {
             if (task.IsFaulted)
             {
@@ -201,26 +218,50 @@ public class Database : MonoBehaviour
             }
             else if (task.IsCompleted)
             {
-                DatabaseReference playerAchievementsRef = FirebaseDatabase.DefaultInstance.GetReference("players").Child(uID).Child("Achievements");
-                Achievement achievement = new Achievement(dateObtained, achievementObtained);
-                Dictionary<string, object> achievementData = new Dictionary<string, object>
-                {
-                    { achievementID, achievement }
-                };
-    
-                playerAchievementsRef.Child(achievementID).UpdateChildrenAsync(achievementData).ContinueWithOnMainThread(updateTask =>
+                Dictionary<string, object> updateAchievement = new Dictionary<string, object>();
+                updateAchievement[$"Achievements/{achievementID}/DateObtained"] = dateObtained;
+                updateAchievement[$"Achievements/{achievementID}/Obtained"] = achievementObtained;
+
+                FirebaseDatabase.DefaultInstance.GetReference("players")
+                .Child(uID)
+                .UpdateChildrenAsync(updateAchievement).ContinueWithOnMainThread(updateTask =>
                 {
                     if (updateTask.IsFaulted)
                     {
-                        Debug.Log("Error updating achivement in Firebase: " + updateTask.Exception);
+                        Debug.Log("Error updating Achievements in Firebase: " + updateTask.Exception);
                     }
                     else
                     {
-                        Debug.Log("Achivement updated successfully in Firebase!");
+                        Debug.Log("Achievements updated successfully in Firebase!");
                     }
                 });
             }
         });
     }
-    */
+
+    public void UpdatePlayerPoints(string uID, int points)
+    {
+        FirebaseDatabase.DefaultInstance.GetReference("players").Child(uID).Child("Points").GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted)
+            {
+                Debug.Log(task.Exception);
+            }
+            else if (task.IsCompleted)
+            {
+                dbRef.Child("players").Child(uID).Child("Points").SetValueAsync(points)
+                .ContinueWithOnMainThread(task =>
+                {
+                    if (task.IsFaulted)
+                    {
+                        Debug.LogError("Error updating player points: " + task.Exception);
+                    }
+                    else
+                    {
+                        Debug.Log("Player points updated successfully to: " + points);
+                    }
+                });
+            }
+        });
+    }
 }

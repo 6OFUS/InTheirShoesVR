@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7632524218582362709}
   - component: {fileID: 3582551889085232829}
   - component: {fileID: 3930324101900074582}
-  - component: {fileID: 1229102446619143590}
+  - component: {fileID: 4523222314681910240}
   m_Layer: 0
   m_Name: fatboy
   m_TagString: Untagged
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1229102446619143590
-MeshCollider:
+--- !u!65 &4523222314681910240
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,10 +102,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 5061449112225014758, guid: 28502d19c68219d44abc46f748d642ea, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 1.3322484, y: 2.67, z: 1.3667872}
+  m_Center: {x: -0.0046707126, y: 0.6328739, z: -0.0067311274}
 --- !u!1 &2267830050928295589
 GameObject:
   m_ObjectHideFlags: 0

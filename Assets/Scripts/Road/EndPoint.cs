@@ -3,6 +3,7 @@
     Date: 30/1/2025
     Description: The EndPoint class is used to handle the functions when player reaches end point of level
 */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,7 +22,7 @@ public class EndPoint : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             FadeOutVolume();
-            //database.UpdateLevelComplete(GameManager.Instance.playerID, currentLevelName, true);
+            database.UpdateLevelComplete(GameManager.Instance.playerID, currentLevelName, true, "A3", DateTime.UtcNow.ToString("yyyy-MM-dd"), true);
             Debug.Log("Level completed");
         }
     }

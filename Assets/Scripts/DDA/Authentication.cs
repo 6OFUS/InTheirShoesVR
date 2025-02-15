@@ -20,20 +20,27 @@ public class Authentication : MonoBehaviour
     public GameObject signupPage;
     public GameObject loginPage;
 
+    public AnimationClip loadingClip;
     [Header("Sign up UI")]
     public TMP_InputField signUpEmailInput;    
     public TMP_InputField signUpPasswordInput; 
     public TMP_InputField signUpNameInput;     
     public TextMeshProUGUI signUpError;
+    public GameObject signUpLoadingPage;
     
     [Header("Log In UI")]
     public TMP_InputField loginEmailInput;    
     public TMP_InputField loginPasswordInput; 
     public TextMeshProUGUI loginError;
-    
+    public GameObject loginLoadingPage;
+
     [Header("Reset Password UI")]
     public TMP_InputField resetPasswordEmailInput;
     public TextMeshProUGUI resetPasswordError;
+    public GameObject resetPasswordLoadingPage;
+
+    [Header("Sign out")]
+    public GameObject signOutLoadingPage;
 
     async void Start()
     {
@@ -79,30 +86,47 @@ public class Authentication : MonoBehaviour
         return Regex.IsMatch(email, emailRegex);
     }
 
+    private IEnumerator LoadingAnim(GameObject loading, AnimationClip clip)
+    {
+        loading.SetActive(true);
+        yield return new WaitForSeconds(clip.length);
+        loading.SetActive(false);
+    }
     public async void SignUp()
     {
+        signUpError.text = "";
+        StartCoroutine(LoadingAnim(signUpLoadingPage, loadingClip));
+
+        await Task.Delay(Mathf.RoundToInt(loadingClip.length * 1000));
         if (supabase == null)
         {
+            AudioManager.Instance.sfxSource.clip = AudioManager.Instance.loginFailed;
+            AudioManager.Instance.sfxSource.Play();
             signUpError.text = "Supabase is not initialized.";
             return;
         }
-
         string email = signUpEmailInput.text.Trim();
         string password = signUpPasswordInput.text.Trim();
         string name = signUpNameInput.text.Trim();
 
         if (!IsValidEmail(email))
         {
+            AudioManager.Instance.sfxSource.clip = AudioManager.Instance.loginFailed;
+            AudioManager.Instance.sfxSource.Play();
             signUpError.text = "Invalid email format.";
             return;
         }
         if (password.Length < 6)
         {
+            AudioManager.Instance.sfxSource.clip = AudioManager.Instance.loginFailed;
+            AudioManager.Instance.sfxSource.Play();
             signUpError.text = "Password must be at least 6 characters long.";
             return;
         }
         if (string.IsNullOrEmpty(name))
         {
+            AudioManager.Instance.sfxSource.clip = AudioManager.Instance.loginFailed;
+            AudioManager.Instance.sfxSource.Play();
             signUpError.text = "Name cannot be empty.";
             return;
         }
@@ -115,29 +139,45 @@ public class Authentication : MonoBehaviour
                 signUpError.text = "Sign-up failed.";
                 return;
             }
+            AudioManager.Instance.sfxSource.clip = AudioManager.Instance.loginSuccess;
+            AudioManager.Instance.sfxSource.Play();
 
-            database.CreateNewPlayer(response.User.Id, name, email, DateTime.UtcNow.ToString("yyyy-MM-dd"));
-            database.ReadPlayerData(response.User.Id);
-            database.ReadPlayerLvlProgress(response.User.Id);
-            ResetSignUpInputs();
+            string userID = response.User.Id;
+            database.CreateNewPlayer(userID, name, email, DateTime.UtcNow.ToString("yyyy-MM-dd"));
+            GameManager.Instance.isTracking = true;
+            StartCoroutine(GameManager.Instance.TrackPlayTime());
+            database.ReadPlayerData(userID);
+            database.ReadPlayerLvlProgress(userID);
+            database.UpdateAchievement(userID, "A1", DateTime.UtcNow.ToString("yyyy-MM-dd"), true);
+
             confirmationPage.SetActive(true);
             signupPage.SetActive(false);
             kioskManager.DyslexiaButtonUnlock();
             tutorialDoor.TutorialUnlocked();
+            ResetSignUpInputs();
         }
         catch (Exception ex)
         {
+            AudioManager.Instance.sfxSource.clip = AudioManager.Instance.loginFailed;
+            AudioManager.Instance.sfxSource.Play();
             signUpError.text = ex.Message;
         }
     }
 
     public async void Login()
     {
+        loginError.text = "";
+        StartCoroutine(LoadingAnim(loginLoadingPage, loadingClip));
+        await Task.Delay(Mathf.RoundToInt(loadingClip.length * 1000));
         try
         {
             var session = await supabase.Auth.SignIn(loginEmailInput.text, loginPasswordInput.text);
             if (session.User != null)
             {
+                AudioManager.Instance.sfxSource.clip = AudioManager.Instance.loginSuccess;
+                AudioManager.Instance.sfxSource.Play();
+                GameManager.Instance.isTracking = true;
+                StartCoroutine(GameManager.Instance.TrackPlayTime());
                 database.ReadPlayerData(session.User.Id);
                 database.ReadPlayerLvlProgress(session.User.Id);
                 ResetLoginInputs();
@@ -148,31 +188,43 @@ public class Authentication : MonoBehaviour
             }
             else
             {
+                AudioManager.Instance.sfxSource.clip = AudioManager.Instance.loginFailed;
+                AudioManager.Instance.sfxSource.Play();
                 loginError.text = "Invalid email or password.";
             }
         }
         catch (Exception ex)
         {
+            AudioManager.Instance.sfxSource.clip = AudioManager.Instance.loginFailed;
+            AudioManager.Instance.sfxSource.Play();
             loginError.text = ex.Message;
         }
     }
 
     public async void ResetPassword()
     {
+        resetPasswordError.text = "";
         string email = resetPasswordEmailInput.text.Trim();
+        StartCoroutine(LoadingAnim(resetPasswordLoadingPage, loadingClip));
+        await Task.Delay(Mathf.RoundToInt(loadingClip.length * 1000));
         if (!IsValidEmail(email))
         {
+            AudioManager.Instance.sfxSource.clip = AudioManager.Instance.loginFailed;
+            AudioManager.Instance.sfxSource.Play();
             resetPasswordError.text = "Please enter a valid email address.";
             return;
         }
-
         try
         {
             await supabase.Auth.ResetPasswordForEmail(email);
+            AudioManager.Instance.sfxSource.clip = AudioManager.Instance.loginSuccess;
+            AudioManager.Instance.sfxSource.Play();
             resetPasswordError.text = "Password reset email sent!";
         }
         catch (Exception ex)
         {
+            AudioManager.Instance.sfxSource.clip = AudioManager.Instance.loginFailed;
+            AudioManager.Instance.sfxSource.Play();
             resetPasswordError.text = ex.Message;
         }
     }
@@ -180,12 +232,14 @@ public class Authentication : MonoBehaviour
     public async void Signout()
     {
         if (supabase.Auth.CurrentUser != null)
-        {
+        {         
+            StartCoroutine(LoadingAnim(signOutLoadingPage, loadingClip));
             await supabase.Auth.SignOut();
             confirmationPage.SetActive(false);
             loginPage.SetActive(true);
             kioskManager.ResetButtons();
             tutorialDoor.TutorialLocked();
+            GameManager.Instance.isTracking = false;
         }
     }
 
@@ -210,6 +264,11 @@ public class Authentication : MonoBehaviour
         {
             kioskManager = FindObjectOfType<KioskManager>();
             tutorialDoor = FindObjectOfType<TutorialDoor>();
+            if(GameManager.Instance.playerID != "")
+            {
+                confirmationPage.SetActive(true);
+                loginPage.SetActive(false);
+            }
         }
     }
 }
