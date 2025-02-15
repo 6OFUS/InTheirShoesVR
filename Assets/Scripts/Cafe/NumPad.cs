@@ -31,8 +31,9 @@ public class NumPad : MonoBehaviour
         {
             if(fruit.orderNum == currentNum && fruit.correct)
             {
+                Debug.Log("Correct fruit and order num");
                 queueNumInput.text = "";
-                levelCompleteUI.SetActive(true);
+                //levelCompleteUI.SetActive(true);
             }
         }
     }
