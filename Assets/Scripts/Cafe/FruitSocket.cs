@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class FruitSocket : MonoBehaviour
 {
@@ -10,28 +11,22 @@ public class FruitSocket : MonoBehaviour
 
     public bool correct;
 
-    private void OnTriggerEnter(Collider other)
+
+    public void CheckFruit(SelectEnterEventArgs args)
     {
-        if (correctFruit == other.gameObject)
+        GameObject placedFruit = args.interactableObject.transform.gameObject;
+
+        if (placedFruit.CompareTag(correctFruit.tag))
         {
             correct = true;
+            Debug.Log("Correct fruit placed");
         }
         else
         {
             correct = false;
+            Debug.Log("Incorrect fruit placed");
         }
     }
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

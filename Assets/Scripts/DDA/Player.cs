@@ -7,9 +7,8 @@ public class Player
     public string Name;
     public string Email;
     public string DateJoined;
-    public string PreferredTheme;
-    public string ProfilePictureUrl;
-    public string PhotoGalleryPath;
+    public string CameraSkinFile;
+    public string PhoneSkinFile;
     public int Points;
     public int TotalPlayTime;
 
@@ -17,14 +16,16 @@ public class Player
 
     public LevelProgress Progress = new LevelProgress();
 
-    public Player(string name, string email, string dateJoined, string preferredTheme, string profilePictureUrl, string photoGalleryPath, int points, int totalPlayTime)
+    public Player(string name, string email, string dateJoined, int points, int totalPlayTime, string cameraSkinFile, string phoneSkinFile)
     {
         this.Name = name;
         this.Email = email;
         this.DateJoined = dateJoined;
-        this.PreferredTheme = preferredTheme;
-        this.ProfilePictureUrl = profilePictureUrl;
-        this.PhotoGalleryPath = photoGalleryPath;
+
+        this.CameraSkinFile = cameraSkinFile;
+        this.PhoneSkinFile = phoneSkinFile;
+
+
         this.Points = points;
         this.TotalPlayTime = totalPlayTime;
 

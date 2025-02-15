@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Knife : MonoBehaviour
 {
-
     private void OnTriggerEnter(Collider other)
     {
         if(other.GetComponent<CutFruit>() != null)
@@ -12,18 +11,5 @@ public class Knife : MonoBehaviour
             CutFruit cutFruit = other.GetComponent<CutFruit>();
             cutFruit.Cut();
         }
-    }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

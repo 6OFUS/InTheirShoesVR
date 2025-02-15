@@ -16,6 +16,7 @@ public class EndPoint : MonoBehaviour
 
     public Volume globalVolume;
     public float volumeFadeDuration;
+    private AudioSource audioSource;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -23,7 +24,7 @@ public class EndPoint : MonoBehaviour
         {
             FadeOutVolume();
             database.UpdateLevelComplete(GameManager.Instance.playerID, currentLevelName, true, "A3", DateTime.UtcNow.ToString("yyyy-MM-dd"), true);
-            Debug.Log("Level completed");
+            audioSource.Play();
         }
     }
 
@@ -49,5 +50,6 @@ public class EndPoint : MonoBehaviour
     void Start()
     {
         database = FindObjectOfType<Database>();
+        audioSource = GetComponent<AudioSource>();
     }
 }
