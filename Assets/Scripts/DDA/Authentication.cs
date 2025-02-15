@@ -14,6 +14,7 @@ public class Authentication : MonoBehaviour
     private Supabase.Client supabase;
     Database database;
     public KioskManager kioskManager;
+    public TutorialDoor tutorialDoor;
 
     public GameObject confirmationPage;
     public GameObject signupPage;
@@ -122,6 +123,7 @@ public class Authentication : MonoBehaviour
             confirmationPage.SetActive(true);
             signupPage.SetActive(false);
             kioskManager.DyslexiaButtonUnlock();
+            tutorialDoor.TutorialUnlocked();
         }
         catch (Exception ex)
         {
@@ -142,6 +144,7 @@ public class Authentication : MonoBehaviour
                 confirmationPage.SetActive(true);
                 loginPage.SetActive(false);
                 StartCoroutine(kioskManager.UnlockButtons());
+                tutorialDoor.TutorialUnlocked();
             }
             else
             {
@@ -182,6 +185,7 @@ public class Authentication : MonoBehaviour
             confirmationPage.SetActive(false);
             loginPage.SetActive(true);
             kioskManager.ResetButtons();
+            tutorialDoor.TutorialLocked();
         }
     }
 
@@ -205,6 +209,7 @@ public class Authentication : MonoBehaviour
         if (scene.buildIndex == 0) 
         {
             kioskManager = FindObjectOfType<KioskManager>();
+            tutorialDoor = FindObjectOfType<TutorialDoor>();
         }
     }
 }

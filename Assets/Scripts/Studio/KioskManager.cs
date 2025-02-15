@@ -8,6 +8,7 @@ public class KioskManager : MonoBehaviour
 
     public GameObject dyslexiaLocked;
     public GameObject dyslexiaUnlocked;
+
     public List<GameObject> lockedButtons;
     public List<GameObject> unlockedButtons;
     public List<GameObject> doorLockedIcon;
@@ -21,15 +22,15 @@ public class KioskManager : MonoBehaviour
         dyslexiaUnlocked.SetActive(true);
     }
 
+
     public void ResetButtons()
     {
-        foreach(GameObject lockedButton in lockedButtons)
+        for(int i = 0; i < lockedButtons.Count; i++)
         {
-            lockedButton.SetActive(true);
-        }
-        foreach(GameObject unlockedButton in unlockedButtons)
-        {
-            unlockedButton.SetActive(false);
+            lockedButtons[i].SetActive(true);
+            unlockedButtons[i].SetActive(false);
+            doorLockedIcon[i].SetActive(true);
+            doorUnockedIcon[i].SetActive(false);
         }
     }
 

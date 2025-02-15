@@ -166,7 +166,7 @@ public class Database : MonoBehaviour
             }
             else if (task.IsCompleted)
             {
-                Debug.Log("Sending update");
+                //StoreAchievement(uID, achievementID, DateTime.UtcNow.ToString("yyyy-MM-dd"), achievementObtained);
                 DataSnapshot snapshot = task.Result;
                 bool doorUnlocked = (bool)snapshot.Child("DoorUnlocked").Value;
                 GameManager.Instance.playerLevelProgress[levelName] = (levelCompleted, doorUnlocked);
@@ -190,5 +190,37 @@ public class Database : MonoBehaviour
         });
     }
 
-
+    /*
+    public void StoreAchievement(string uID, string achievementID, string dateObtained, bool achievementObtained)
+    {
+        FirebaseDatabase.DefaultInstance.GetReference("players").Child(uID).Child("Achivements").GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted)
+            {
+                Debug.Log(task.Exception);
+            }
+            else if (task.IsCompleted)
+            {
+                DatabaseReference playerAchievementsRef = FirebaseDatabase.DefaultInstance.GetReference("players").Child(uID).Child("Achievements");
+                Achievement achievement = new Achievement(dateObtained, achievementObtained);
+                Dictionary<string, object> achievementData = new Dictionary<string, object>
+                {
+                    { achievementID, achievement }
+                };
+    
+                playerAchievementsRef.Child(achievementID).UpdateChildrenAsync(achievementData).ContinueWithOnMainThread(updateTask =>
+                {
+                    if (updateTask.IsFaulted)
+                    {
+                        Debug.Log("Error updating achivement in Firebase: " + updateTask.Exception);
+                    }
+                    else
+                    {
+                        Debug.Log("Achivement updated successfully in Firebase!");
+                    }
+                });
+            }
+        });
+    }
+    */
 }
