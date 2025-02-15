@@ -114,9 +114,9 @@ public class Polaroid : MonoBehaviour
 
     private IEnumerator UploadPhotoToSupabase(Texture2D texture)
     {
-        //TEST: REMOVE ON PROD
-        userUID = "e5cec99f-4294-4a61-841f-0361bcc46a45"; // my account's uid
-        
+        // //TEST: REMOVE ON PROD
+        // userUID = "e5cec99f-4294-4a61-841f-0361bcc46a45"; // my account's uid
+        //
         byte[] imageBytes = texture.EncodeToPNG();
         string fileName = $"photo_{DateTime.UtcNow:yyyyMMdd_HHmmss}.png";
         string filePath = $"{userUID}/{fileName}";

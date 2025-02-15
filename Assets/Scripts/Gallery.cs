@@ -4,8 +4,6 @@ using UnityEngine.UI;
 using Supabase;
 using System.Threading.Tasks;
 using System.Linq;
-using Firebase.Auth;
-using Supabase;
 
 public class Gallery : MonoBehaviour
 {
@@ -28,26 +26,8 @@ public class Gallery : MonoBehaviour
             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImltZmJ0aWxld2hoaGJxdGN3anVoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc0Njg0NDcsImV4cCI6MjA1MzA0NDQ0N30.Dt_JC_tDi4gtF5yq2pLSk_gk2B8RbIV1hGNcyk0eGFg");
         
         supabaseClient.Auth.LoadSession();
-
-        // DEBUG
-        await LoginUser("alfredkangjr@gmail.com", "Password123$");
         
         LoadImagesFromSupabase();
-    }
-    
-    // DEBUG: CAN REMOVE ON PROD
-    private async Task LoginUser(string email, string password)
-    {
-        var response = await supabaseClient.Auth.SignIn(email, password);
-
-        if (response != null && response.User != null)
-        {
-            Debug.Log("Login successful!");
-        }
-        else
-        {
-            Debug.Log("Login failed. Please check your credentials.");
-        }
     }
 
     async void LoadImagesFromSupabase()
