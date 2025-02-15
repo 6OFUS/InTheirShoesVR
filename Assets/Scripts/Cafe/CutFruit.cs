@@ -6,9 +6,11 @@ public class CutFruit : MonoBehaviour
 {
     public GameObject wholeFruit;
     public GameObject[] cutFruits;
+    public ParticleSystem splash;
 
     public void Cut()
     {
+        splash.Play();
         wholeFruit.SetActive(false);
         foreach(GameObject slice in cutFruits)
         {

@@ -8,13 +8,15 @@ public class FruitSocket : MonoBehaviour
     public string orderNum;
 
     public GameObject correctFruit;
-
+    public GameObject placedFruit;
     public bool correct;
+
+    public Customer customer;
 
 
     public void CheckFruit(SelectEnterEventArgs args)
     {
-        GameObject placedFruit = args.interactableObject.transform.gameObject;
+        placedFruit = args.interactableObject.transform.gameObject;
 
         if (placedFruit.CompareTag(correctFruit.tag))
         {

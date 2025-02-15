@@ -8,12 +8,13 @@ public class Customer : MonoBehaviour
     public NavMeshAgent customer;
 
     public Transform frontOfCounter;
+    public Transform returnToTable;
 
     public GameObject trayHand;
+    public GameObject trayHandFruit;
     public GameObject trayCounter;
 
     public Animator customerAnimator;
-    public bool receiptPickedUp;
 
     public void WalkToCounter()
     {
@@ -40,18 +41,21 @@ public class Customer : MonoBehaviour
 
     private IEnumerator PointIdleCycle()
     {
-        while (!receiptPickedUp)
-        {
-            customerAnimator.SetTrigger("Point");
-            yield return new WaitForSeconds(customerAnimator.GetCurrentAnimatorStateInfo(0).length);
-            customerAnimator.SetTrigger("Idle");
-            yield return new WaitForSeconds(customerAnimator.GetCurrentAnimatorStateInfo(0).length);
-        }
+        customerAnimator.SetTrigger("Point");
+        yield return new WaitForSeconds(customerAnimator.GetCurrentAnimatorStateInfo(0).length);
+        customerAnimator.SetTrigger("Idle");
+        yield return new WaitForSeconds(customerAnimator.GetCurrentAnimatorStateInfo(0).length);
     }
 
-    public void PickupReceipt()
+    public IEnumerator ReturnToTable()
     {
-        receiptPickedUp = true;
+        customerAnimator.SetTrigger("Order complete");
+        trayHand.SetActive(true);
+        trayHandFruit.SetActive(true);
+        trayCounter.SetActive(false);
+        customer.SetDestination(returnToTable.position);
+        customerAnimator.SetTrigger("Walk");
+        yield return null;
     }
 
     // Start is called before the first frame update
