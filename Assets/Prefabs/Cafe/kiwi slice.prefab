@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: kiwi slice
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1f47b32ff37420a478908e791c37fa8b, type: 3}
+      propertyPath: m_TagString
+      value: Kiwi
+      objectReference: {fileID: 0}
     - target: {fileID: 4745250622642940571, guid: 1f47b32ff37420a478908e791c37fa8b, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.3919147

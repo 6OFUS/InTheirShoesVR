@@ -40,7 +40,7 @@ public class Database : MonoBehaviour
 
     public void CreateNewPlayer(string uID, string name, string email, string dateJoined)
     {
-        Player player = new Player(name, email, dateJoined, "default", "", "", 0, 0);
+        Player player = new Player(name, email, dateJoined, 0, 0, "camera_og.png", "phone_sakura.png");
 
         string playerJson = JsonUtility.ToJson(player, true);
         Debug.Log("Serialized Player JSON: " + playerJson);
