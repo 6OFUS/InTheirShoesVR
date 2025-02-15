@@ -1,0 +1,8 @@
+newmtl atlas1_lambert1_AlbedoTransparency.1001
+map_Pm atlas1_lambert1_MetallicSmoothness.1001.png
+bump atlas1_lambert1_Normal.1001.png
+disp atlas1_lambert1_Height.1001.png
+map_Kd atlas1_lambert1_AlbedoTransparency.1001.png
+Kd 1 1 1
+d 1
+

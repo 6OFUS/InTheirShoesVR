@@ -1,0 +1,7 @@
+newmtl white
+map_Pm StuccoRoughCast001_ROUGHNESS_2K_METALNESS.png
+bump StuccoRoughCast001_NRM_2K_METALNESS.png
+disp StuccoRoughCast001_BUMP_2K_METALNESS.png
+Kd 1 0.9369076 0.7877358
+d 1
+

@@ -1,0 +1,7 @@
+newmtl cloth
+bump old-soiled-cloth1-Normal-ogl.png
+disp old-soiled-cloth1-Height.png
+map_Kd old-soiled-cloth1-albedo.png
+Kd 0.6320754 0.5098344 0.5038714
+d 1
+

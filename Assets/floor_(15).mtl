@@ -1,0 +1,7 @@
+newmtl darkGray
+bump plaster_grey_04_nor_4k.png
+disp plaster_grey_04_disp_4k.png
+map_Kd plaster_grey_04_diff_4k.png
+Kd 0.9622641 0.9622641 0.9622641
+d 1
+

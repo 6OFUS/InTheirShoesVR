@@ -1,0 +1,8 @@
+newmtl AtlasRoadmap1
+map_Pm SPPlane_lambert2_MetallicSmoothness.1001.png
+bump SPPlane_lambert2_Normal.1001.png
+disp SPPlane_lambert2_Height.1001.png
+map_Kd SPPlane_lambert2_AlbedoTransparency.1001.png
+Kd 0.8 0.8 0.8
+d 1
+

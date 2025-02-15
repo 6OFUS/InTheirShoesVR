@@ -1,0 +1,7 @@
+newmtl Exterior_Painted_Stucco_Texture,_Red
+map_Pm StuccoRoughCast001_ROUGHNESS_2K_METALNESS.png
+bump StuccoRoughCast001_NRM_2K_METALNESS.png
+disp StuccoRoughCast001_BUMP_2K_METALNESS.png
+Kd 0.9752358 0.9669811 1
+d 1
+
