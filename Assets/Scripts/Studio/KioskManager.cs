@@ -45,7 +45,7 @@ public class KioskManager : MonoBehaviour
             string levelName = database.levelNames[i];
             var levelData = playerProgress[levelName];
 
-            if (levelData.completed) // Unlock buttons for completed levels
+            if (levelData.completed || levelData.doorUnlocked) // Unlock buttons for completed levels
             {
                 lockedButtons[i].SetActive(false);
                 unlockedButtons[i].SetActive(true);

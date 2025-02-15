@@ -11,11 +11,13 @@ public class Player
     public string ProfilePictureUrl;
     public string PhotoGalleryPath;
     public int Points;
+    public int TotalPlayTime;
 
-    public List<Achievement> Achievements = new List<Achievement>();
+    public AchievementData Achievements = new AchievementData();
+
     public LevelProgress Progress = new LevelProgress();
 
-    public Player(string name, string email, string dateJoined, string preferredTheme, string profilePictureUrl, string photoGalleryPath, int points)
+    public Player(string name, string email, string dateJoined, string preferredTheme, string profilePictureUrl, string photoGalleryPath, int points, int totalPlayTime)
     {
         this.Name = name;
         this.Email = email;
@@ -24,36 +26,36 @@ public class Player
         this.ProfilePictureUrl = profilePictureUrl;
         this.PhotoGalleryPath = photoGalleryPath;
         this.Points = points;
+        this.TotalPlayTime = totalPlayTime;
 
-        Achievements = new List<Achievement>
-        {
-            new Achievement
-            {
-                AchievementID = "A1",
-                Title = "Cloud Sync",
-                Description = "Created an Account",
-                PointsAwarded = 10,
-                DifficultyLevel = "Easy",
-                Category = "learning"
-            }
-        };
-
-        Progress = new LevelProgress();
-        Points = points;
+        this.Achievements = new AchievementData();
+        this.Progress = new LevelProgress();
     }
 }
 
 [Serializable]
+public class AchievementData
+{
+    public Achievement A1 = new Achievement("", false);
+    public Achievement A2 = new Achievement("", false);
+    public Achievement A3 = new Achievement("", false);
+    public Achievement A4 = new Achievement("", false);
+    public Achievement A5 = new Achievement("", false);
+    public Achievement A6 = new Achievement("", false);
+}
+
+
+[Serializable]
 public class Achievement
 {
-    public string AchievementID = "";
-    public string Title = "";
-    public string Description = "";
-    public int PointsAwarded = 0;
-    public string DifficultyLevel = ""; // easy, medium, hard
-    public string Category = ""; // learning, sensory, physical
+    public string DateObtained = "";
+    public bool Obtained = false;
 
-    public Achievement() { }
+    public Achievement(string dateObtained, bool obtained)
+    {
+        this.Obtained = obtained;
+        this.DateObtained = dateObtained;
+    }
 }
 
 [Serializable]

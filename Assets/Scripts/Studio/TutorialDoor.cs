@@ -7,16 +7,23 @@ public class TutorialDoor : MonoBehaviour
     public HingeJoint hinge;
     public GameObject tutorialLockedUI;
     public GameObject tutorialUnlockedUI;
+    private AudioSource audioSource;
+    public AudioClip doorOpen;
+    public AudioClip doorLock;
 
     public void OpenDoor()
     {
         JointLimits limits = hinge.limits;
         if (GameManager.Instance.playerID != "")
         {
+            audioSource.clip = doorOpen;
+            audioSource.Play();
             limits.max = 90;
         }
         else
         {
+            audioSource.clip = doorLock;
+            audioSource.Play();
             limits.max = 0;
             Debug.Log("Sign in first");
         }
@@ -42,6 +49,7 @@ public class TutorialDoor : MonoBehaviour
         {
             TutorialUnlocked();
         }
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame

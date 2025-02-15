@@ -42,7 +42,7 @@ public class WordChecker : MonoBehaviour
             Debug.Log("All correct! Level completed");
             levelCompleteUI.SetActive(true);
             correctAns.Play();
-            database.UpdateLevelComplete(GameManager.Instance.playerID, currentLevelName, true);
+            database.UpdateLevelComplete(GameManager.Instance.playerID, currentLevelName, true, "A2", DateTime.UtcNow.ToString("yyyy-MM-dd"), true);
         }
         else
         {

@@ -8,6 +8,9 @@ public class LevelDoor : MonoBehaviour
     public HingeJoint doorHinge;
     public string prevLvlName;
     public KeycardScanner scanner;
+    public AudioSource doorAudioSource;
+    public AudioClip doorOpenClip;
+    public AudioClip doorLockClip;
     public void DoorOpen()
     {
         if(GameManager.Instance.playerLevelProgress.Count != 0)
@@ -22,11 +25,15 @@ public class LevelDoor : MonoBehaviour
                 if (currentLevelData.doorUnlocked) //door unlocked is for current door, not previous one
                 {
                     limits.max = 90;
+                    doorAudioSource.clip = doorOpenClip;
+                    doorAudioSource.Play();
                     Debug.Log("Door unlocked");
                 }
                 else //door locked
                 {
                     limits.max = 0;
+                    doorAudioSource.clip = doorLockClip;
+                    doorAudioSource.Play();
                     Debug.Log("Door locked, scan card");
                 }
             }
@@ -35,11 +42,15 @@ public class LevelDoor : MonoBehaviour
                 if (currentLevelData.doorUnlocked) // Check if keycard was scanned
                 {
                     limits.max = 90;
+                    doorAudioSource.clip = doorOpenClip;
+                    doorAudioSource.Play();
                     Debug.Log("First door unlocked with keycard.");
                 }
                 else
                 {
                     limits.max = 0;
+                    doorAudioSource.clip = doorLockClip;
+                    doorAudioSource.Play();
                     Debug.Log($"Door cannot be unlocked, complete the {prevLvlName} level or scan keycard.");
                 }
             }

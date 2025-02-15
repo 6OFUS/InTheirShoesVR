@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             playerPlayTimeSeconds++;
-            if(playerPlayTimeSeconds % 30 == 0)
+            if (playerPlayTimeSeconds % 30 == 0)
             {
                 database.StorePlayTime(playerID, playerPlayTimeSeconds);
             }
