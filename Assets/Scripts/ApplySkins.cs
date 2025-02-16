@@ -15,16 +15,13 @@ public class ApplySkins : MonoBehaviour
 
     private Client supabaseClient;
     
-    // These will be populated after login / Firebase fetch
     private string playerId;
     private string PhoneSkinFile;
     private string CameraSkinFile;
 
     private async void Start()
     {
-        // Initialize Firebase (if not already initialized)
         await InitializeFirebase();
-        // Initialize Supabase and log in (this example uses debug credentials)
         await InitializeSupabase();
         Debug.Log("App started");
     }
@@ -45,7 +42,6 @@ public class ApplySkins : MonoBehaviour
 
     private async Task InitializeSupabase()
     {
-        // Initialize your Supabase client (replace with your project details)
         supabaseClient = new Client(
             "https://imfbtilewhhhbqtcwjuh.supabase.co",
             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImltZmJ0aWxld2hoaGJxdGN3anVoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc0Njg0NDcsImV4cCI6MjA1MzA0NDQ0N30.Dt_JC_tDi4gtF5yq2pLSk_gk2B8RbIV1hGNcyk0eGFg"
@@ -76,8 +72,6 @@ public class ApplySkins : MonoBehaviour
     //     }
     // }
 
-    // This method fetches the skin file names from Firebase,
-    // builds the texture URLs, downloads the textures, and applies them.
     private async void DownloadAndApplyTextures()
     {
         try
@@ -88,11 +82,8 @@ public class ApplySkins : MonoBehaviour
                 return;
             }
 
-            // Fetch skin file names from Firebase at path "players/{playerId}"
             await GetPlayerSkinFiles(playerId);
-
-            // Build the full URLs using the file names from Firebase.
-            // (Ensure the file names do not include the ".png" extension if you're appending it here.)
+            
             string phoneSkinURL = $"https://imfbtilewhhhbqtcwjuh.supabase.co/storage/v1/object/public/skins/{PhoneSkinFile}";
             string cameraSkinURL = $"https://imfbtilewhhhbqtcwjuh.supabase.co/storage/v1/object/public/skins/{CameraSkinFile}";
 
