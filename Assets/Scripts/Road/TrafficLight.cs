@@ -9,10 +9,10 @@ using UnityEngine;
 
 public class TrafficLight : MonoBehaviour
 {
-    [Header("Traffic light colours")]
     /// <summary>
     /// Green light
     /// </summary>
+    [Header("Traffic light colours")]
     public GameObject greenLight;
     /// <summary>
     /// Amber light
@@ -24,7 +24,7 @@ public class TrafficLight : MonoBehaviour
     public GameObject redLight;
 
     /// <summary>
-    /// Reference the TrafficLightController script
+    /// Reference the TrafficLightController class
     /// </summary>
     private TrafficLightController trafficLightController;
 
@@ -59,11 +59,5 @@ public class TrafficLight : MonoBehaviour
     void Start()
     {
         trafficLightController = FindObjectOfType<TrafficLightController>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -11,14 +11,42 @@ using UnityEngine.Rendering;
 
 public class EndPoint : MonoBehaviour
 {
-    Database database;
-    public string currentLevelName;
+    /// <summary>
+    /// Reference Database class
+    /// </summary>
+    private Database database;
+    /// <summary>
+    /// Reference MessagesController class on Phone
+    /// </summary>
     private MessagesController messagesController;
+
+    /// <summary>
+    /// Current level name
+    /// </summary>
+    public string currentLevelName;
+
+    /// <summary>
+    /// Global volume for blindness effect
+    /// </summary>
+    [Header("Global volume")]
     public Volume globalVolume;
+    /// <summary>
+    /// Duration for global volume transition effect
+    /// </summary>
     public float volumeFadeDuration;
+
+    /// <summary>
+    /// Audio source to play level complete audio
+    /// </summary>
     private AudioSource audioSource;
 
+    /// <summary>
+    /// Points awarded for the level
+    /// </summary>
     private int levelPoints = 500;
+    /// <summary>
+    /// Number of times player hit by car
+    /// </summary>
     public int hitCount;
 
     private void OnTriggerEnter(Collider other)
@@ -33,11 +61,20 @@ public class EndPoint : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Fade out global volume function
+    /// </summary>
     public void FadeOutVolume()
     {
         StartCoroutine(FadeVolumeRoutine(1f, 0f)); // Fade effect out
     }
 
+    /// <summary>
+    /// Coroutine to fade global volume from weight 1 to 0
+    /// </summary>
+    /// <param name="startWeight">weight of global volume before transition</param>
+    /// <param name="endWeight">weight of global volume after transition</param>
+    /// <returns></returns>
     private IEnumerator FadeVolumeRoutine(float startWeight, float endWeight)
     {
         float timer = 0;
@@ -50,6 +87,10 @@ public class EndPoint : MonoBehaviour
         globalVolume.weight = endWeight;
     }
 
+    /// <summary>
+    /// Calculate points awarded after the level
+    /// </summary>
+    /// <returns>Player's new total points</returns>
     private int CalculatePoints()
     {
         levelPoints -= 10 * hitCount;

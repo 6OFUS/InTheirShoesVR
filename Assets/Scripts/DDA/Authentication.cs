@@ -209,13 +209,17 @@ public class Authentication : MonoBehaviour
 
                 AudioManager.Instance.sfxSource.clip = AudioManager.Instance.loginSuccess;
                 AudioManager.Instance.sfxSource.Play();
+
                 GameManager.Instance.isTracking = true;
                 StartCoroutine(GameManager.Instance.TrackPlayTime());
+
                 database.ReadPlayerData(session.User.Id);
                 database.ReadPlayerLvlProgress(session.User.Id);
+
                 ResetLoginInputs();
                 confirmationPage.SetActive(true);
                 loginPage.SetActive(false);
+
                 StartCoroutine(kioskManager.UnlockButtons());
                 tutorialDoor.TutorialUnlocked();
             }
@@ -228,6 +232,7 @@ public class Authentication : MonoBehaviour
         }
         catch (Exception ex)
         {
+            Debug.Log(ex.Message);
             loginError.text = ex.Message;
         }
     }

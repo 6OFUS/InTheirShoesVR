@@ -18,10 +18,10 @@ public class PedestrianTrafficLight : MonoBehaviour
     /// </summary>
     private TrafficLightController trafficLightController;
 
-    [Header("Crossing lights")]
     /// <summary>
     /// Red man light 
     /// </summary>
+    [Header("Crossing lights")]
     public GameObject redMan;
     /// <summary>
     /// Green man light
@@ -32,16 +32,16 @@ public class PedestrianTrafficLight : MonoBehaviour
     /// </summary>
     public GameObject buttonLight;
 
-    [Header("UI")]
     /// <summary>
     /// Crossing timer text UI
     /// </summary>
+    [Header("UI")]
     public TextMeshProUGUI crossingTimerText;
 
-    [Header("Audio")]
     /// <summary>
     /// Audio source for beeping audios from pedestrian crossing button
     /// </summary>
+    [Header("Audio")]
     public AudioSource beepingAudioSource;
     /// <summary>
     /// Array of beeping audios from pedestrian crossing button
@@ -56,7 +56,14 @@ public class PedestrianTrafficLight : MonoBehaviour
     /// </summary>
     public AudioSource pressButton;
 
+    /// <summary>
+    /// Haptic clip for when player presses button
+    /// </summary>
+    [Header("Haptics")]
     public HapticClip pressButtonHaptic;
+    /// <summary>
+    /// Haptic clip player for button press
+    /// </summary>
     private HapticClipPlayer hapticClipPlayer;
 
     /// <summary>
@@ -78,6 +85,10 @@ public class PedestrianTrafficLight : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Send haptic feedback to XR controller that interacts with the button
+    /// </summary>
+    /// <param name="args">Event interactions in XR Simple Interactable</param>
     public void ButtonHaptic(SelectEnterEventArgs args)
     {
         if(args.interactorObject is XRBaseInteractor)
@@ -95,6 +106,9 @@ public class PedestrianTrafficLight : MonoBehaviour
         PressButton();
     }
 
+    /// <summary>
+    /// Create new haptic clip player for press button
+    /// </summary>
     void Awake()
     {
         hapticClipPlayer = new HapticClipPlayer(pressButtonHaptic);
@@ -141,11 +155,5 @@ public class PedestrianTrafficLight : MonoBehaviour
     {
         trafficLightController = FindObjectOfType<TrafficLightController>();
         buttonLight.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

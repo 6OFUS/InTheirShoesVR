@@ -1,5 +1,5 @@
 /*
-    Author: Kevin Heng
+    Author: Hui Hui
     Date: 28/1/2025
     Description: The VehicleMovement class is used to handle the vehicle movement with the traffic light system
 */
@@ -10,10 +10,22 @@ using UnityEngine.SceneManagement;
 
 public class VehicleMovement : MonoBehaviour
 {
+    /// <summary>
+    /// Reference the SceneTransitionManager class
+    /// </summary>
     public SceneTransitionManager transitionManager;
-
+    /// <summary>
+    /// Reference EndPoint class at level end point
+    /// </summary>
     public EndPoint endPoint;
+    /// <summary>
+    /// Audio for when car hits player
+    /// </summary>
+    [Header("Audio")]
     public AudioClip hitPlayer;
+    /// <summary>
+    /// Audio for when car is driving
+    /// </summary>
     public AudioClip carEngine;
 
     /// <summary>
@@ -60,10 +72,10 @@ public class VehicleMovement : MonoBehaviour
     /// </summary>
     private float accelerationTimer;
 
-    [Header("Car detection")]
     /// <summary>
     /// Layer for detecting other vehicles
     /// </summary>
+    [Header("Car detection")]
     public LayerMask vehicleLayer;
     /// <summary>
     /// Distance to check for a car ahead
@@ -86,7 +98,7 @@ public class VehicleMovement : MonoBehaviour
 
     }
     /// <summary>
-    /// Handles the vehicle driving mechanic
+    /// Handles the vehicle driving mechanic using FSM
     /// </summary>
     private void Drive()
     {
@@ -173,7 +185,7 @@ public class VehicleMovement : MonoBehaviour
     /// <summary>
     /// When vehicle hits player
     /// </summary>
-    /// <param name="other"></param>
+    /// <param name="other">Player</param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.CompareTag("Player"))
@@ -189,8 +201,6 @@ public class VehicleMovement : MonoBehaviour
             audioSource.Play();
         }
     }
-
-
 
     // Start is called before the first frame update
     void Start()

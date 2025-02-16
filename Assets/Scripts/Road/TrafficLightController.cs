@@ -10,30 +10,30 @@ using UnityEngine;
 
 public class TrafficLightController : MonoBehaviour
 {
-    [Header("Traffic lights")]
     /// <summary>
     /// List of all vehicle traffic lights
     /// </summary>
+    [Header("Traffic lights")]
     public List<TrafficLight> trafficLights;
     /// <summary>
     /// List of all pedestrian crossing lights
     /// </summary>
     public List<PedestrianTrafficLight> pedestrianTrafficLights;
 
-    [Header("Traffic light states")]
     /// <summary>
     /// To control the current state of all vehicle traffic lights
     /// </summary>
+    [Header("Traffic light states")]
     public string trafficLightsCurrentState = "green";
     /// <summary>
     /// To control the current state of all pedestrian crossing lights
     /// </summary>
     public string pedestrianLightsCurrentState = "red";
 
-    [Header("Pedestrian crossing")]
     /// <summary>
     /// To check if traffic light button is pressed by player
     /// </summary>
+    [Header("Pedestrian crossing")]
     public bool buttonPressed;
     /// <summary>
     /// Time to wait until player can cross the road
@@ -55,16 +55,19 @@ public class TrafficLightController : MonoBehaviour
     /// When vehicle traffic light is changing
     /// </summary>
     private bool lightChanging;
-    [Header("Green man")]
+
     /// <summary>
     /// Time interval for blinking of green man
     /// </summary>
+    [Header("Green man")]
     public float greenManBlinkSpeed;
     /// <summary>
     /// Time for green man to start blinking
     /// </summary>
     public int timeToStartBlinking;
-
+    /// <summary>
+    /// Boolean for when green man starts blinking
+    /// </summary>
     bool greenManBlinking;
 
     /// <summary>
@@ -156,7 +159,7 @@ public class TrafficLightController : MonoBehaviour
     IEnumerator CrossingTimer()
     {
         int timer = crossingTime;
-
+        //crossing time before timer shows
         foreach (var pedestrianLight in pedestrianTrafficLights)
         {
             pedestrianLight.crossingTimerText.gameObject.SetActive(false);
@@ -178,7 +181,7 @@ public class TrafficLightController : MonoBehaviour
             pedestrianLight.beepingAudioSource.clip = pedestrianLight.beepingAudioClips[pedestrianLight.clipIndex];
             pedestrianLight.beepingAudioSource.Play();
         }
-
+        //timer
         while (timer > 0)
         {
             UpdateTimerUI(timer);
@@ -218,7 +221,7 @@ public class TrafficLightController : MonoBehaviour
     /// <summary>
     /// Update all pedestrian crossing lights crossing timer
     /// </summary>
-    /// <param name="timer"></param>
+    /// <param name="timer">Time left for crossing</param>
     private void UpdateTimerUI(int timer)
     {
         foreach(var pedestrianLight in pedestrianTrafficLights)
@@ -247,19 +250,5 @@ public class TrafficLightController : MonoBehaviour
             }
             StartCoroutine(BeforeLightChange());
         }
-    }
-
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

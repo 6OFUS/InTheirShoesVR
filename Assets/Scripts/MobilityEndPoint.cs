@@ -10,6 +10,7 @@ public class MobilityEndPoint : MonoBehaviour
     private AudioSource audioSource;
     private MessagesController messagesController;
     private int levelPoints = 500;
+    public GameObject resetButton;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -18,6 +19,7 @@ public class MobilityEndPoint : MonoBehaviour
             database.UpdatePlayerPoints(GameManager.Instance.playerID, GameManager.Instance.playerPoints + levelPoints);
             audioSource.Play();
             StartCoroutine(messagesController.SendMultipleMessages(2, 2));
+            resetButton.SetActive(false);
         }
     }
     // Start is called before the first frame update
