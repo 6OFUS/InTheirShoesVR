@@ -105,9 +105,18 @@ public class Polaroid : MonoBehaviour
         camera.Render();
         RenderTexture.active = camera.targetTexture;
 
-        Texture2D photo = new Texture2D(768, 256, TextureFormat.RGB24, false);
-        photo.ReadPixels(new Rect(0, 0, 256, 256), 0, 0);
+        // Get the width and height of the RenderTexture
+        int width = camera.targetTexture.width;
+        int height = camera.targetTexture.height;
+
+        // Create a Texture2D with the same dimensions as the RenderTexture
+        Texture2D photo = new Texture2D(width, height, TextureFormat.RGB24, false);
+
+        // Read the pixels from the RenderTexture into the Texture2D
+        photo.ReadPixels(new Rect(0, 0, width, height), 0, 0);
         photo.Apply();
+
+        RenderTexture.active = null;
 
         return photo;
     }
