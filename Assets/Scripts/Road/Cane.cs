@@ -12,6 +12,7 @@ public class Cane : MonoBehaviour
     public HapticClip metalRailingHaptic;
     public HapticClip plasticHaptic;
     public HapticClip hitGroundHaptic;
+    public HapticClip hitNPCHaptic;
 
     public AudioSource pickUpCane;
 
@@ -19,6 +20,7 @@ public class Cane : MonoBehaviour
     private HapticClipPlayer metalRailingHapticClipPlayer;
     private HapticClipPlayer plasticHapticClipPlayer;
     private HapticClipPlayer hitGroundHapticClipPlayer;
+    private HapticClipPlayer hitNPCHapticClipPlayer;
 
     private XRBaseInteractor currentInteractor;
 
@@ -43,6 +45,10 @@ public class Cane : MonoBehaviour
             else if (collision.gameObject.CompareTag("Ground"))
             {
                 CollisionHapticFeedback(hitGroundHapticClipPlayer);
+            }
+            else if (collision.gameObject.CompareTag("NPC"))
+            {
+                CollisionHapticFeedback(hitNPCHapticClipPlayer);
             }
         }
     }
@@ -87,5 +93,6 @@ public class Cane : MonoBehaviour
         metalRailingHapticClipPlayer = new HapticClipPlayer(metalRailingHaptic);
         plasticHapticClipPlayer = new HapticClipPlayer(plasticHaptic);
         hitGroundHapticClipPlayer = new HapticClipPlayer(hitGroundHaptic);
+        hitNPCHapticClipPlayer = new HapticClipPlayer(hitNPCHaptic);
     }
 }

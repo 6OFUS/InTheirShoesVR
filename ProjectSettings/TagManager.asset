@@ -19,6 +19,7 @@ TagManager:
   - Human
   - Kiwi
   - Strawberry
+  - NPC
   layers:
   - Default
   - TransparentFX

@@ -18,12 +18,16 @@ public class EndPoint : MonoBehaviour
     public float volumeFadeDuration;
     private AudioSource audioSource;
 
+    private int levelPoints = 500;
+    public int hitCount;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             FadeOutVolume();
             database.UpdateLevelComplete(GameManager.Instance.playerID, currentLevelName, true, "A3", DateTime.UtcNow.ToString("yyyy-MM-dd"), true);
+            database.UpdatePlayerPoints(GameManager.Instance.playerID, CalculatePoints());
             audioSource.Play();
         }
     }
@@ -45,6 +49,12 @@ public class EndPoint : MonoBehaviour
         globalVolume.weight = endWeight;
     }
 
+    private int CalculatePoints()
+    {
+        levelPoints -= 10 * hitCount;
+        GameManager.Instance.playerPoints += levelPoints;
+        return GameManager.Instance.playerPoints;
+    }
 
     // Start is called before the first frame update
     void Start()

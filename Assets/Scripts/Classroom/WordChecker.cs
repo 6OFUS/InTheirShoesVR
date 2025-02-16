@@ -14,6 +14,9 @@ public class WordChecker : MonoBehaviour
     public AudioSource incorrectAns;
     public AudioSource correctAns;
 
+    private int levelPoints = 500;
+    private int retryCount;
+
     public void CheckWord()
     {
         correctWordCounter = 0;
@@ -39,27 +42,31 @@ public class WordChecker : MonoBehaviour
         }
         if(correctWordCounter == correctWords.Length)
         {
-            Debug.Log("All correct! Level completed");
             levelCompleteUI.SetActive(true);
             correctAns.Play();
             database.UpdateLevelComplete(GameManager.Instance.playerID, currentLevelName, true, "A2", DateTime.UtcNow.ToString("yyyy-MM-dd"), true);
+            database.UpdatePlayerPoints(GameManager.Instance.playerID, CalculatePoints());
+            Debug.Log(GameManager.Instance.playerPoints);
         }
         else
         {
-            Debug.Log(correctWordCounter);
-            Debug.Log("Check your answers again");
+            retryCount++;
             incorrectAns.Play();
         }
     }
+
+    private int CalculatePoints()
+    {
+        levelPoints -= 10 * retryCount;
+        GameManager.Instance.playerPoints += levelPoints;
+        return GameManager.Instance.playerPoints;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         database = FindObjectOfType<Database>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

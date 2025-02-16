@@ -39,7 +39,7 @@ public class Customer : MonoBehaviour
         StartCoroutine(PointIdleCycle());
     }
 
-    private IEnumerator PointIdleCycle()
+    public IEnumerator PointIdleCycle()
     {
         customerAnimator.SetTrigger("Point");
         yield return new WaitForSeconds(customerAnimator.GetCurrentAnimatorStateInfo(0).length);

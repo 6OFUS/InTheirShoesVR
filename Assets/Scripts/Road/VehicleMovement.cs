@@ -12,7 +12,9 @@ public class VehicleMovement : MonoBehaviour
 {
     public SceneTransitionManager transitionManager;
 
-
+    public EndPoint endPoint;
+    public AudioClip hitPlayer;
+    public AudioClip carEngine;
 
     /// <summary>
     /// Reference the TrafficLightController script
@@ -176,7 +178,15 @@ public class VehicleMovement : MonoBehaviour
     {
         if (other.transform.CompareTag("Player"))
         {
+            AudioSource audioSource = GetComponent<AudioSource>();
+            audioSource.clip = hitPlayer;
+            audioSource.loop = false;
+            audioSource.Play();
             transitionManager.ChangeSceneAsyc(SceneManager.GetActiveScene().buildIndex);
+            endPoint.hitCount++;
+            audioSource.clip = carEngine;
+            audioSource.loop = true;
+            audioSource.Play();
         }
     }
 

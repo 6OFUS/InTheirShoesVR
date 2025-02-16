@@ -13,12 +13,14 @@ public class Authentication : MonoBehaviour
 {
     private Supabase.Client supabase;
     Database database;
+    MessagesController messagesController;
     public KioskManager kioskManager;
     public TutorialDoor tutorialDoor;
 
     public GameObject confirmationPage;
     public GameObject signupPage;
     public GameObject loginPage;
+    public GameObject completeGameUI;
 
     public AnimationClip loadingClip;
     [Header("Sign up UI")]
@@ -57,6 +59,8 @@ public class Authentication : MonoBehaviour
         {
             Debug.LogError("Failed to initialize Supabase!");
         }
+
+        messagesController = FindObjectOfType<MessagesController>();
     }
 
     private void Awake()
@@ -111,24 +115,23 @@ public class Authentication : MonoBehaviour
 
         if (!IsValidEmail(email))
         {
-            AudioManager.Instance.sfxSource.clip = AudioManager.Instance.loginFailed;
-            AudioManager.Instance.sfxSource.Play();
             signUpError.text = "Invalid email format.";
             return;
         }
         if (password.Length < 6)
         {
-            AudioManager.Instance.sfxSource.clip = AudioManager.Instance.loginFailed;
-            AudioManager.Instance.sfxSource.Play();
             signUpError.text = "Password must be at least 6 characters long.";
             return;
         }
         if (string.IsNullOrEmpty(name))
         {
-            AudioManager.Instance.sfxSource.clip = AudioManager.Instance.loginFailed;
-            AudioManager.Instance.sfxSource.Play();
             signUpError.text = "Name cannot be empty.";
             return;
+        }
+        if(signUpError.text != "")
+        {
+            AudioManager.Instance.sfxSource.clip = AudioManager.Instance.loginFailed;
+            AudioManager.Instance.sfxSource.Play();
         }
 
         try
@@ -139,6 +142,7 @@ public class Authentication : MonoBehaviour
                 signUpError.text = "Sign-up failed.";
                 return;
             }
+            messagesController.SendNextMessage();
             AudioManager.Instance.sfxSource.clip = AudioManager.Instance.loginSuccess;
             AudioManager.Instance.sfxSource.Play();
 
@@ -149,6 +153,8 @@ public class Authentication : MonoBehaviour
             database.ReadPlayerData(userID);
             database.ReadPlayerLvlProgress(userID);
             database.UpdateAchievement(userID, "A1", DateTime.UtcNow.ToString("yyyy-MM-dd"), true);
+            GameManager.Instance.playerPoints += 10;
+            database.UpdatePlayerPoints(userID, GameManager.Instance.playerPoints);
 
             confirmationPage.SetActive(true);
             signupPage.SetActive(false);
@@ -158,8 +164,6 @@ public class Authentication : MonoBehaviour
         }
         catch (Exception ex)
         {
-            AudioManager.Instance.sfxSource.clip = AudioManager.Instance.loginFailed;
-            AudioManager.Instance.sfxSource.Play();
             signUpError.text = ex.Message;
         }
     }
@@ -195,8 +199,6 @@ public class Authentication : MonoBehaviour
         }
         catch (Exception ex)
         {
-            AudioManager.Instance.sfxSource.clip = AudioManager.Instance.loginFailed;
-            AudioManager.Instance.sfxSource.Play();
             loginError.text = ex.Message;
         }
     }
@@ -223,8 +225,6 @@ public class Authentication : MonoBehaviour
         }
         catch (Exception ex)
         {
-            AudioManager.Instance.sfxSource.clip = AudioManager.Instance.loginFailed;
-            AudioManager.Instance.sfxSource.Play();
             resetPasswordError.text = ex.Message;
         }
     }
@@ -268,6 +268,12 @@ public class Authentication : MonoBehaviour
             {
                 confirmationPage.SetActive(true);
                 loginPage.SetActive(false);
+            }
+            if (GameManager.Instance.playerLevelProgress["Hearing"].completed)
+            {
+                completeGameUI.SetActive(true);
+                database.UpdateAchievement(GameManager.Instance.playerID, "A6", DateTime.UtcNow.ToString("yyyy-MM-dd"), true);
+                database.UpdatePlayerPoints(GameManager.Instance.playerID, GameManager.Instance.playerPoints + 500);
             }
         }
     }

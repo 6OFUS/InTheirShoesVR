@@ -5,22 +5,22 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Office.unity
     guid: 7170858d03aef144796b41eb2b971368
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Dyslexia.unity
     guid: 32841bb122dc78b43b8d00f4f4586f37
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/BlindV6.unity
     guid: 11f2b73ed9e4e994494a7ae2e7f8c63e
   - enabled: 1
     path: Assets/Scenes/Disabled.unity
     guid: b130e06e6454e37448f0378e0a2b3561
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Deaf.unity
     guid: 260ea3fc65823fe4d98fe6d7ab8ed90f
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Wheelchair test area.unity
     guid: d1e054f714a15cf46916b2240c99b493
   m_configObjects:

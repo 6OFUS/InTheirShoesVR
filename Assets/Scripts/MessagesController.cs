@@ -8,6 +8,7 @@ public class MessagesController : MonoBehaviour
     public Transform messagesScrollView;
     public string[] messages;
     private int currentMessageIndex = 0;
+    private AudioSource audioSource;
 
     public void SendNextMessage()
     {
@@ -18,12 +19,12 @@ public class MessagesController : MonoBehaviour
         }
 
         Debug.Log("Sending Message: " + messages[currentMessageIndex]);
-
         GameObject newMessage = Instantiate(messagePrefab, messagesScrollView);
 
         TextMeshProUGUI textComponent = newMessage.GetComponentInChildren<TextMeshProUGUI>();
         if (textComponent != null)
         {
+            audioSource.Play();
             textComponent.text = messages[currentMessageIndex];
         }
         else
@@ -49,16 +50,13 @@ public class MessagesController : MonoBehaviour
         }
     }
     
-    IEnumerator SendMessagesTest()
+    private void Start()
     {
-        for (int i = 0; i < messages.Length; i++)
+        audioSource = GetComponent<AudioSource>();
+        if(GameManager.Instance.playerID == "")
         {
             SendNextMessage();
-            yield return new WaitForSeconds(2f);
         }
     }
-    public void Start()
-    {
-        StartCoroutine(SendMessagesTest());
-    }
+
 }
