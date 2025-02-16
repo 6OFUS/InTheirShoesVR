@@ -76,7 +76,7 @@ public class Database : MonoBehaviour
             else if (task.IsCompleted)
             {
                 DataSnapshot snapshot = task.Result;
-                int totalPlayTime = Convert.ToInt32(snapshot.Child("totalPlayTime").Value);
+                int totalPlayTime = Convert.ToInt32(snapshot.Child("TotalPlayTime").Value);
                 string playerData = snapshot.GetRawJsonValue();
                 Player data = JsonUtility.FromJson<Player>(playerData);
                 GameManager.Instance.StorePlayerDetails(

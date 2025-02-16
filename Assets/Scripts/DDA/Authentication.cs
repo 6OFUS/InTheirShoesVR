@@ -14,6 +14,7 @@ using Supabase.Gotrue;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.Text.RegularExpressions;
+using UnityEngine.UIElements;
 
 public class Authentication : MonoBehaviour
 {
@@ -157,6 +158,8 @@ public class Authentication : MonoBehaviour
                 signUpError.text = "Sign-up failed.";
                 return;
             }
+            ApplySkins.Instance.SetupFirebaseListeners(response.User.Id);
+            Gallery.Instance.LoadImagesFromSupabase(response.User.Id);
             messagesController.SendNextMessage();
             AudioManager.Instance.sfxSource.clip = AudioManager.Instance.loginSuccess;
             AudioManager.Instance.sfxSource.Play();
@@ -176,8 +179,6 @@ public class Authentication : MonoBehaviour
             kioskManager.DyslexiaButtonUnlock();
             tutorialDoor.TutorialUnlocked();
             ResetSignUpInputs();
-            ApplySkins.Instance.SetupFirebaseListeners();
-            Gallery.Instance.LoadImagesFromSupabase();
         }
         catch (Exception ex)
         {
@@ -195,6 +196,17 @@ public class Authentication : MonoBehaviour
             var session = await supabase.Auth.SignIn(loginEmailInput.text, loginPasswordInput.text);
             if (session.User != null)
             {
+                ApplySkins.Instance.SetupFirebaseListeners(session.User.Id);
+                Gallery.Instance.LoadImagesFromSupabase(session.User.Id);
+                if (ApplySkins.Instance == null)
+                {
+                    Debug.LogError("ApplySkins Instance is NULL! Ensure it is attached to an active GameObject.");
+                }
+                if (Gallery.Instance == null)
+                {
+                    Debug.LogError("Gallery Instance is NULL! Ensure it is attached to an active GameObject.");
+                }
+
                 AudioManager.Instance.sfxSource.clip = AudioManager.Instance.loginSuccess;
                 AudioManager.Instance.sfxSource.Play();
                 GameManager.Instance.isTracking = true;
@@ -206,8 +218,6 @@ public class Authentication : MonoBehaviour
                 loginPage.SetActive(false);
                 StartCoroutine(kioskManager.UnlockButtons());
                 tutorialDoor.TutorialUnlocked();
-                ApplySkins.Instance.SetupFirebaseListeners();
-                Gallery.Instance.LoadImagesFromSupabase();
             }
             else
             {

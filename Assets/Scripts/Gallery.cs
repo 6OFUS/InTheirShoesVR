@@ -15,9 +15,20 @@ public class Gallery : MonoBehaviour
     private Client supabaseClient;
     private int loadedImagesCount = 0;
     private bool isLoading = false;
-
-    private string playerId;
-
+    
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+    
     async void Start()
     {
         await InitializeSupabase();
@@ -29,18 +40,16 @@ public class Gallery : MonoBehaviour
             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImltZmJ0aWxld2hoaGJxdGN3anVoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc0Njg0NDcsImV4cCI6MjA1MzA0NDQ0N30.Dt_JC_tDi4gtF5yq2pLSk_gk2B8RbIV1hGNcyk0eGFg");
         
         supabaseClient.Auth.LoadSession();
-        
-        LoadImagesFromSupabase();
     }
 
-    public async void LoadImagesFromSupabase()
+    public async void LoadImagesFromSupabase(string userId)
     {
+        Debug.Log("asiopghp");
         if (isLoading) return;
         isLoading = true;
 
-        if (supabaseClient.Auth.CurrentUser != null)
+        if (userId != null)
         {
-            string userId = supabaseClient.Auth.CurrentUser.Id;
             string folderPath = $"{userId}/";
 
             var storage = supabaseClient.Storage.From("playerGalleries");
@@ -100,14 +109,6 @@ public class Gallery : MonoBehaviour
                     errorImage.color = Color.gray; // Placeholder color for failed images
                 }
             }
-        }
-    }
-
-    void Update()
-    {
-        if (scrollViewContent.childCount > 0 && scrollViewContent.GetChild(scrollViewContent.childCount - 1).position.y < Screen.height)
-        {
-            LoadImagesFromSupabase(); // Load next batch when user scrolls down
         }
     }
 }

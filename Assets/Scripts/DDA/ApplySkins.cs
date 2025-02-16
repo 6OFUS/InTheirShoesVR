@@ -16,7 +16,6 @@ public class ApplySkins : MonoBehaviour
     
     private Client supabaseClient;
     private DatabaseReference dbRef;
-    private string playerId;
     private string phoneSkinFile;
     private string cameraSkinFile;
     
@@ -38,7 +37,6 @@ public class ApplySkins : MonoBehaviour
     {
         await InitializeFirebase();
         await InitializeSupabase();
-        SetupFirebaseListeners();
         Debug.Log("App started");
     }
 
@@ -67,8 +65,9 @@ public class ApplySkins : MonoBehaviour
         await UpdateSkinTexture(cameraSkinRenderer, cameraSkinFile);
     }
 
-    public void SetupFirebaseListeners()
+    public void SetupFirebaseListeners(string playerId)
     {
+        Debug.Log("asiopghp");
         if (string.IsNullOrEmpty(playerId))
         {
             Debug.LogError("Player ID is null or empty. Cannot set up listeners.");
