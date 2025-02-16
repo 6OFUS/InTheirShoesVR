@@ -1,16 +1,48 @@
+/*
+    Author: Alfred Kang
+    Date: 31/1/2025
+    Description: Tutorial door script
+*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TutorialDoor : MonoBehaviour
 {
+    /// <summary>
+    /// The hinge joint component controlling the door movement.
+    /// </summary>
     public HingeJoint hinge;
+
+    /// <summary>
+    /// The UI element displayed when the tutorial is locked.
+    /// </summary>
     public GameObject tutorialLockedUI;
+
+    /// <summary>
+    /// The UI element displayed when the tutorial is unlocked.
+    /// </summary>
     public GameObject tutorialUnlockedUI;
+
+    /// <summary>
+    /// The audio source component responsible for playing door sounds.
+    /// </summary>
     private AudioSource audioSource;
+
+    /// <summary>
+    /// The audio clip that plays when the door opens.
+    /// </summary>
     public AudioClip doorOpen;
+
+    /// <summary>
+    /// The audio clip that plays when the door is locked.
+    /// </summary>
     public AudioClip doorLock;
 
+    /// <summary>
+    /// Attempts to open the tutorial door based on the player's sign-in status.
+    /// If the player is signed in, the door opens; otherwise, it remains locked.
+    /// </summary>
     public void OpenDoor()
     {
         JointLimits limits = hinge.limits;

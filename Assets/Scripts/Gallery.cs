@@ -1,3 +1,8 @@
+/*
+* Author: Alfred Kang
+* Date: 15/2/2025
+* Description: Gallery script from supabase
+* */
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,15 +12,44 @@ using System.Linq;
 
 public class Gallery : MonoBehaviour
 {
+    /// <summary>
+    /// Singleton instance of the Gallery class.
+    /// </summary>
     public static Gallery Instance;
+
+    /// <summary>
+    /// The parent transform where images will be displayed.
+    /// </summary>
     public Transform scrollViewContent;
+
+    /// <summary>
+    /// Prefab for displaying images.
+    /// </summary>
     public GameObject imagePrefab;
+
+    /// <summary>
+    /// Number of images to load per batch.
+    /// </summary>
     public int imagesPerBatch = 12;
 
+    /// <summary>
+    /// Supabase client for database interactions.
+    /// </summary>
     private Client supabaseClient;
+
+    /// <summary>
+    /// Tracks the number of images loaded so far.
+    /// </summary>
     private int loadedImagesCount = 0;
+
+    /// <summary>
+    /// Flag to prevent multiple loading operations at once.
+    /// </summary>
     private bool isLoading = false;
-    
+
+    /// <summary>
+    /// Ensures there is only one instance of the Gallery script.
+    /// </summary>
     private void Awake()
     {
         if (Instance == null)
@@ -28,12 +62,18 @@ public class Gallery : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
+
+    /// <summary>
+    /// Initializes Supabase on start.
+    /// </summary>
     async void Start()
     {
         await InitializeSupabase();
     }
 
+    /// <summary>
+    /// Initializes the Supabase client.
+    /// </summary>
     private async Task InitializeSupabase()
     {
         supabaseClient = new Client("https://imfbtilewhhhbqtcwjuh.supabase.co", 
@@ -42,6 +82,10 @@ public class Gallery : MonoBehaviour
         supabaseClient.Auth.LoadSession();
     }
 
+    /// <summary>
+    /// Loads images from Supabase storage based on the user's ID.
+    /// </summary>
+    /// <param name="userId">The ID of the user whose images are being loaded.</param>
     public async void LoadImagesFromSupabase(string userId)
     {
         Debug.Log("asiopghp");
@@ -80,6 +124,10 @@ public class Gallery : MonoBehaviour
         isLoading = false;
     }
 
+    /// <summary>
+    /// Downloads an image from the provided URL and displays it in the UI.
+    /// </summary>
+    /// <param name="imageUrl">The URL of the image to be downloaded.</param>
     IEnumerator DownloadAndDisplayImage(string imageUrl)
     {
         using (UnityEngine.Networking.UnityWebRequest request = UnityEngine.Networking.UnityWebRequestTexture.GetTexture(imageUrl))

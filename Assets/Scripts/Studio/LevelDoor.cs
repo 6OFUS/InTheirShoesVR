@@ -1,3 +1,8 @@
+/*
+    Author: Alfred Kang
+    Date: 31/1/2025
+    Description: Door script that manages whether the player is eligible to enter the area
+*/
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,12 +10,40 @@ using UnityEngine;
 
 public class LevelDoor : MonoBehaviour
 {
+    /// <summary>
+    /// The hinge joint component used to control the door's movement.
+    /// </summary>
     public HingeJoint doorHinge;
+
+    /// <summary>
+    /// The name of the previous level, used to check if the player has completed it.
+    /// </summary>
     public string prevLvlName;
+
+    /// <summary>
+    /// The keycard scanner associated with the door.
+    /// </summary>
     public KeycardScanner scanner;
+
+    /// <summary>
+    /// The audio source component responsible for playing door sounds.
+    /// </summary>
     public AudioSource doorAudioSource;
+
+    /// <summary>
+    /// The audio clip that plays when the door unlocks and opens.
+    /// </summary>
     public AudioClip doorOpenClip;
+
+    /// <summary>
+    /// The audio clip that plays when the door is locked.
+    /// </summary>
     public AudioClip doorLockClip;
+
+    /// <summary>
+    /// Attempts to open the door based on the player's progress.
+    /// Checks if the previous level has been completed or if the keycard has been scanned.
+    /// </summary>
     public void DoorOpen()
     {
         if(GameManager.Instance.playerLevelProgress.Count != 0)

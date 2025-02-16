@@ -1,3 +1,8 @@
+/*
+    Author: Malcom Goh
+    Date: 16/2/2025
+    Description: Database that links to firebase and handles most of data push
+*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,9 +15,20 @@ using static UnityEngine.Rendering.HighDefinition.ScalableSettingLevelParameter;
 
 public class Database : MonoBehaviour
 {
+    /// <summary>
+    /// Firebase database reference.
+    /// </summary>
     public DatabaseReference dbRef;
+
+    /// <summary>
+    /// List of level names for the game.
+    /// </summary>
     public List<string> levelNames;
-        
+
+
+    /// <summary>
+    /// Initializes Firebase services and database reference.
+    /// </summary>
     void Start()
     {
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
@@ -38,6 +54,13 @@ public class Database : MonoBehaviour
         });
     }
 
+    /// <summary>
+    /// Creates a new player in the database with the given information.
+    /// </summary>
+    /// <param name="uID">The unique identifier of the player.</param>
+    /// <param name="name">The name of the player.</param>
+    /// <param name="email">The email address of the player.</param>
+    /// <param name="dateJoined">The date the player joined the game.</param>
     public void CreateNewPlayer(string uID, string name, string email, string dateJoined)
     {
         Player player = new Player(name, email, dateJoined, 0, 0, "camera_og.png", "phone_sakura.png");
@@ -65,6 +88,10 @@ public class Database : MonoBehaviour
             });
     }
 
+    /// <summary>
+    /// Reads and loads the player data from Firebase for the given user ID.
+    /// </summary>
+    /// <param name="uID">The unique identifier of the player.</param>
     public void ReadPlayerData(string uID)
     {
         FirebaseDatabase.DefaultInstance.GetReference("players").Child(uID).GetValueAsync().ContinueWithOnMainThread(task =>
@@ -94,6 +121,10 @@ public class Database : MonoBehaviour
         });
     }
 
+    /// <summary>
+    /// Reads and loads the player's level progress from Firebase.
+    /// </summary>
+    /// <param name="uID">The unique identifier of the player.</param>
     public void ReadPlayerLvlProgress(string uID)
     {
         foreach (var level in levelNames)
@@ -115,6 +146,11 @@ public class Database : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Stores the total play time for the player in Firebase.
+    /// </summary>
+    /// <param name="uID">The unique identifier of the player.</param>
+    /// <param name="playTime">The total play time in minutes.</param>
     public void StorePlayTime(string uID, int playTime)
     {
         FirebaseDatabase.DefaultInstance.GetReference("players").Child(uID).GetValueAsync().ContinueWithOnMainThread(task =>
@@ -141,6 +177,12 @@ public class Database : MonoBehaviour
         });
     }
 
+    /// <summary>
+    /// Updates the door lock status for a given level in Firebase.
+    /// </summary>
+    /// <param name="uID">The unique identifier of the player.</param>
+    /// <param name="levelName">The name of the level.</param>
+    /// <param name="doorUnlocked">The new status of the door (unlocked or locked).</param>
     public void UpdateDoorLockStatus(string uID, string levelName, bool doorUnlocked)
     {
         FirebaseDatabase.DefaultInstance.GetReference("players").Child(uID).Child("Progress").Child(levelName).GetValueAsync().ContinueWithOnMainThread(task =>
@@ -174,6 +216,15 @@ public class Database : MonoBehaviour
             }
         });
     }
+    /// <summary>
+    /// Updates the level completion status and achievement progress for the player.
+    /// </summary>
+    /// <param name="uID">The unique identifier of the player.</param>
+    /// <param name="levelName">The name of the level.</param>
+    /// <param name="levelCompleted">Whether the level was completed or not.</param>
+    /// <param name="achievementID">The unique ID of the achievement.</param>
+    /// <param name="dateObtained">The date the achievement was obtained.</param>
+    /// <param name="achievementObtained">Whether the achievement was obtained or not.</param>
     public void UpdateLevelComplete(string uID, string levelName, bool levelCompleted, string achievementID, string dateObtained, bool achievementObtained)
     {
         FirebaseDatabase.DefaultInstance.GetReference("players").Child(uID).Child("Progress").Child(levelName).GetValueAsync().ContinueWithOnMainThread(task =>
@@ -207,7 +258,13 @@ public class Database : MonoBehaviour
         });
     }
 
-    
+    /// <summary>
+    /// Updates the player's achievement progress in Firebase.
+    /// </summary>
+    /// <param name="uID">The unique identifier of the player.</param>
+    /// <param name="achievementID">The unique ID of the achievement.</param>
+    /// <param name="dateObtained">The date the achievement was obtained.</param>
+    /// <param name="achievementObtained">Whether the achievement was obtained or not.</param>
     public void UpdateAchievement(string uID, string achievementID, string dateObtained, bool achievementObtained)
     {
         FirebaseDatabase.DefaultInstance.GetReference("players").Child(uID).Child("Achievements").GetValueAsync().ContinueWithOnMainThread(task =>
@@ -239,6 +296,11 @@ public class Database : MonoBehaviour
         });
     }
 
+    /// <summary>
+    /// Updates the player's points in Firebase.
+    /// </summary>
+    /// <param name="uID">The unique identifier of the player.</param>
+    /// <param name="points">The new points value.</param>
     public void UpdatePlayerPoints(string uID, int points)
     {
         FirebaseDatabase.DefaultInstance.GetReference("players").Child(uID).Child("Points").GetValueAsync().ContinueWithOnMainThread(task =>

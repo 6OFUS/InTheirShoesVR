@@ -1,3 +1,8 @@
+/*
+* Author: Alfred Kang
+* Date: 15/2/2025
+* Description: Skin application onto camera and phone
+* */
 using System;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -9,16 +14,29 @@ using Firebase.Extensions;
 
 public class ApplySkins : MonoBehaviour
 {
+    /// <summary>
+    /// Singleton instance of ApplySkins to ensure only one instance exists.
+    /// </summary>
     public static ApplySkins Instance;
-    
+
+    /// <summary>
+    /// The Renderer component for the phone skin, used to apply the skin texture.
+    /// </summary>
     public Renderer phoneSkinRenderer;
+
+    /// <summary>
+    /// The Renderer component for the camera skin, used to apply the skin texture.
+    /// </summary>
     public Renderer cameraSkinRenderer;
     
     private Client supabaseClient;
     private DatabaseReference dbRef;
     private string phoneSkinFile;
     private string cameraSkinFile;
-    
+
+    /// <summary>
+    /// Ensures that only one instance of ApplySkins exists and doesn't get destroyed when loading new scenes.
+    /// </summary>
     private void Awake()
     {
         if (Instance == null)
@@ -33,6 +51,9 @@ public class ApplySkins : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Initializes Firebase and Supabase services at the start of the application.
+    /// </summary>
     private async void Start()
     {
         await InitializeFirebase();
@@ -40,6 +61,9 @@ public class ApplySkins : MonoBehaviour
         Debug.Log("App started");
     }
 
+    /// <summary>
+    /// Initializes Firebase services and checks dependencies.
+    /// </summary>
     private async Task InitializeFirebase()
     {
         var dependencyStatus = await FirebaseApp.CheckAndFixDependenciesAsync();
@@ -55,6 +79,9 @@ public class ApplySkins : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Initializes Supabase client and loads the session.
+    /// </summary>
     private async Task InitializeSupabase()
     {
         supabaseClient = new Client(
@@ -65,6 +92,10 @@ public class ApplySkins : MonoBehaviour
         await UpdateSkinTexture(cameraSkinRenderer, cameraSkinFile);
     }
 
+    /// <summary>
+    /// Sets up Firebase listeners to monitor changes to the player's skin files.
+    /// </summary>
+    /// <param name="playerId">The player's unique ID used to fetch data from Firebase.</param>
     public void SetupFirebaseListeners(string playerId)
     {
         Debug.Log("asiopghp");
@@ -95,6 +126,11 @@ public class ApplySkins : MonoBehaviour
         };
     }
 
+    /// <summary>
+    /// Updates the skin texture for the specified renderer using the provided skin file name.
+    /// </summary>
+    /// <param name="renderer">The renderer component to apply the skin texture to.</param>
+    /// <param name="skinFileName">The name of the skin file to apply.</param>
     public async Task UpdateSkinTexture(Renderer renderer, string skinFileName)
     {
         if (renderer == null || string.IsNullOrEmpty(skinFileName))
@@ -117,6 +153,11 @@ public class ApplySkins : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Downloads the texture from the specified URL asynchronously.
+    /// </summary>
+    /// <param name="url">The URL to download the texture from.</param>
+    /// <returns>A Texture2D object if successful, or null if the download failed.</returns>
     private async Task<Texture2D> GetTextureFromURL(string url)
     {
         using (UnityWebRequest request = UnityWebRequestTexture.GetTexture(url))

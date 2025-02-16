@@ -1,3 +1,8 @@
+/*
+* Author: Kevin Heng
+* Date: 15/2/2025
+* Description: Door exit script
+* */
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +16,11 @@ public class ExitDoor : MonoBehaviour
     //     Application.Quit();
     // }
 
+    /// <summary>
+    /// Handles the event when an object exits the trigger collider.
+    /// Exits the application when triggered.
+    /// </summary>
+    /// <param name="other">The collider of the object exiting the trigger area.</param>
     private void OnTriggerExit(Collider other)
     {
         Debug.Log(" Exit ");

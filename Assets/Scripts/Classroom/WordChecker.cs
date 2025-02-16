@@ -1,3 +1,8 @@
+/*
+* Author: Kevin Heng
+* Date: 15/2/2025
+* Description: Crossword Puzzle script
+* */
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,19 +10,64 @@ using UnityEngine;
 
 public class WordChecker : MonoBehaviour
 {
+    /// <summary>
+    /// The array of correct words that need to be formed in the puzzle.
+    /// </summary>
     public string[] correctWords;
+
+    /// <summary>
+    /// A list of LetterSocketGroup objects, where each group represents a set of letter sockets.
+    /// </summary>
     public List<LetterSocketGroup> letterSocketGroups;
+
+    /// <summary>
+    /// The database instance used for updating player data and level completion.
+    /// </summary>
     Database database;
+
+    /// <summary>
+    /// The name of the current level.
+    /// </summary>
     public string currentLevelName;
+
+    /// <summary>
+    /// The UI element that shows when the level is complete.
+    /// </summary>
     public GameObject levelCompleteUI;
+
+    /// <summary>
+    /// A counter for the correct words formed in the puzzle.
+    /// </summary>
     public int correctWordCounter;
+
+    /// <summary>
+    /// Audio source for the incorrect answer sound effect.
+    /// </summary>
     public AudioSource incorrectAns;
+
+    /// <summary>
+    /// Audio source for the correct answer sound effect.
+    /// </summary>
     public AudioSource correctAns;
 
+    /// <summary>
+    /// The MessagesController instance used for sending messages.
+    /// </summary>
     public MessagesController messagesController;
+
+    /// <summary>
+    /// The base points awarded for completing the level.
+    /// </summary>
     private int levelPoints = 500;
+
+    /// <summary>
+    /// A counter for the number of retries.
+    /// </summary>
     private int retryCount;
 
+    /// <summary>
+    /// Checks the words formed by the player against the correct words.
+    /// </summary>
     public void CheckWord()
     {
         correctWordCounter = 0;
@@ -57,6 +107,10 @@ public class WordChecker : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Calculates the points to be awarded based on the number of retries.
+    /// </summary>
+    /// <returns>The total points awarded to the player.</returns>
     private int CalculatePoints()
     {
         levelPoints -= 10 * retryCount;
@@ -64,6 +118,9 @@ public class WordChecker : MonoBehaviour
         return GameManager.Instance.playerPoints;
     }
 
+    /// <summary>
+    /// Initializes the WordChecker script, finds necessary references, and sends initial messages.
+    /// </summary>
     // Start is called before the first frame update
     void Start()
     {

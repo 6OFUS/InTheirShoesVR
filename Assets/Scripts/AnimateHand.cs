@@ -1,6 +1,6 @@
 /*
-* Author: Johnathan Wang
-* Date: 5/12/2024
+* Author: Kevin Heng
+* Date: 15/2/2025
 * Description: This script handles the hand animation 
 * */
 
