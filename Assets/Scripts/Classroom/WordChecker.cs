@@ -14,6 +14,7 @@ public class WordChecker : MonoBehaviour
     public AudioSource incorrectAns;
     public AudioSource correctAns;
 
+    private MessagesController messagesController;
     private int levelPoints = 500;
     private int retryCount;
 
@@ -47,6 +48,7 @@ public class WordChecker : MonoBehaviour
             database.UpdateLevelComplete(GameManager.Instance.playerID, currentLevelName, true, "A2", DateTime.UtcNow.ToString("yyyy-MM-dd"), true);
             database.UpdatePlayerPoints(GameManager.Instance.playerID, CalculatePoints());
             Debug.Log(GameManager.Instance.playerPoints);
+            StartCoroutine(messagesController.SendMultipleMessages(2)); StartCoroutine(messagesController.SendMultipleMessages(2));
         }
         else
         {
@@ -66,6 +68,8 @@ public class WordChecker : MonoBehaviour
     void Start()
     {
         database = FindObjectOfType<Database>();
+        messagesController = FindObjectOfType<MessagesController>();
+        StartCoroutine(messagesController.SendMultipleMessages(2));
     }
 
 

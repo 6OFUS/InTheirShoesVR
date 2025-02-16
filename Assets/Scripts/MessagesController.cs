@@ -49,6 +49,15 @@ public class MessagesController : MonoBehaviour
             Debug.LogError("TextMeshProUGUI component not found in messagePrefab!");
         }
     }
+
+    public IEnumerator SendMultipleMessages(int messagesNum)
+    {
+        for(int i = 0; i <  messagesNum; i++)
+        {
+            SendNextMessage();
+            yield return new WaitForSeconds(2f);
+        }
+    }
     
     private void Start()
     {

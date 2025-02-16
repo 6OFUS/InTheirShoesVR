@@ -13,7 +13,7 @@ public class EndPoint : MonoBehaviour
 {
     Database database;
     public string currentLevelName;
-
+    private MessagesController messagesController;
     public Volume globalVolume;
     public float volumeFadeDuration;
     private AudioSource audioSource;
@@ -61,5 +61,7 @@ public class EndPoint : MonoBehaviour
     {
         database = FindObjectOfType<Database>();
         audioSource = GetComponent<AudioSource>();
+        messagesController = FindObjectOfType<MessagesController>();
+        StartCoroutine(messagesController.SendMultipleMessages(3));
     }
 }
