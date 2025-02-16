@@ -63,6 +63,6 @@ public class EndPoint : MonoBehaviour
         database = FindObjectOfType<Database>();
         audioSource = GetComponent<AudioSource>();
         messagesController = FindObjectOfType<MessagesController>();
-        StartCoroutine(messagesController.SendMultipleMessages(0, 3));
+        StartCoroutine(messagesController.SendMultipleMessages(0, 2));
     }
 }

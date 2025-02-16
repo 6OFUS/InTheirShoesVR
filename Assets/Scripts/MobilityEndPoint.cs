@@ -26,7 +26,7 @@ public class MobilityEndPoint : MonoBehaviour
         database = FindObjectOfType<Database>();
         audioSource = GetComponent<AudioSource>();
         messagesController = FindObjectOfType<MessagesController>();
-        StartCoroutine(messagesController.SendMultipleMessages(0,2));
+        StartCoroutine(messagesController.SendMultipleMessages(0,1));
     }
 
     // Update is called once per frame

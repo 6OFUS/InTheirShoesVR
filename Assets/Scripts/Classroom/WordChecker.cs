@@ -14,7 +14,7 @@ public class WordChecker : MonoBehaviour
     public AudioSource incorrectAns;
     public AudioSource correctAns;
 
-    private MessagesController messagesController;
+    public MessagesController messagesController;
     private int levelPoints = 500;
     private int retryCount;
 
@@ -67,9 +67,9 @@ public class WordChecker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        database = FindObjectOfType<Database>();
         messagesController = FindObjectOfType<MessagesController>();
-        StartCoroutine(messagesController.SendMultipleMessages(0,3));
+        database = FindObjectOfType<Database>();
+        StartCoroutine(messagesController.SendMultipleMessages(0,2));
     }
 
 

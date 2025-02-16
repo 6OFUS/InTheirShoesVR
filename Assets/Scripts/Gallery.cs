@@ -7,6 +7,7 @@ using System.Linq;
 
 public class Gallery : MonoBehaviour
 {
+    public static Gallery Instance;
     public Transform scrollViewContent;
     public GameObject imagePrefab;
     public int imagesPerBatch = 12;
@@ -32,7 +33,7 @@ public class Gallery : MonoBehaviour
         LoadImagesFromSupabase();
     }
 
-    async void LoadImagesFromSupabase()
+    public async void LoadImagesFromSupabase()
     {
         if (isLoading) return;
         isLoading = true;
@@ -45,6 +46,8 @@ public class Gallery : MonoBehaviour
             var storage = supabaseClient.Storage.From("playerGalleries");
             var response = await storage.List(folderPath);
 
+            Debug.Log(userId);
+            Debug.Log(folderPath);
             if (response != null && response.Count > 0)
             {
                 var imagesToLoad = response.Skip(loadedImagesCount).Take(imagesPerBatch);
@@ -62,6 +65,7 @@ public class Gallery : MonoBehaviour
         }
         else
         {
+            
             Debug.LogError("User not authenticated.");
         }
         isLoading = false;

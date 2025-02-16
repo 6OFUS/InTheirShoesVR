@@ -1,3 +1,9 @@
+/*
+    Author: Alfred, Kevin
+    Date: 27/1/2025
+    Description: The Authentication class is used to handle all the functions related to authenticating the user when logging in to the game
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,8 +17,17 @@ using System.Text.RegularExpressions;
 
 public class Authentication : MonoBehaviour
 {
+    /// <summary>
+    /// Reference Supabase
+    /// </summary>
     private Supabase.Client supabase;
+    /// <summary>
+    /// Database class
+    /// </summary>
     Database database;
+    /// <summary>
+    /// MessagesController class on the Phone
+    /// </summary>
     MessagesController messagesController;
     public KioskManager kioskManager;
     public TutorialDoor tutorialDoor;
@@ -145,8 +160,8 @@ public class Authentication : MonoBehaviour
             messagesController.SendNextMessage();
             AudioManager.Instance.sfxSource.clip = AudioManager.Instance.loginSuccess;
             AudioManager.Instance.sfxSource.Play();
-
             string userID = response.User.Id;
+            Debug.Log(userID);
             database.CreateNewPlayer(userID, name, email, DateTime.UtcNow.ToString("yyyy-MM-dd"));
             GameManager.Instance.isTracking = true;
             StartCoroutine(GameManager.Instance.TrackPlayTime());
@@ -161,6 +176,8 @@ public class Authentication : MonoBehaviour
             kioskManager.DyslexiaButtonUnlock();
             tutorialDoor.TutorialUnlocked();
             ResetSignUpInputs();
+            ApplySkins.Instance.SetupFirebaseListeners();
+            Gallery.Instance.LoadImagesFromSupabase();
         }
         catch (Exception ex)
         {
@@ -189,6 +206,8 @@ public class Authentication : MonoBehaviour
                 loginPage.SetActive(false);
                 StartCoroutine(kioskManager.UnlockButtons());
                 tutorialDoor.TutorialUnlocked();
+                ApplySkins.Instance.SetupFirebaseListeners();
+                Gallery.Instance.LoadImagesFromSupabase();
             }
             else
             {

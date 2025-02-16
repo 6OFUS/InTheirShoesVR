@@ -58,7 +58,8 @@ public class MessagesController : MonoBehaviour
         for (int i = startIndex; i < endIndex; i++)
         {
             SendNextMessage();
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSecondsRealtime(2f);
+
         }
     }
 

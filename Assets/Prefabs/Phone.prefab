@@ -358,7 +358,7 @@ MonoBehaviour:
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 0
+  m_MovementType: 2
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
@@ -415,11 +415,13 @@ MonoBehaviour:
   messagePrefab: {fileID: 189968844248240003, guid: c67e0b2337a99463e9843177bf9f70cd, type: 3}
   messagesScrollView: {fileID: 4889619787226597696}
   messages:
-  - 'Welcome to the dyslexia scene. In this scenario, you will experience how reading
-    and processing words can be challenging. '
+  - Welcome to the dyslexia scene.
+  - 'In this scenario, you will experience how reading and processing words can be
+    challenging. '
   - Try to complete a simple crossword puzzle to proceed to the next challenge.
   - "Great job! You\u2019ve now had a glimpse of the struggles faced by individuals
     with dyslexia when processing written information. "
+  - Take a photo of your comepleted puzzle board before returning.
   - Return to the Studio for your next task.
 --- !u!65 &1550847618810047272
 BoxCollider:
@@ -1327,7 +1329,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6368532819262778969}
   m_HandleRect: {fileID: 2455836313211205091}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1367,7 +1369,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00023864263}
+  m_AnchoredPosition: {x: 0, y: -0.0038617917}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &8745752352328706975
