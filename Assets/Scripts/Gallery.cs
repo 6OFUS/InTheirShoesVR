@@ -15,6 +15,8 @@ public class Gallery : MonoBehaviour
     private int loadedImagesCount = 0;
     private bool isLoading = false;
 
+    private string playerId;
+
     async void Start()
     {
         await InitializeSupabase();
