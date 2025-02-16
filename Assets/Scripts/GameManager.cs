@@ -57,7 +57,10 @@ public class GameManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        database.StorePlayTime(playerID, playerPlayTimeSeconds);
-        authentication.Signout();
+        if(playerID != "")
+        {
+            database.StorePlayTime(playerID, playerPlayTimeSeconds);
+            authentication.Signout();
+        }
     }
 }

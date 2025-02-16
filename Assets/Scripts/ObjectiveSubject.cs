@@ -6,6 +6,7 @@ public class ObjectiveSubject : CameraSubject
 {
     public override void Snapped()
     {
+        messagesController.SendNextMessage();
         Debug.Log("Snapped Objective");
     }
 }

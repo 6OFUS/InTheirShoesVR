@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 2642490294631627586}
   - component: {fileID: 8256507853313569792}
   - component: {fileID: 1550847618810047272}
+  - component: {fileID: 1110508405383260825}
   m_Layer: 0
   m_Name: Phone
   m_TagString: Untagged
@@ -242,7 +243,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.9168355, y: 1.1570786, z: 0.37882262}
-  m_LocalScale: {x: 0.325, y: 0.325, z: 0.325}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6864869242614882218}
@@ -292,7 +293,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 2
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -357,7 +358,7 @@ MonoBehaviour:
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 0
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
@@ -414,9 +415,12 @@ MonoBehaviour:
   messagePrefab: {fileID: 189968844248240003, guid: c67e0b2337a99463e9843177bf9f70cd, type: 3}
   messagesScrollView: {fileID: 4889619787226597696}
   messages:
-  - good morning
-  - KLMJNHBYGH*JMASDJKHIFYBGUH*JAMSDGJ KHBIUHJIGMAKSJKHGBUAHSJMGKLASJGOI
-  - Hi!
+  - 'Welcome to the dyslexia scene. In this scenario, you will experience how reading
+    and processing words can be challenging. '
+  - Try to complete a simple crossword puzzle to proceed to the next challenge.
+  - "Great job! You\u2019ve now had a glimpse of the struggles faced by individuals
+    with dyslexia when processing written information. "
+  - Return to the Studio for your next task.
 --- !u!65 &1550847618810047272
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -438,6 +442,102 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.31336617, y: 0.075593084, z: 0.55454755}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &1110508405383260825
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549080843631299945}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: d62329ed1a3729840b8643ae5b14ec36, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.4
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2205608633676380908
 GameObject:
   m_ObjectHideFlags: 0
@@ -1228,7 +1328,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2455836313211205091}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.99998385
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1267,7 +1367,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0043414617}
+  m_AnchoredPosition: {x: 0, y: -0.00023864263}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &8745752352328706975

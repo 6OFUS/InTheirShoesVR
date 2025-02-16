@@ -13,6 +13,8 @@ public class NumPad : MonoBehaviour
     public FruitSocket[] fruitSockets;
     public GameObject levelCompleteUI;
 
+    private MessagesController messagesController;
+
     private int correctOrders;
 
     private int incorrectOrders;
@@ -53,6 +55,7 @@ public class NumPad : MonoBehaviour
                     levelCompleteUI.SetActive(true);
                     database.UpdateLevelComplete(GameManager.Instance.playerID, currentLevelName, true, "A5", DateTime.UtcNow.ToString("yyyy-MM-dd"), true);
                     database.UpdatePlayerPoints(GameManager.Instance.playerID, CalculatePoints());
+                    StartCoroutine(messagesController.SendMultipleMessages(2, 3));
                 }
                 foundCorrectOrder = true;
                 break;
@@ -81,5 +84,7 @@ public class NumPad : MonoBehaviour
     private void Start()
     {
         database = FindObjectOfType<Database>();
+        messagesController = FindObjectOfType<MessagesController>();
+        StartCoroutine(messagesController.SendMultipleMessages(0, 2));
     }
 }

@@ -42,6 +42,7 @@ public class MessagesController : MonoBehaviour
         TextMeshProUGUI textComponent = newMessage.GetComponentInChildren<TextMeshProUGUI>();
         if (textComponent != null)
         {
+            audioSource.Play();
             textComponent.text = message;
         }
         else
@@ -50,22 +51,21 @@ public class MessagesController : MonoBehaviour
         }
     }
 
-    public IEnumerator SendMultipleMessages(int messagesNum)
+    public IEnumerator SendMultipleMessages(int startIndex, int messagesNum)
     {
-        for(int i = 0; i <  messagesNum; i++)
+        int endIndex = Mathf.Min(startIndex + messagesNum, messages.Length);
+
+        for (int i = startIndex; i < endIndex; i++)
         {
             SendNextMessage();
             yield return new WaitForSeconds(2f);
         }
     }
-    
+
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        if(GameManager.Instance.playerID == "")
-        {
-            SendNextMessage();
-        }
+        SendNextMessage();     
     }
 
 }

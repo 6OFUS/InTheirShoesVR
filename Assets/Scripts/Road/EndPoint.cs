@@ -29,6 +29,7 @@ public class EndPoint : MonoBehaviour
             database.UpdateLevelComplete(GameManager.Instance.playerID, currentLevelName, true, "A3", DateTime.UtcNow.ToString("yyyy-MM-dd"), true);
             database.UpdatePlayerPoints(GameManager.Instance.playerID, CalculatePoints());
             audioSource.Play();
+            StartCoroutine(messagesController.SendMultipleMessages(3, 2));
         }
     }
 
@@ -62,6 +63,6 @@ public class EndPoint : MonoBehaviour
         database = FindObjectOfType<Database>();
         audioSource = GetComponent<AudioSource>();
         messagesController = FindObjectOfType<MessagesController>();
-        StartCoroutine(messagesController.SendMultipleMessages(3));
+        StartCoroutine(messagesController.SendMultipleMessages(0, 3));
     }
 }

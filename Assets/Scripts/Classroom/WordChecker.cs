@@ -48,7 +48,7 @@ public class WordChecker : MonoBehaviour
             database.UpdateLevelComplete(GameManager.Instance.playerID, currentLevelName, true, "A2", DateTime.UtcNow.ToString("yyyy-MM-dd"), true);
             database.UpdatePlayerPoints(GameManager.Instance.playerID, CalculatePoints());
             Debug.Log(GameManager.Instance.playerPoints);
-            StartCoroutine(messagesController.SendMultipleMessages(2)); StartCoroutine(messagesController.SendMultipleMessages(2));
+            StartCoroutine(messagesController.SendMultipleMessages(3, 2));
         }
         else
         {
@@ -69,7 +69,7 @@ public class WordChecker : MonoBehaviour
     {
         database = FindObjectOfType<Database>();
         messagesController = FindObjectOfType<MessagesController>();
-        StartCoroutine(messagesController.SendMultipleMessages(2));
+        StartCoroutine(messagesController.SendMultipleMessages(0,3));
     }
 
 

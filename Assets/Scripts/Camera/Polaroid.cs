@@ -22,6 +22,7 @@ public class Polaroid : MonoBehaviour
     private string userUID;
 
     private Client supabaseClient;
+    private AudioSource audioSource;
     
     private void Awake()
     {
@@ -49,6 +50,7 @@ public class Polaroid : MonoBehaviour
     {
         CreateRenderTexture();
         TurnOff();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void CreateRenderTexture()
@@ -62,6 +64,7 @@ public class Polaroid : MonoBehaviour
 
     public void TakePhoto()
     {
+        audioSource.Play();
         Photo newPhoto = CreatePhoto();
         Texture2D newTexture = RenderCameraToTexture(renderCamera);
         newPhoto.SetImage(newTexture);

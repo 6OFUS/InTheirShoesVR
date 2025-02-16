@@ -240,6 +240,14 @@ public class Authentication : MonoBehaviour
             kioskManager.ResetButtons();
             tutorialDoor.TutorialLocked();
             GameManager.Instance.isTracking = false;
+            GameManager.Instance.StorePlayerDetails(
+                    "",
+                    "",
+                    "",
+                    "",
+                    0,
+                    0
+                );
         }
     }
 
@@ -271,6 +279,8 @@ public class Authentication : MonoBehaviour
             }
             if (GameManager.Instance.playerLevelProgress["Hearing"].completed)
             {
+                messagesController = FindObjectOfType<MessagesController>();
+                messagesController.SendCustomMessage("Your journey is complete! View your high score and reflect on your experience.");
                 completeGameUI.SetActive(true);
                 database.UpdateAchievement(GameManager.Instance.playerID, "A6", DateTime.UtcNow.ToString("yyyy-MM-dd"), true);
                 database.UpdatePlayerPoints(GameManager.Instance.playerID, GameManager.Instance.playerPoints + 500);
