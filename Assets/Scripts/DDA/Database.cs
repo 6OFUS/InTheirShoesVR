@@ -146,6 +146,26 @@ public class Database : MonoBehaviour
         }
     }
 
+    public void ReadPlayerAchievements(string uID)
+    {
+        FirebaseDatabase.DefaultInstance.GetReference("players").Child(uID).Child("Achievements").GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted)
+            {
+                Debug.Log(task.Exception);
+            }
+            else if (task.IsCompleted)
+            {
+                DataSnapshot snapshot = task.Result;
+                foreach(var achievementID in snapshot.Children)
+                {
+                    GameManager.Instance.achievements[achievementID.Key] = (bool)achievementID.Child("Obtained").Value;
+                    Debug.Log((bool)achievementID.Child("Obtained").Value);
+                }
+            }
+        });
+    }
+
     /// <summary>
     /// Stores the total play time for the player in Firebase.
     /// </summary>

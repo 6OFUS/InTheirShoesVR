@@ -66,6 +66,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public Dictionary<string, (bool completed, bool doorUnlocked)> playerLevelProgress = new Dictionary<string, (bool, bool)>();
 
+    public Dictionary<string, bool> achievements = new Dictionary<string, bool>(); 
+
     /// <summary>
     /// Called when the script is first loaded. Initializes the singleton instance.
     /// </summary>

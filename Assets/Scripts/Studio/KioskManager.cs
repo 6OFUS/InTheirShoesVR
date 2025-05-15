@@ -3,6 +3,7 @@
     Date: 31/1/2025
     Description: This script manages the different keycards that the player is suppose to obtain through progression
 */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,6 +46,20 @@ public class KioskManager : MonoBehaviour
     public List<GameObject> doorUnockedIcon;
 
     private Dictionary<string, (bool completed, bool doorUnlocked)> playerProgress;
+
+    public GameObject completeGameUI;
+    public GameObject loginPage;
+    public GameObject confirmationPage;
+
+    public void GameEnd()
+    {
+        if (!GameManager.Instance.achievements["A6"])
+        {
+            completeGameUI.SetActive(true);
+            database.UpdateAchievement(GameManager.Instance.playerID, "A6", DateTime.UtcNow.ToString("yyyy-MM-dd"), true);
+            database.UpdatePlayerPoints(GameManager.Instance.playerID, GameManager.Instance.playerPoints + 500);
+        }
+    }
 
     /// <summary>
     /// Unlocks the dyslexia button by enabling the unlocked version 
@@ -120,12 +135,12 @@ public class KioskManager : MonoBehaviour
         {
             Debug.Log("unlocking buttons");
             StartCoroutine(UnlockButtons());
-        }   
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+            GameEnd();
+        }
+        if (GameManager.Instance.playerID != "")
+        {
+            confirmationPage.SetActive(true);
+            loginPage.SetActive(false);
+        }
     }
 }

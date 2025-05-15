@@ -36,7 +36,6 @@ public class Authentication : MonoBehaviour
     public GameObject confirmationPage;
     public GameObject signupPage;
     public GameObject loginPage;
-    public GameObject completeGameUI;
 
     public AnimationClip loadingClip;
     [Header("Sign up UI")]
@@ -173,6 +172,7 @@ public class Authentication : MonoBehaviour
             database.UpdateAchievement(userID, "A1", DateTime.UtcNow.ToString("yyyy-MM-dd"), true);
             GameManager.Instance.playerPoints += 10;
             database.UpdatePlayerPoints(userID, GameManager.Instance.playerPoints);
+            database.ReadPlayerAchievements(userID);
 
             confirmationPage.SetActive(true);
             signupPage.SetActive(false);
@@ -215,6 +215,7 @@ public class Authentication : MonoBehaviour
 
                 database.ReadPlayerData(session.User.Id);
                 database.ReadPlayerLvlProgress(session.User.Id);
+                database.ReadPlayerAchievements(session.User.Id);
 
                 ResetLoginInputs();
                 confirmationPage.SetActive(true);
@@ -282,6 +283,8 @@ public class Authentication : MonoBehaviour
                     0,
                     0
                 );
+            GameManager.Instance.playerLevelProgress.Clear();
+            GameManager.Instance.achievements.Clear();
         }
     }
 
@@ -306,19 +309,6 @@ public class Authentication : MonoBehaviour
         {
             kioskManager = FindObjectOfType<KioskManager>();
             tutorialDoor = FindObjectOfType<TutorialDoor>();
-            if(GameManager.Instance.playerID != "")
-            {
-                confirmationPage.SetActive(true);
-                loginPage.SetActive(false);
-            }
-            if (GameManager.Instance.playerLevelProgress["Hearing"].completed)
-            {
-                messagesController = FindObjectOfType<MessagesController>();
-                messagesController.SendCustomMessage("Your journey is complete! View your high score and reflect on your experience.");
-                completeGameUI.SetActive(true);
-                database.UpdateAchievement(GameManager.Instance.playerID, "A6", DateTime.UtcNow.ToString("yyyy-MM-dd"), true);
-                database.UpdatePlayerPoints(GameManager.Instance.playerID, GameManager.Instance.playerPoints + 500);
-            }
         }
     }
 }
