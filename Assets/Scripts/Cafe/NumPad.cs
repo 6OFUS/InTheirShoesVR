@@ -151,6 +151,9 @@ public class NumPad : MonoBehaviour
     {
         database = FindObjectOfType<Database>();
         messagesController = FindObjectOfType<MessagesController>();
-        StartCoroutine(messagesController.SendMultipleMessages(0, 1));
+        /*
+         * -------------------------- REMOVED FOR DEMO ------------------------
+         * StartCoroutine(messagesController.SendMultipleMessages(0, 1));
+        */
     }
 }

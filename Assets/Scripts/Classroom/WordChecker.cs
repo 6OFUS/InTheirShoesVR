@@ -53,7 +53,7 @@ public class WordChecker : MonoBehaviour
     /// <summary>
     /// The MessagesController instance used for sending messages.
     /// </summary>
-    public MessagesController messagesController;
+    [SerializeField] private MessagesController messagesController;
 
     /// <summary>
     /// The base points awarded for completing the level.
@@ -93,11 +93,14 @@ public class WordChecker : MonoBehaviour
         }
         if(correctWordCounter == correctWords.Length)
         {
-            levelCompleteUI.SetActive(true);
             correctAns.Play();
-            database.UpdateLevelComplete(GameManager.Instance.playerID, currentLevelName, true, "A2", DateTime.UtcNow.ToString("yyyy-MM-dd"), true);
-            database.UpdatePlayerPoints(GameManager.Instance.playerID, CalculatePoints());
-            Debug.Log(GameManager.Instance.playerPoints);
+            /*
+             * ---------------------------------------------- REMOVED FOR DEMO -----------------------------------------------------------------------------
+             * levelCompleteUI.SetActive(true);
+             * database.UpdateLevelComplete(GameManager.Instance.playerID, currentLevelName, true, "A2", DateTime.UtcNow.ToString("yyyy-MM-dd"), true);
+             * database.UpdatePlayerPoints(GameManager.Instance.playerID, CalculatePoints());
+             * Debug.Log(GameManager.Instance.playerPoints);
+             */
             StartCoroutine(messagesController.SendMultipleMessages(3, 2));
         }
         else
@@ -124,9 +127,12 @@ public class WordChecker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        messagesController = FindObjectOfType<MessagesController>();
-        database = FindObjectOfType<Database>();
-        StartCoroutine(messagesController.SendMultipleMessages(0,2));
+        /*
+         * ------ REMOVED FOR DEMO ---------------
+         * messagesController = FindObjectOfType<MessagesController>();
+         * database = FindObjectOfType<Database>();
+        */
+        StartCoroutine(messagesController.SendMultipleMessages(0,3));
     }
 
 

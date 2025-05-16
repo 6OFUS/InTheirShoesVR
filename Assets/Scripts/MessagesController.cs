@@ -92,12 +92,11 @@ public class MessagesController : MonoBehaviour
     public IEnumerator SendMultipleMessages(int startIndex, int messagesNum)
     {
         int endIndex = Mathf.Min(startIndex + messagesNum, messages.Length);
-
         for (int i = startIndex; i < endIndex; i++)
         {
+            yield return new WaitForSecondsRealtime(3f);
+            Debug.Log(i);
             SendNextMessage();
-            yield return new WaitForSecondsRealtime(2f);
-
         }
     }
 
@@ -107,7 +106,7 @@ public class MessagesController : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        SendNextMessage();     
+        //SendNextMessage();     
     }
 
 }
