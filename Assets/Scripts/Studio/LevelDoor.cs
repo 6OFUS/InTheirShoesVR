@@ -40,59 +40,89 @@ public class LevelDoor : MonoBehaviour
     /// </summary>
     public AudioClip doorLockClip;
 
+    private DemoLevelChecker levelChecker;
+    public int lvlNum;
+
     /// <summary>
     /// Attempts to open the door based on the player's progress.
     /// Checks if the previous level has been completed or if the keycard has been scanned.
     /// </summary>
     public void DoorOpen()
     {
-        if(GameManager.Instance.playerLevelProgress.Count != 0)
-        {
-            //get previous level data to check if level completed
-            var previousLevelData = GameManager.Instance.playerLevelProgress[prevLvlName];
-            var currentLevelData = GameManager.Instance.playerLevelProgress[scanner.keycardTag];
+        /*
+         * --------------------------------------------------------------- REMOVED FOR DEMO -----------------------------------------------------------------------------
+            if(GameManager.Instance.playerLevelProgress.Count != 0)
+            {
+                //get previous level data to check if level completed
+                var previousLevelData = GameManager.Instance.playerLevelProgress[prevLvlName];
+                var currentLevelData = GameManager.Instance.playerLevelProgress[scanner.keycardTag];
 
-            JointLimits limits = doorHinge.limits;
-            if (previousLevelData.completed) //previous level completed
-            {
-                if (currentLevelData.doorUnlocked) //door unlocked is for current door, not previous one
+                JointLimits limits = doorHinge.limits;
+                if (previousLevelData.completed) //previous level completed
                 {
-                    limits.max = 90;
-                    doorAudioSource.clip = doorOpenClip;
-                    doorAudioSource.Play();
-                    Debug.Log("Door unlocked");
+                    if (currentLevelData.doorUnlocked) //door unlocked is for current door, not previous one
+                    {
+                        limits.max = 90;
+                        doorAudioSource.clip = doorOpenClip;
+                        doorAudioSource.Play();
+                        Debug.Log("Door unlocked");
+                    }
+                    else //door locked
+                    {
+                        limits.max = 0;
+                        doorAudioSource.clip = doorLockClip;
+                        doorAudioSource.Play();
+                        Debug.Log("Door locked, scan card");
+                    }
                 }
-                else //door locked
+                else //previous level not completed
                 {
-                    limits.max = 0;
-                    doorAudioSource.clip = doorLockClip;
-                    doorAudioSource.Play();
-                    Debug.Log("Door locked, scan card");
+                    if (currentLevelData.doorUnlocked) // Check if keycard was scanned
+                    {
+                        limits.max = 90;
+                        doorAudioSource.clip = doorOpenClip;
+                        doorAudioSource.Play();
+                        Debug.Log("First door unlocked with keycard.");
+                    }
+                    else
+                    {
+                        limits.max = 0;
+                        doorAudioSource.clip = doorLockClip;
+                        doorAudioSource.Play();
+                        Debug.Log($"Door cannot be unlocked, complete the {prevLvlName} level or scan keycard.");
+                    }
                 }
+                doorHinge.limits = limits;  
+                Debug.Log(doorHinge.limits.max);
             }
-            else //previous level not completed
+            else
             {
-                if (currentLevelData.doorUnlocked) // Check if keycard was scanned
-                {
-                    limits.max = 90;
-                    doorAudioSource.clip = doorOpenClip;
-                    doorAudioSource.Play();
-                    Debug.Log("First door unlocked with keycard.");
-                }
-                else
-                {
-                    limits.max = 0;
-                    doorAudioSource.clip = doorLockClip;
-                    doorAudioSource.Play();
-                    Debug.Log($"Door cannot be unlocked, complete the {prevLvlName} level or scan keycard.");
-                }
+                Debug.Log("Sign in first");
             }
-            doorHinge.limits = limits;  
-            Debug.Log(doorHinge.limits.max);
+        */
+
+        JointLimits limits = doorHinge.limits;
+
+        if (levelChecker.levelCompleted[lvlNum])
+        {
+            limits.max = 90;
+            doorAudioSource.clip = doorOpenClip;
+            doorAudioSource.Play();
+            Debug.Log("Door unlocked");
         }
         else
         {
-            Debug.Log("Sign in first");
+            limits.max = 0;
+            doorAudioSource.clip = doorLockClip;
+            doorAudioSource.Play();
+            Debug.Log($"Door cannot be unlocked");
         }
+
+        doorHinge.limits = limits;
+    }
+
+    private void Start()
+    {
+        levelChecker = FindObjectOfType<DemoLevelChecker>();
     }
 }

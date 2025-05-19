@@ -65,13 +65,18 @@ public class WordChecker : MonoBehaviour
     /// </summary>
     private int retryCount;
 
+
+    private DemoLevelChecker levelChecker;
+    private bool pressedBell;
+
+
     /// <summary>
     /// Checks the words formed by the player against the correct words.
     /// </summary>
     public void CheckWord()
     {
         correctWordCounter = 0;
-
+        
         for (int i = 0; i < correctWords.Length; i++)
         {
             string formedWord = "";
@@ -91,8 +96,9 @@ public class WordChecker : MonoBehaviour
                 Debug.Log($"{formedWord} is the incorrect word!");
             }
         }
-        if(correctWordCounter == correctWords.Length)
+        if(correctWordCounter == correctWords.Length && !pressedBell)
         {
+            pressedBell = true;
             correctAns.Play();
             /*
              * ---------------------------------------------- REMOVED FOR DEMO -----------------------------------------------------------------------------
@@ -102,9 +108,16 @@ public class WordChecker : MonoBehaviour
              * Debug.Log(GameManager.Instance.playerPoints);
              */
             StartCoroutine(messagesController.SendMultipleMessages(3, 2));
+            //----------------- FOR DEMO ---------------------
+            levelChecker.levelCompleted[0] = true;
         }
         else
         {
+            if (pressedBell)
+            {
+                correctAns.Play();
+                return;
+            }
             retryCount++;
             incorrectAns.Play();
         }
@@ -133,7 +146,6 @@ public class WordChecker : MonoBehaviour
          * database = FindObjectOfType<Database>();
         */
         StartCoroutine(messagesController.SendMultipleMessages(0,3));
+        levelChecker = FindObjectOfType<DemoLevelChecker>();
     }
-
-
 }

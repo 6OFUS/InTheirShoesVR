@@ -72,6 +72,8 @@ public class NumPad : MonoBehaviour
     /// </summary>
     private int pointsDeduction = 10;
 
+    private DemoLevelChecker levelChecker;
+
     /// <summary>
     /// Adds a number to the current input when a button is pressed.
     /// </summary>
@@ -99,6 +101,8 @@ public class NumPad : MonoBehaviour
     /// </summary>
     public void Enter()
     {
+        /*
+        * ---------------------------------------------- REMOVED FOR DEMO -----------------------------------------------------------------------------
         queueNumInput.text = "";
         foundCorrectOrder = false;
         foreach (var fruit in fruitSockets)
@@ -130,6 +134,31 @@ public class NumPad : MonoBehaviour
         {
             incorrectOrders++;
         }
+        */
+        queueNumInput.text = "";
+        foundCorrectOrder = false;
+        foreach (var fruit in fruitSockets)
+        {
+            if (fruit.orderNum == currentNum && fruit.correct)
+            {
+                correctOrders++;
+                Debug.Log("Correct fruit and order num");
+                StartCoroutine(fruit.customer.ReturnToTable());
+                Destroy(fruit.placedFruit);
+                if (correctOrders == fruitSockets.Length)
+                {
+                    //StartCoroutine(messagesController.SendMultipleMessages(2, 3));
+                    StartCoroutine(messagesController.SendMultipleMessages(3, 2));
+                }
+                foundCorrectOrder = true;
+                levelChecker.levelCompleted[1] = true;
+                break;
+            }
+            else if (!foundCorrectOrder)
+            {
+                StartCoroutine(fruit.customer.PointIdleCycle());
+            }
+        }
     }
 
     /// <summary>
@@ -151,6 +180,7 @@ public class NumPad : MonoBehaviour
     {
         database = FindObjectOfType<Database>();
         messagesController = FindObjectOfType<MessagesController>();
+        levelChecker = FindObjectOfType<DemoLevelChecker>();
         /*
          * -------------------------- REMOVED FOR DEMO ------------------------
          * StartCoroutine(messagesController.SendMultipleMessages(0, 1));
