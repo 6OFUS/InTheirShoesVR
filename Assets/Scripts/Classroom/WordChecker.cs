@@ -100,14 +100,15 @@ public class WordChecker : MonoBehaviour
         {
             pressedBell = true;
             correctAns.Play();
+            levelCompleteUI.SetActive(true);
             /*
              * ---------------------------------------------- REMOVED FOR DEMO -----------------------------------------------------------------------------
              * levelCompleteUI.SetActive(true);
              * database.UpdateLevelComplete(GameManager.Instance.playerID, currentLevelName, true, "A2", DateTime.UtcNow.ToString("yyyy-MM-dd"), true);
              * database.UpdatePlayerPoints(GameManager.Instance.playerID, CalculatePoints());
              * Debug.Log(GameManager.Instance.playerPoints);
+             * StartCoroutine(messagesController.SendMultipleMessages(3, 2));
              */
-            StartCoroutine(messagesController.SendMultipleMessages(3, 2));
             //----------------- FOR DEMO ---------------------
             levelChecker.levelCompleted[0] = true;
         }
@@ -144,8 +145,8 @@ public class WordChecker : MonoBehaviour
          * ------ REMOVED FOR DEMO ---------------
          * messagesController = FindObjectOfType<MessagesController>();
          * database = FindObjectOfType<Database>();
+         * StartCoroutine(messagesController.SendMultipleMessages(0,3));
         */
-        StartCoroutine(messagesController.SendMultipleMessages(0,3));
         levelChecker = FindObjectOfType<DemoLevelChecker>();
     }
 }

@@ -145,13 +145,9 @@ public class NumPad : MonoBehaviour
                 Debug.Log("Correct fruit and order num");
                 StartCoroutine(fruit.customer.ReturnToTable());
                 Destroy(fruit.placedFruit);
-                if (correctOrders == fruitSockets.Length)
-                {
-                    //StartCoroutine(messagesController.SendMultipleMessages(2, 3));
-                    StartCoroutine(messagesController.SendMultipleMessages(3, 2));
-                }
                 foundCorrectOrder = true;
                 levelChecker.levelCompleted[1] = true;
+                levelCompleteUI.SetActive(true);
                 break;
             }
             else if (!foundCorrectOrder)

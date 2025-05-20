@@ -40,6 +40,8 @@ public class MobilityEndPoint : MonoBehaviour
     /// </summary>
     public GameObject resetButton;
 
+    public GameObject levelCompleteUI;
+
     /// <summary>
     /// This method is called when the player enters the end point trigger.
     /// It updates the player's progress, awards points, and triggers sound and messages.
@@ -49,11 +51,17 @@ public class MobilityEndPoint : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            /*
+             * ----------------------------------- REMOVE FOR DEMO -------------------------------------------------------------
             database.UpdateLevelComplete(GameManager.Instance.playerID, currentLevelName, true, "A4", DateTime.UtcNow.ToString("yyyy-MM-dd"), true);
             database.UpdatePlayerPoints(GameManager.Instance.playerID, GameManager.Instance.playerPoints + levelPoints);
             audioSource.Play();
             StartCoroutine(messagesController.SendMultipleMessages(2, 2));
             resetButton.SetActive(false);
+            */
+            audioSource.Play();
+            levelCompleteUI.SetActive(true);
+            Debug.Log("enter");
         }
     }
 
@@ -63,10 +71,13 @@ public class MobilityEndPoint : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        database = FindObjectOfType<Database>();
         audioSource = GetComponent<AudioSource>();
+        /*
+        ----------------------------------- REMOVE FOR DEMO -------------------------------------------------------------
+        database = FindObjectOfType<Database>();
         messagesController = FindObjectOfType<MessagesController>();
         StartCoroutine(messagesController.SendMultipleMessages(0,1));
+        */
     }
 
     // Update is called once per frame
