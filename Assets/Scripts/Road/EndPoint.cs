@@ -49,6 +49,8 @@ public class EndPoint : MonoBehaviour
     /// </summary>
     public int hitCount;
 
+    public GameObject levelCompleteUI;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -56,6 +58,7 @@ public class EndPoint : MonoBehaviour
             FadeOutVolume();
             database.UpdateLevelComplete(GameManager.Instance.playerID, currentLevelName, true, "A3", DateTime.UtcNow.ToString("yyyy-MM-dd"), true);
             database.UpdatePlayerPoints(GameManager.Instance.playerID, CalculatePoints());
+            levelCompleteUI.SetActive(true);
             audioSource.Play();
             StartCoroutine(messagesController.SendMultipleMessages(3, 2));
         }
