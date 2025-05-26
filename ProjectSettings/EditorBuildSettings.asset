@@ -26,10 +26,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/DEMO/DEMO - first 2 levels.unity
     guid: b3dbca91033ec964a8c71a94aa04c5ea
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/DEMO/DEMO - wheelchair.unity
     guid: 55c71aa555c24554d8724af9ad7f6020
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/DEMO/DEMO - blind.unity
     guid: 6a7088ffe1eaaf543ada490f83c827d9
   m_configObjects:
